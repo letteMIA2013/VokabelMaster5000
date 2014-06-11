@@ -5,6 +5,8 @@ import javax.swing.WindowConstants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.String;
 
 /**
@@ -18,7 +20,7 @@ public class KatalogwahlFenster {
     public KatalogwahlFenster() {
 
         //Fenster für die Katalogwahl
-        JFrame katalogFenster = new JFrame("Katalogauswahl");
+        final JFrame katalogFenster = new JFrame("Katalogauswahl");
         katalogFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
@@ -38,6 +40,23 @@ public class KatalogwahlFenster {
         ImageIcon zurueckIcon = new BildBauer().createImageIcon("Img/zurueckGrossButton.png");
         BildButton zurueck = new BildButton(zurueckIcon);
 
+        //ActionListener
+        deutschEnglisch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                katalogFenster.setVisible(false);
+                katalogFenster.dispose();
+                new DeEngFenster();
+            }
+        });
+
+        /*englischDeutsch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EngDeFenster();
+            }
+        });*/
+
         //hier werden alle Elemente dem katalogPanel hinzugefügt
         katalogPanel.add(deutschEnglisch,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.PAGE_START,GridBagConstraints.NONE,new Insets(120,0,0,0),0,0));
         katalogPanel.add(englischDeutsch,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
@@ -50,6 +69,7 @@ public class KatalogwahlFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         katalogFenster.setSize(415,400);
+        katalogFenster.setLocationRelativeTo(null);
         katalogFenster.setResizable(false);
         katalogFenster.setVisible(true);
     }

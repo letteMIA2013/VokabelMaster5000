@@ -52,6 +52,7 @@ public class MenuFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         menuFenster.pack();
+        menuFenster.setLocationRelativeTo(null);
         menuFenster.setResizable(false);
         menuFenster.setVisible(true);
 
