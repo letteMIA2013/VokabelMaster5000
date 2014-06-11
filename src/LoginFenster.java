@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.lang.String;
 
 /**
@@ -32,7 +34,16 @@ public class LoginFenster {
 
         //Textfelder zum Abfragen der Logindaten
         RoundedTextField idText = new RoundedTextField(12);
-        RoundedTextField pwText = new RoundedTextField(12);
+        RoundedPassField pwText = new RoundedPassField(12);
+
+        //KeyListener
+        idText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                System.out.println("hi");
+            }
+        });
 
         //DeinButton werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("Img/cancelButton.png");
