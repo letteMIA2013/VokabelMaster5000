@@ -18,7 +18,7 @@ public class BilderPanel extends JPanel {
     public BilderPanel(String imgUrl) {
         // load the background image
 
-            img = createImageIcon(imgUrl).getImage();
+        img = createImageIcon(imgUrl).getImage();
     }
 
 
@@ -26,8 +26,7 @@ public class BilderPanel extends JPanel {
         java.net.URL imgURL = getClass().getResource(pfad);
         if (imgURL != null) {
             return new ImageIcon(imgURL, "");
-        }
-        else {
+        } else {
             System.out.println("Konnte " + pfad + " nicht finden.");
             return null;
         }

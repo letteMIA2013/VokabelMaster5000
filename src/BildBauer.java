@@ -14,8 +14,7 @@ public class BildBauer {
         java.net.URL imgURL = getClass().getResource(pfad);
         if (imgURL != null) {
             return new ImageIcon(imgURL, "");
-        }
-        else {
+        } else {
             System.out.println("Konnte " + pfad + " nicht finden.");
             return null;
         }

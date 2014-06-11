@@ -14,7 +14,7 @@ public class BildButton extends JButton {
     public BildButton(String name, int dimensionWidth) {
 
         setText(name);
-        setPreferredSize(new Dimension(dimensionWidth,this.getPreferredSize().height));
+        setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
@@ -35,7 +35,7 @@ public class BildButton extends JButton {
     public BildButton(Icon icon, int dimensionWidth) {
 
         setIcon(icon);
-        setPreferredSize(new Dimension(dimensionWidth,this.getPreferredSize().height));
+        setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);

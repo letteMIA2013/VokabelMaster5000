@@ -1,11 +1,12 @@
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.String;
 
 /**
@@ -19,7 +20,7 @@ public class LoginFenster {
     public LoginFenster() {
 
         //Fenster für den Login
-        JFrame loginFenster = new JFrame("Anmeldung");
+        final JFrame loginFenster = new JFrame("Anmeldung");
         loginFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
@@ -30,25 +31,44 @@ public class LoginFenster {
         loginPanel.setOpaque(false);
 
         //Textfelder zum Abfragen der Logindaten
-        JTextField idText = new JTextField(10);
-        JTextField pwText = new JTextField(10);
+        RoundedTextField idText = new RoundedTextField(12);
+        RoundedTextField pwText = new RoundedTextField(12);
 
         //DeinButton werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("Img/cancelButton.png");
-        BildButton zumMenu = new BildButton(zumMenuIcon,400);
+        BildButton zumMenu = new BildButton(zumMenuIcon, 400);
 
         ImageIcon registrierungIcon = new BildBauer().createImageIcon("Img/registrierungButton.png");
-        BildButton registrierung = new BildButton(registrierungIcon,400);
+        BildButton registrierung = new BildButton(registrierungIcon, 400);
 
         ImageIcon loginIcon = new BildBauer().createImageIcon("Img/loginButton.png");
-        BildButton login = new BildButton(loginIcon,400);
+        BildButton login = new BildButton(loginIcon, 400);
+
+        //ActionListener
+        zumMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginFenster.setVisible(false);
+                loginFenster.dispose();
+                new MenuFenster();
+            }
+        });
+
+        registrierung.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginFenster.setVisible(false);
+                loginFenster.dispose();
+                new RegistrierungFenster();
+            }
+        });
 
         //hier werden alle Elemente dem loginPanel hinzugefügt
-        loginPanel.add(zumMenu,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,350,0,0),0,0));
-        loginPanel.add(registrierung,new GridBagConstraints(0,2,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(30,0,0,0),0,0));
-        loginPanel.add(idText,new GridBagConstraints(0,3,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(52,130,0,0),0,0));
-        loginPanel.add(pwText,new GridBagConstraints(0,4,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(14,130,0,0),0,0));
-        loginPanel.add(login,new GridBagConstraints(0,5,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(40,0,0,0),0,0));
+        loginPanel.add(zumMenu, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 350, 0, 0), 0, 0));
+        loginPanel.add(registrierung, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), 0, 0));
+        loginPanel.add(idText, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(56, 130, 0, 0), 0, 0));
+        loginPanel.add(pwText, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(14, 130, 0, 0), 0, 0));
+        loginPanel.add(login, new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
 
         loginBg.add(loginPanel);
 
@@ -56,7 +76,8 @@ public class LoginFenster {
         loginFenster.add(loginBg);
 
         //Fenstergröße setzen und anzeigen lassen
-        loginFenster.setSize(415,400);
+        loginFenster.setSize(415, 400);
+        loginFenster.setLocationRelativeTo(null);
         loginFenster.setResizable(false);
         loginFenster.setVisible(true);
 

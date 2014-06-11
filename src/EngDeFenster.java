@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * VokabelMaster5000
  */
 
-public class DeEngFenster {
+public class EngDeFenster {
 
     Timer timer;
     int count;
@@ -17,18 +17,18 @@ public class DeEngFenster {
     RoundedTextField ausgabe;
     BildButton weiter;
 
-    public DeEngFenster() {
+    public EngDeFenster() {
 
         //Fenster für die Katalogwahl
-        final JFrame deEngFenster = new JFrame("Deutsch/Englisch");
-        deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        final JFrame engDeFenster = new JFrame("Englisch/Deutsch");
+        engDeFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel deEngBg = new BilderPanel("Img/deEngBg.png");
+        BilderPanel engDeBg = new BilderPanel("Img/engDeBg.png");
 
         //BilderPanel
-        JPanel deEngPanel = new JPanel(new GridBagLayout());
-        deEngPanel.setOpaque(false);
+        JPanel engDePanel = new JPanel(new GridBagLayout());
+        engDePanel.setOpaque(false);
 
         //Zwischenstandlabel
         ImageIcon zwischenstandIcon = new BildBauer().createImageIcon("Img/zwischenstandLabel.png");
@@ -70,12 +70,11 @@ public class DeEngFenster {
         ImageIcon weiterIcon = new BildBauer().createImageIcon("Img/weiterButton.png");
         weiter = new BildButton(weiterIcon);
 
-        //ActionListener
         zurueck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deEngFenster.setVisible(false);
-                deEngFenster.dispose();
+                engDeFenster.setVisible(false);
+                engDeFenster.dispose();
                 new KatalogwahlFenster();
             }
         });
@@ -97,24 +96,24 @@ public class DeEngFenster {
             }
         });
 
-        //hier werden alle Elemente dem deEngPanel hinzugefügt
-        deEngPanel.add(zwischenstand, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
-        deEngPanel.add(eingabe, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(25, 150, 0, 0), 0, 0));
-        deEngPanel.add(ausgabe, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(94, 150, 0, 0), 0, 0));
-        deEngPanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 200), 0, 0));
-        deEngPanel.add(Ok, new GridBagConstraints(1, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
-        deEngPanel.add(weiter, new GridBagConstraints(2, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 200, 0, 0), 0, 0));
+        //hier werden alle Elemente dem engDePanel hinzugefügt
+        engDePanel.add(zwischenstand, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
+        engDePanel.add(eingabe, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(25, 150, 0, 0), 0, 0));
+        engDePanel.add(ausgabe, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(94, 150, 0, 0), 0, 0));
+        engDePanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 200), 0, 0));
+        engDePanel.add(Ok, new GridBagConstraints(1, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
+        engDePanel.add(weiter, new GridBagConstraints(2, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 200, 0, 0), 0, 0));
 
-        deEngBg.add(deEngPanel);
+        engDeBg.add(engDePanel);
 
         //Komponenten zum Fenster hinzufügen
-        deEngFenster.add(deEngBg);
+        engDeFenster.add(engDeBg);
 
         //Fenstergröße setzen und anzeigen lassen
-        deEngFenster.setSize(415, 400);
-        deEngFenster.setLocationRelativeTo(null);
-        deEngFenster.setResizable(false);
-        deEngFenster.setVisible(true);
+        engDeFenster.setSize(415, 400);
+        engDeFenster.setLocationRelativeTo(null);
+        engDeFenster.setResizable(false);
+        engDeFenster.setVisible(true);
 
     }
 

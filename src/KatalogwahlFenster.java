@@ -46,7 +46,7 @@ public class KatalogwahlFenster {
             public void actionPerformed(ActionEvent e) {
                 katalogFenster.setVisible(false);
                 katalogFenster.dispose();
-                new DeEngFenster();
+                new EngDeFenster();
             }
         });
 
@@ -58,9 +58,9 @@ public class KatalogwahlFenster {
         });*/
 
         //hier werden alle Elemente dem katalogPanel hinzugefügt
-        katalogPanel.add(deutschEnglisch,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.PAGE_START,GridBagConstraints.NONE,new Insets(120,0,0,0),0,0));
-        katalogPanel.add(englischDeutsch,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
-        katalogPanel.add(zurueck,new GridBagConstraints(0,2,0,1,1,1,GridBagConstraints.PAGE_END,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
+        katalogPanel.add(deutschEnglisch, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, new Insets(120, 0, 0, 0), 0, 0));
+        katalogPanel.add(englischDeutsch, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        katalogPanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
         katalogBg.add(katalogPanel);
 
@@ -68,13 +68,13 @@ public class KatalogwahlFenster {
         katalogFenster.add(katalogBg);
 
         //Fenstergröße setzen und anzeigen lassen
-        katalogFenster.setSize(415,400);
+        katalogFenster.setSize(415, 400);
         katalogFenster.setLocationRelativeTo(null);
         katalogFenster.setResizable(false);
         katalogFenster.setVisible(true);
     }
 
-    public static void main(String[] a){
+    public static void main(String[] a) {
 
         new KatalogwahlFenster();
 
