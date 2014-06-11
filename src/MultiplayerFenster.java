@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.lang.String;
 
 /**
@@ -64,6 +66,24 @@ public class MultiplayerFenster {
         MeinLabel spielerZweiPunkte = new MeinLabel("S2 Punkte", true, Color.WHITE);
         MeinLabel spielerDrei = new MeinLabel("Spieler 3", true, Color.LIGHT_GRAY);
         MeinLabel spielerDreiPunkte = new MeinLabel("S3 Punkte", true, Color.WHITE);
+
+        //KeyListener
+        multiplayerFenster.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                System.out.println("huhu");
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("huhu");
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 
         //Labels dem spielerPanel hinzufügen
         spielerPanel.add(spielerEins, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
