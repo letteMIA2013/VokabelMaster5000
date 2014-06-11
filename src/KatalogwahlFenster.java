@@ -18,19 +18,19 @@ public class KatalogwahlFenster {
         //Hintergrundbild
         BilderPanel katalogBg = new BilderPanel("Img/katalogwahlBg.png");
 
-        //VM5000.BilderPanel
+        //BilderPanel
         JPanel katalogPanel = new JPanel(new GridBagLayout());
         katalogPanel.setOpaque(false);
 
         //Buttons werden hier erstellt
         ImageIcon deutschEnglischIcon = new BildBauer().createImageIcon("Img/deEngButton.png");
-        DeinButton deutschEnglisch = new DeinButton(deutschEnglischIcon);
+        BildButton deutschEnglisch = new BildButton(deutschEnglischIcon);
 
         ImageIcon englischDeutschIcon = new BildBauer().createImageIcon("Img/engDeButton.png");
-        DeinButton englischDeutsch = new DeinButton(englischDeutschIcon);
+        BildButton englischDeutsch = new BildButton(englischDeutschIcon);
 
         ImageIcon zurueckIcon = new BildBauer().createImageIcon("Img/zurueckGrossButton.png");
-        DeinButton zurueck = new DeinButton(zurueckIcon);
+        BildButton zurueck = new BildButton(zurueckIcon);
 
         //hier werden alle Elemente dem katalogPanel hinzugefügt
         katalogPanel.add(deutschEnglisch,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.PAGE_START,GridBagConstraints.NONE,new Insets(120,0,0,0),0,0));

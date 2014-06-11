@@ -19,7 +19,7 @@ public class LoginFenster {
         //Hintergrundbild
         BilderPanel loginBg = new BilderPanel("Img/loginBg.png");
 
-        //VM5000.BilderPanel
+        //BilderPanel
         JPanel loginPanel = new JPanel(new GridBagLayout());
         loginPanel.setOpaque(false);
 
@@ -27,15 +27,15 @@ public class LoginFenster {
         JTextField idText = new JTextField(10);
         JTextField pwText = new JTextField(10);
 
-        //VM5000.DeinButton werden hier erstellt
+        //DeinButton werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("Img/cancelButton.png");
-        DeinButton zumMenu = new DeinButton(zumMenuIcon,400);
+        BildButton zumMenu = new BildButton(zumMenuIcon,400);
 
         ImageIcon registrierungIcon = new BildBauer().createImageIcon("Img/registrierungButton.png");
-        DeinButton registrierung = new DeinButton(registrierungIcon,400);
+        BildButton registrierung = new BildButton(registrierungIcon,400);
 
         ImageIcon loginIcon = new BildBauer().createImageIcon("Img/loginButton.png");
-        DeinButton login = new DeinButton(loginIcon,400);
+        BildButton login = new BildButton(loginIcon,400);
 
         //hier werden alle Elemente dem loginPanel hinzugefügt
         loginPanel.add(zumMenu,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,350,0,0),0,0));
@@ -48,7 +48,6 @@ public class LoginFenster {
 
         //Komponente zum Fenster hinzufügen
         loginFenster.add(loginBg);
-
 
         //Fenstergröße setzen und anzeigen lassen
         loginFenster.setSize(415,400);

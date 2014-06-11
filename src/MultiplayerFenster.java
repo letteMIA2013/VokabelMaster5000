@@ -33,10 +33,10 @@ public class MultiplayerFenster {
         JPanel antwortPanel = new JPanel();
 
         //Buttons für die Antworten
-        DeinButton antwortEins = new DeinButton("Antwort Eins",500);
-        DeinButton antwortZwei = new DeinButton("Antwort Zwei",500);
-        DeinButton antwortDrei = new DeinButton("Antwort Drei",500);
-        DeinButton antwortVier = new DeinButton("Antwort Vier",500);
+        BildButton antwortEins = new BildButton("Antwort Eins",500);
+        BildButton antwortZwei = new BildButton("Antwort Zwei",500);
+        BildButton antwortDrei = new BildButton("Antwort Drei",500);
+        BildButton antwortVier = new BildButton("Antwort Vier",500);
 
         //Buzzer
         MeinLabel buzzer = new MeinLabel("Buzzer",true,Color.RED);

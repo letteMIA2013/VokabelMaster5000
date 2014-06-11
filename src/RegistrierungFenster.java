@@ -19,7 +19,7 @@ public class RegistrierungFenster {
         //Hintergrundbild
         BilderPanel registrierungsBg = new BilderPanel("Img/registrierungBg.png");
 
-        //VM5000.BilderPanel
+        //BilderPanel
         JPanel registrierungsPanel = new JPanel(new GridBagLayout());
         registrierungsPanel.setOpaque(false);
 
@@ -30,10 +30,10 @@ public class RegistrierungFenster {
 
         //Buttons werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("Img/cancelButton.png");
-        DeinButton zumMenu = new DeinButton(zumMenuIcon,400);
+        BildButton zumMenu = new BildButton(zumMenuIcon,400);
 
         ImageIcon signUpIcon = new BildBauer().createImageIcon("Img/signUpButton.png");
-        DeinButton signUp = new DeinButton(signUpIcon,400);
+        BildButton signUp = new BildButton(signUpIcon,400);
 
         //hier werden alle Elemente dem registrierungsPanel hinzugefügt
         registrierungsPanel.add(zumMenu,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,350,0,0),0,0));
