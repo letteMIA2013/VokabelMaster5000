@@ -6,6 +6,7 @@ import java.awt.*;
  * on 11 Jun 2014
  * VokabelMaster5000
  */
+
 public class DeEngFenster {
 
     public DeEngFenster() {

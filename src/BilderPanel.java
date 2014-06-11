@@ -6,6 +6,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.System;
 
+/**
+ * Created by Ka Yan Lam
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
+
 public class BilderPanel extends JPanel {
     private Image img;
 

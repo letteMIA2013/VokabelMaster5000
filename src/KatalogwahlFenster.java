@@ -7,6 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.lang.String;
 
+/**
+ * Created by Frances Schmidt
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
+
 public class KatalogwahlFenster {
 
     public KatalogwahlFenster() {

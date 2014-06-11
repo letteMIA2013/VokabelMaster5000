@@ -3,6 +3,12 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.lang.String;
 
+/**
+ * Created by Ka Yan Lam
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
+
 public class BildButton extends JButton {
 
     public BildButton(String name, int dimensionWidth) {
