@@ -3,11 +3,9 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 /**
- *
  * Created by Ka Yan Lam
  * on 11 Jun 2014
  * VokabelMaster5000
- *
  */
 
 class RoundedTextField extends JTextField {
