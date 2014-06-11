@@ -49,6 +49,7 @@ public class RegistrierungFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         registrierungsFenster.setSize(415, 400);
+        registrierungsFenster.setResizable(false);
         registrierungsFenster.setVisible(true);
 
     }

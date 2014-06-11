@@ -74,6 +74,7 @@ public class MultiplayerFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         multiplayerFenster.setSize(415,400);
+        multiplayerFenster.setResizable(false);
         multiplayerFenster.setVisible(true);
 
     }

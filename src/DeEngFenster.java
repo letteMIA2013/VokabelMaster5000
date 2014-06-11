@@ -1,22 +1,21 @@
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.lang.String;
+import javax.swing.*;
+import java.awt.*;
 
-public class KatalogwahlFenster {
+/**
+ * Created by Ka Yan Lam
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
+public class DeEngFenster {
 
-    public KatalogwahlFenster() {
+    public DeEngFenster() {
 
         //Fenster für die Katalogwahl
-        JFrame katalogFenster = new JFrame("Katalogauswahl");
-        katalogFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JFrame deEngFenster = new JFrame("Deutsch/Englisch");
+        deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel katalogBg = new BilderPanel("Img/katalogwahlBg.png");
+        BilderPanel deEngBg = new BilderPanel("Img/deEngBg.png");
 
         //VM5000.BilderPanel
         JPanel katalogPanel = new JPanel(new GridBagLayout());
@@ -37,20 +36,21 @@ public class KatalogwahlFenster {
         katalogPanel.add(englischDeutsch,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
         katalogPanel.add(zurueck,new GridBagConstraints(0,2,0,1,1,1,GridBagConstraints.PAGE_END,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
 
-        katalogBg.add(katalogPanel);
+        deEngBg.add(katalogPanel);
 
         //Komponenten zum Fenster hinzufügen
-        katalogFenster.add(katalogBg);
+        deEngFenster.add(deEngBg);
 
         //Fenstergröße setzen und anzeigen lassen
-        katalogFenster.setSize(415,400);
-        katalogFenster.setResizable(false);
-        katalogFenster.setVisible(true);
+        deEngFenster.setSize(415, 400);
+        deEngFenster.setResizable(false);
+        deEngFenster.setVisible(true);
+
     }
 
-    public static void main(String[] a){
+    public static void main(String[] a) {
 
-        new KatalogwahlFenster();
+        new DeEngFenster();
 
     }
 

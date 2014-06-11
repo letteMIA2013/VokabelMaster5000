@@ -52,6 +52,7 @@ public class LoginFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         loginFenster.setSize(415,400);
+        loginFenster.setResizable(false);
         loginFenster.setVisible(true);
 
     }
