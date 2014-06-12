@@ -14,29 +14,33 @@ import java.lang.String;
 
 public class MeinLabel extends JLabel {
 
-    public MeinLabel(String name, boolean opaque, Color color) {
+    public MeinLabel(Icon icon, Color color) {
 
-        setText(name);
+        setIcon(icon);
         setHorizontalAlignment(SwingConstants.CENTER);
-        setOpaque(opaque);
+        setOpaque(true);
         setBackground(color);
 
     }
 
-    public MeinLabel(Icon icon, boolean opaque, Color color) {
+    public MeinLabel(Icon icon, String text) {
 
         setIcon(icon);
+        setText(text);
         setHorizontalAlignment(SwingConstants.CENTER);
-        setOpaque(opaque);
-        setBackground(color);
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.CENTER);
+        setOpaque(false);
 
     }
 
-    public MeinLabel(Icon icon, boolean opaque) {
+    public MeinLabel(Icon icon) {
 
         setIcon(icon);
         setHorizontalAlignment(SwingConstants.CENTER);
-        setOpaque(opaque);
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.CENTER);
+        setOpaque(false);
 
     }
 

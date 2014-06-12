@@ -34,7 +34,7 @@ public class DeEngFenster {
 
         //Zwischenstandlabel
         ImageIcon zwischenstandIcon = new BildBauer().createImageIcon("Img/zwischenstandLabel.png");
-        MeinLabel zwischenstand = new MeinLabel(zwischenstandIcon, false);
+        MeinLabel zwischenstand = new MeinLabel(zwischenstandIcon);
 
         //Timer
         count = 10;

@@ -1,7 +1,6 @@
 package gui;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.Dimension;
 import java.lang.String;
 
@@ -13,10 +12,9 @@ import java.lang.String;
 
 public class BildButton extends JButton {
 
-    public BildButton(String name, int dimensionWidth) {
+    public BildButton(Icon icon) {
 
-        setText(name);
-        setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
+        setIcon(icon);
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
@@ -24,9 +22,12 @@ public class BildButton extends JButton {
 
     }
 
-    public BildButton(Icon icon) {
+    public BildButton(Icon icon, String text) {
 
         setIcon(icon);
+        setText(text);
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.CENTER);
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);

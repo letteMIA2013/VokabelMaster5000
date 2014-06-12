@@ -27,7 +27,7 @@ public class MenuFenster {
 
         //Logo
         ImageIcon logoIcon = new BildBauer().createImageIcon("Img/VM5000.png");
-        MeinLabel logo = new MeinLabel(logoIcon,true, Color.WHITE);
+        MeinLabel logo = new MeinLabel(logoIcon, Color.WHITE);
 
         //Menupanel für die Buttons
         JPanel menuPanel = new JPanel(new GridBagLayout());

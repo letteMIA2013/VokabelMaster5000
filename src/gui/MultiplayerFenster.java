@@ -35,39 +35,35 @@ public class MultiplayerFenster {
         multiplayerPanel.setOpaque(false);
 
         //Felder für den Timer und der Frage
-        time = new JLabel();
+        time = new JLabel("00:00");
         ImageIcon frageIcon = new BildBauer().createImageIcon("/Img/frageLabel.png");
-        MeinLabel frage = new MeinLabel(frageIcon, false);
-        frage.setText("Vokabel");
-        frage.setHorizontalTextPosition(SwingConstants.CENTER);
+        MeinLabel frage = new MeinLabel(frageIcon, "Vokabel");
 
         //Buttons für die Antworten
-        BildButton antwortEins = new BildButton("Antwort Eins", 500);
-        BildButton antwortZwei = new BildButton("Antwort Zwei", 500);
-        BildButton antwortDrei = new BildButton("Antwort Drei", 500);
-        BildButton antwortVier = new BildButton("Antwort Vier", 500);
+        ImageIcon antwort = new BildBauer().createImageIcon("/Img/antwortenLabel.png");
+        BildButton antwortEins = new BildButton(antwort, "Antwort 1");
+        BildButton antwortZwei = new BildButton(antwort, "Antwort 2");
+        BildButton antwortDrei = new BildButton(antwort, "Antwort 3");
+        BildButton antwortVier = new BildButton(antwort, "Antwort 4");
 
         //Buzzer
-        MeinLabel buzzer = new MeinLabel("Buzzer", true, Color.RED);
+        ImageIcon buzzerIcon = new BildBauer().createImageIcon("/Img/buzzerRotLabel.png");
+        MeinLabel buzzer = new MeinLabel(buzzerIcon);
 
         //Felder für die 3 Spieler + Punktestand
         ImageIcon spielerEinsIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerEins = new MeinLabel(spielerEinsIcon, true);
+        MeinLabel spielerEins = new MeinLabel(spielerEinsIcon);
 
-        ImageIcon spielerZweiIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerZwei = new MeinLabel(spielerZweiIcon, true);
+        ImageIcon spielerZweiIcon = new BildBauer().createImageIcon("/Img/spielerGruenLabel.png");
+        MeinLabel spielerZwei = new MeinLabel(spielerZweiIcon);
 
-        ImageIcon spielerDreiIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerDrei = new MeinLabel(spielerDreiIcon, true);
+        ImageIcon spielerDreiIcon = new BildBauer().createImageIcon("/Img/spielerBlauLabel.png");
+        MeinLabel spielerDrei = new MeinLabel(spielerDreiIcon);
 
-        ImageIcon spielerEinsPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerEinsPunkte = new MeinLabel(spielerEinsPunkteIcon, true);
-
-        ImageIcon spielerZweiPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerZweiPunkte = new MeinLabel(spielerZweiPunkteIcon, true);
-
-        ImageIcon spielerDreiPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerDreiPunkte = new MeinLabel(spielerDreiPunkteIcon, true);
+        ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/Img/punkteLabel.png");
+        MeinLabel spielerEinsPunkte = new MeinLabel(spielerPunkteIcon);
+        MeinLabel spielerZweiPunkte = new MeinLabel(spielerPunkteIcon);
+        MeinLabel spielerDreiPunkte = new MeinLabel(spielerPunkteIcon);
 
         //Timer
         count = 16;
@@ -101,23 +97,24 @@ public class MultiplayerFenster {
         t.start();
 
         //Timer und Frage dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(frage, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(75, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(time, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-205, 0, 0, 215), 0, 0));
+        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-3, 0, 0, 215), 0, 0));
+        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(60, 0, 0, 0), 0, 0));
+
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(antwortZwei, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(antwortDrei, new GridBagConstraints(2, 0, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(antwortVier, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
-        multiplayerPanel.add(buzzer, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+        multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(antwortZwei, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(antwortDrei, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(antwortVier, new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buzzer, new GridBagConstraints(0, 6, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         //Spieler und Punkte dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(spielerDrei, new GridBagConstraints(2, 0, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
-        multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
-        multiplayerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 1, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+        multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 300), 0, 0));
+        multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(spielerDrei, new GridBagConstraints(2, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 300, 0, 0), 0, 0));
+        multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 300), 0, 0));
+        multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 300, 0, 0), 0, 0));
 
         multiplayerBg.add(multiplayerPanel);
 
