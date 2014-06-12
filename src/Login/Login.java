@@ -6,6 +6,7 @@ import gui.LoginFenster;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +26,7 @@ private String id;
     }
 
     public String auslesen(){
+        
         System.out.println("Die id ist:"+id+"Das Passwort ist"+ passwort);
     return id + passwort;
 
