@@ -1,5 +1,8 @@
 package gui;
 
+import Login.Login;
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +23,9 @@ import java.lang.String;
  */
 
 public class LoginFenster {
+    private String id;
+    private String passwort;
+    private Login log;
 
     public LoginFenster() {
 
@@ -28,15 +34,15 @@ public class LoginFenster {
         loginFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel loginBg = new BilderPanel("Img/loginBg.png");
+        BilderPanel loginBg = new BilderPanel("/Img/loginBg.png");
 
         //gui.BilderPanel
         JPanel loginPanel = new JPanel(new GridBagLayout());
         loginPanel.setOpaque(false);
 
         //Textfelder zum Abfragen der Logindaten
-        RoundedTextField idText = new RoundedTextField(12);
-        RoundedPassField pwText = new RoundedPassField(12);
+        final RoundedTextField idText = new RoundedTextField(12);
+        final RoundedPassField pwText = new RoundedPassField(12);
 
         //KeyListener
         idText.addKeyListener(new KeyAdapter() {
@@ -48,13 +54,13 @@ public class LoginFenster {
         });
 
         //DeinButton werden hier erstellt
-        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("Img/cancelButton.png");
+        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
         BildButton zumMenu = new BildButton(zumMenuIcon, 400);
 
-        ImageIcon registrierungIcon = new BildBauer().createImageIcon("Img/registrierungButton.png");
+        ImageIcon registrierungIcon = new BildBauer().createImageIcon("/Img/registrierungButton.png");
         BildButton registrierung = new BildButton(registrierungIcon, 400);
 
-        ImageIcon loginIcon = new BildBauer().createImageIcon("Img/loginButton.png");
+        ImageIcon loginIcon = new BildBauer().createImageIcon("/Img/loginButton.png");
         BildButton login = new BildButton(loginIcon, 400);
 
         //ActionListener
@@ -73,6 +79,17 @@ public class LoginFenster {
                 loginFenster.setVisible(false);
                 loginFenster.dispose();
                 new RegistrierungFenster();
+            }
+        });
+//made by Defalt zum auslesen der textfelder
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                id = idText.getText();
+                passwort = pwText.getText();
+               Login log = new Login(id, passwort);
+
+
             }
         });
 
@@ -101,5 +118,6 @@ public class LoginFenster {
         new LoginFenster();
 
     }
+
 
 }
