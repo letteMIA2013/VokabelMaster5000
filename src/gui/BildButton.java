@@ -32,6 +32,7 @@ public class BildButton extends JButton {
         setFocusPainted(false);
         setContentAreaFilled(false);
         setHorizontalAlignment(CENTER);
+        setFocusable(true);
 
     }
 

@@ -18,6 +18,8 @@ public class DeEngFenster {
     RoundedTextField eingabe;
     RoundedTextField ausgabe;
     BildButton weiter;
+    MeinLabel zwischenstand;
+    int zahlZwischenstand = 0;
 
     public DeEngFenster() {
 
@@ -26,15 +28,14 @@ public class DeEngFenster {
         deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel deEngBg = new BilderPanel("img/deEngBg.png");
+        BilderPanel deEngBg = new BilderPanel("/img/deEngBg.png");
 
-        //gui.BilderPanel
+        //BilderPanel
         JPanel deEngPanel = new JPanel(new GridBagLayout());
         deEngPanel.setOpaque(false);
 
         //Zwischenstandlabel
-        ImageIcon zwischenstandIcon = new BildBauer().createImageIcon("img/zwischenstandLabel.png");
-        MeinLabel zwischenstand = new MeinLabel(zwischenstandIcon);
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
 
         //Timer
         count = 10;
@@ -48,7 +49,7 @@ public class DeEngFenster {
                     eingabe.setEditable(false);
                     eingabe.setFocusable(false);
                     ausgabe.setBackground(new Color(205, 38, 38));
-                    ausgabe.setText("hihi");
+                    ausgabe.setText("Lösung");
                     next();
                 }
 
@@ -63,14 +64,9 @@ public class DeEngFenster {
         ausgabe.setEditable(false);
 
         //Buttons werden hier erstellt
-        ImageIcon zurueckIcon = new BildBauer().createImageIcon("img/zurueckKleinButton.png");
-        BildButton zurueck = new BildButton(zurueckIcon);
-
-        ImageIcon OkIcon = new BildBauer().createImageIcon("img/okButton.png");
-        BildButton Ok = new BildButton(OkIcon);
-
-        ImageIcon weiterIcon = new BildBauer().createImageIcon("img/weiterButton.png");
-        weiter = new BildButton(weiterIcon);
+        BildButton zurueck = new BildButton(new BildBauer().createImageIcon("/img/zurueckKleinButton.png"));
+        BildButton Ok = new BildButton(new BildBauer().createImageIcon("/img/okButton.png"));
+        weiter = new BildButton(new BildBauer().createImageIcon("/img/weiterButton.png"));
 
         //ActionListener
         zurueck.addActionListener(new ActionListener() {
@@ -86,10 +82,14 @@ public class DeEngFenster {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                zahlZwischenstand++;
+                zwischenstand.setText(zahlZwischenstand + " / 10");
+
                 if (eingabe.getText().equals("Super")) {
                     ausgabe.setBackground(new Color(180, 238, 180));
                 } else {
                     ausgabe.setBackground(new Color(205, 38, 38));
+                    ausgabe.setText("Lösung");
                 }
 
                 eingabe.setEditable(false);
@@ -122,7 +122,7 @@ public class DeEngFenster {
 
     public static void main(String[] a) {
 
-        new EngDeFenster();
+        new DeEngFenster();
 
     }
 

@@ -2,10 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.lang.String;
 
 /**
@@ -14,22 +11,25 @@ import java.lang.String;
  * VokabelMaster5000
  */
 
-public class MultiplayerFenster {
+public class MultiplayerFenster implements KeyListener {
 
-    Timer t;
-    int count;
-    boolean buzz;
+    JFrame multiplayerFenster;
+    MeinLabel frage;
     JLabel time;
+    BildButton antwortEins;
+    BildButton antwortZwei;
+    BildButton antwortDrei;
+    BildButton antwortVier;
     MeinLabel buzzer;
+    Timer timer;
+    int count;
+    int i = 1;
 
     public MultiplayerFenster() {
 
         //Fenster für den Multiplayer
-        JFrame multiplayerFenster = new JFrame();
+        multiplayerFenster = new JFrame();
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        MyDispatcher myDispatcher = new MyDispatcher();
-        manager.addKeyEventDispatcher(myDispatcher);
 
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/img/multiplayerBg.png");
@@ -40,65 +40,34 @@ public class MultiplayerFenster {
 
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
-        MeinLabel frage = new MeinLabel(new BildBauer().createImageIcon("/img/frageLabel.png"), "Vokabel");
+        frage = new MeinLabel(new BildBauer().createImageIcon("/img/frageLabel.png"), "Question 1");
 
         //Buttons für die Antworten
         ImageIcon antwort = new BildBauer().createImageIcon("/img/antwortenLabel.png");
-        BildButton antwortEins = new BildButton(antwort, "Antwort 1");
-        BildButton antwortZwei = new BildButton(antwort, "Antwort 2");
-        BildButton antwortDrei = new BildButton(antwort, "Antwort 3");
-        BildButton antwortVier = new BildButton(antwort, "Antwort 4");
+        antwortEins = new BildButton(antwort, "Answer 1");
+        antwortZwei = new BildButton(antwort, "Answer 1");
+        antwortDrei = new BildButton(antwort, "Answer 1");
+        antwortVier = new BildButton(antwort, "Answer 1");
 
         //Buzzer
         buzzer = new MeinLabel(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
 
         //Felder für die 3 Spieler + Punktestand
-        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Rosa");
-        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Grün");
-        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Blau");
+        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Rosa (S)");
+        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Grün (B)");
+        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Blau (L)");
 
         ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/img/punkteLabel.png");
         MeinLabel spielerEinsPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerZweiPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerDreiPunkte = new MeinLabel(spielerPunkteIcon);
 
-        //Timer
-        count = 16;
-        t = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        //Timer zu Beginn der Abfrage
+        resettedTimer();
 
-                //Zieht immer eine Sekunde ab
-                count--;
-
-                if(count < 10) {
-                    time.setText("00:0" + String.valueOf(count));
-                } else {
-                    time.setText("00:" + String.valueOf(count));
-                }
-
-                //färbt die Schriftfarbe rot ab 5sec abwärts
-                if(count <= 5) {
-                    time.setForeground(Color.RED);
-                }
-
-                //Wenn Zeit abgelaufen, dann nächste Frage
-                if (count == 0) {
-                    System.out.println("Jetzt sollte die nächste Frage erscheinen");
-                    t.stop();
-                }
-
-            }
-        });
-
-        t.start();
-
-        //Wenn gebuzzert
-        if (buzz) {
-            aktiviereButtons();
-            manager.removeKeyEventDispatcher(myDispatcher);
-            buzz = false;
-        }
+        //KeyListener
+        multiplayerFenster.setFocusable(true);
+        multiplayerFenster.addKeyListener(this);
 
         //Timer und Frage dem multiplayerPanel hinzufügen
         multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-3, 0, 0, 215), 0, 0));
@@ -132,39 +101,104 @@ public class MultiplayerFenster {
 
     }
 
-    public void aktiviereButtons() {
+    public void naechsteFrage() {
 
+        i++;
 
+        multiplayerFenster.addKeyListener(this);
+        buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
+        resettedTimer();
+
+        frage.setText("Question " + i);
+        antwortEins.setText("Answer " + i);
+        antwortZwei.setText("Answer " + i);
+        antwortDrei.setText("Answer " + i);
+        antwortVier.setText("Answer " + i);
 
     }
 
-    private class MyDispatcher implements KeyEventDispatcher {
-        @Override
-        public boolean dispatchKeyEvent(KeyEvent e) {
-            if (e.getID() == KeyEvent.KEY_PRESSED) {
-                //System.out.println(e.getKeyCode());
-                if (e.getKeyCode() == 83) {
-                    System.out.println("Rosa");
-                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRosaLabel.png"));
-                    buzz = true;
+    public void resettedTimer() {
+
+        count = 11;
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //Zieht immer eine Sekunde ab
+                count--;
+
+                if(count < 10) {
+                    time.setText("00:0" + String.valueOf(count));
+                } else {
+                    time.setText("00:" + String.valueOf(count));
                 }
 
-                if (e.getKeyCode() == 66) {
-                    System.out.println("Grün");
-                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerGruenLabel.png"));
+                //färbt die Schriftfarbe rot ab 5sec abwärts
+                if(count <= 5) {
+                    time.setForeground(Color.RED);
+                } else {
+                    time.setForeground(Color.BLACK);
                 }
 
-                if (e.getKeyCode() == 76) {
-                    System.out.println("Blau");
-                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerBlauLabel.png"));
+                //Wenn Zeit abgelaufen, dann nächste Frage
+                if (count == 0) {
+                    System.out.println("Jetzt sollte die nächste Frage erscheinen");
+                    timer.stop();
+                    naechsteFrage();
                 }
+
             }
-            return false;
+        });
+
+        timer.start();
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        //Timer resetten
+        timer.stop();
+        resettedTimer();
+
+        //Buttons einen Fokus setzen
+        antwortEins.setFocusPainted(true);
+        antwortZwei.setFocusPainted(true);
+        antwortDrei.setFocusPainted(true);
+        antwortVier.setFocusPainted(true);
+
+
+        if (e.getKeyCode() == 83) {
+            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRosaLabel.png"));
+            multiplayerFenster.removeKeyListener(this);
         }
+
+        if (e.getKeyCode() == 66) {
+            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerGruenLabel.png"));
+            multiplayerFenster.removeKeyListener(this);
+        }
+
+        if (e.getKeyCode() == 76) {
+            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerBlauLabel.png"));
+            multiplayerFenster.removeKeyListener(this);
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
     public static void main(String[] a) {
+
         new MultiplayerFenster();
+
     }
 
 }
