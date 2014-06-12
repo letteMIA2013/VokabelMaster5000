@@ -21,6 +21,7 @@ public class LeseBenutzerdaten {
         ArrayList<String[]> b = new ArrayList();
         String zeile = "";
 
+        
         do{
             //Daten werden aus der txt Datei gelesen und der ArrayList b hinzugefügt hierbei werden die Strings in
             // StringArrays umgewandelt in den Text vor und nach /
