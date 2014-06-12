@@ -18,8 +18,7 @@ public class BilderPanel extends JPanel {
     private Image img;
 
     public BilderPanel(String imgUrl) {
-        // load the background image
-
+        //load the background image
         img = createImageIcon(imgUrl).getImage();
     }
 

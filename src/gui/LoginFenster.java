@@ -1,19 +1,13 @@
 package gui;
 
 import Login.Login;
-
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.lang.String;
 
 /**
@@ -23,9 +17,9 @@ import java.lang.String;
  */
 
 public class LoginFenster {
+
     private String id;
     private String passwort;
-    private Login log;
 
     public LoginFenster() {
 
@@ -43,15 +37,6 @@ public class LoginFenster {
         //Textfelder zum Abfragen der Logindaten
         final RoundedTextField idText = new RoundedTextField(12);
         final RoundedPassField pwText = new RoundedPassField(12);
-
-        //KeyListener
-        idText.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-                System.out.println("hi");
-            }
-        });
 
         //DeinButton werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
@@ -81,15 +66,18 @@ public class LoginFenster {
                 new RegistrierungFenster();
             }
         });
-//made by Defalt zum auslesen der textfelder
+
+        //made by Defalt zum Auslesen der Textfelder
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 id = idText.getText();
-                passwort = pwText.getText();
-               Login log = new Login(id, passwort);
 
+                //Passwort in einen String umwandeln, damit man einfacher abfragen kann
+                char[] pwTextZeichen = pwText.getPassword();
 
+                passwort = new String(pwTextZeichen);
+                new Login(id, passwort);
             }
         });
 

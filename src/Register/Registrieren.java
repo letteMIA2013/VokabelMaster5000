@@ -3,8 +3,11 @@ package Register;
 import javax.swing.*;
 
 /**
- * Created by e3_fernitz on 15.05.14.
+ * Created by Maurice Fernitz
+ * on 15 May 2014
+ * VokabelMaster5000
  */
+
 public class Registrieren /*extends Anmeldung*/{
     /*private String Namen;
     private int Passwort;

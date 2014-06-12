@@ -86,7 +86,7 @@ public class DeEngFenster {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (eingabe.getText().equals("gui.Test")) {
+                if (eingabe.getText().equals("Super")) {
                     ausgabe.setBackground(new Color(180, 238, 180));
                 } else {
                     ausgabe.setBackground(new Color(205, 38, 38));
