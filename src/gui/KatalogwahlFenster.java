@@ -26,20 +26,20 @@ public class KatalogwahlFenster {
         katalogFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel katalogBg = new BilderPanel("Img/katalogwahlBg.png");
+        BilderPanel katalogBg = new BilderPanel("img/katalogwahlBg.png");
 
         //gui.BilderPanel
         JPanel katalogPanel = new JPanel(new GridBagLayout());
         katalogPanel.setOpaque(false);
 
         //Buttons werden hier erstellt
-        ImageIcon deutschEnglischIcon = new BildBauer().createImageIcon("Img/deEngButton.png");
+        ImageIcon deutschEnglischIcon = new BildBauer().createImageIcon("img/deEngButton.png");
         BildButton deutschEnglisch = new BildButton(deutschEnglischIcon);
 
-        ImageIcon englischDeutschIcon = new BildBauer().createImageIcon("Img/engDeButton.png");
+        ImageIcon englischDeutschIcon = new BildBauer().createImageIcon("img/engDeButton.png");
         BildButton englischDeutsch = new BildButton(englischDeutschIcon);
 
-        ImageIcon zurueckIcon = new BildBauer().createImageIcon("Img/zurueckGrossButton.png");
+        ImageIcon zurueckIcon = new BildBauer().createImageIcon("img/zurueckGrossButton.png");
         BildButton zurueck = new BildButton(zurueckIcon);
 
         //ActionListener

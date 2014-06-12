@@ -28,7 +28,7 @@ public class MultiplayerFenster {
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
+        BilderPanel multiplayerBg = new BilderPanel("/img/multiplayerBg.png");
 
         //Fragepanel im Norden für den Timer, die Lösung der Frage und der Frage
         JPanel multiplayerPanel = new JPanel(new GridBagLayout());
@@ -36,31 +36,24 @@ public class MultiplayerFenster {
 
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
-        ImageIcon frageIcon = new BildBauer().createImageIcon("/Img/frageLabel.png");
-        MeinLabel frage = new MeinLabel(frageIcon, "Vokabel");
+        MeinLabel frage = new MeinLabel(new BildBauer().createImageIcon("/img/frageLabel.png"), "Vokabel");
 
         //Buttons für die Antworten
-        ImageIcon antwort = new BildBauer().createImageIcon("/Img/antwortenLabel.png");
+        ImageIcon antwort = new BildBauer().createImageIcon("/img/antwortenLabel.png");
         BildButton antwortEins = new BildButton(antwort, "Antwort 1");
         BildButton antwortZwei = new BildButton(antwort, "Antwort 2");
         BildButton antwortDrei = new BildButton(antwort, "Antwort 3");
         BildButton antwortVier = new BildButton(antwort, "Antwort 4");
 
         //Buzzer
-        ImageIcon buzzerIcon = new BildBauer().createImageIcon("/Img/buzzerRotLabel.png");
-        MeinLabel buzzer = new MeinLabel(buzzerIcon);
+        MeinLabel buzzer = new MeinLabel(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
 
         //Felder für die 3 Spieler + Punktestand
-        ImageIcon spielerEinsIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
-        MeinLabel spielerEins = new MeinLabel(spielerEinsIcon);
+        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Player 1");
+        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Player 2");
+        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Player 3");
 
-        ImageIcon spielerZweiIcon = new BildBauer().createImageIcon("/Img/spielerGruenLabel.png");
-        MeinLabel spielerZwei = new MeinLabel(spielerZweiIcon);
-
-        ImageIcon spielerDreiIcon = new BildBauer().createImageIcon("/Img/spielerBlauLabel.png");
-        MeinLabel spielerDrei = new MeinLabel(spielerDreiIcon);
-
-        ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/Img/punkteLabel.png");
+        ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/img/punkteLabel.png");
         MeinLabel spielerEinsPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerZweiPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerDreiPunkte = new MeinLabel(spielerPunkteIcon);
@@ -80,7 +73,7 @@ public class MultiplayerFenster {
                     time.setText("00:" + String.valueOf(count));
                 }
 
-                //färbt die Schriftfarbe rot ab 5sec
+                //färbt die Schriftfarbe rot ab 5sec abwärts
                 if(count <= 5) {
                     time.setForeground(Color.RED);
                 }
@@ -102,7 +95,7 @@ public class MultiplayerFenster {
 
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
         multiplayerPanel.add(antwortZwei, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
         multiplayerPanel.add(antwortDrei, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
         multiplayerPanel.add(antwortVier, new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));

@@ -22,13 +22,13 @@ public class CreditsFenster {
         menuPanel.setBackground(Color.WHITE);
 
         //Buttons
-        ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("Img/vokabelnlernenButton.png");
+        ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("img/vokabelnlernenButton.png");
         BildButton vokabelnLernen = new BildButton(vokabelnLernenIcon);
 
-        ImageIcon quizIcon = new BildBauer().createImageIcon("Img/quizButton.png");
+        ImageIcon quizIcon = new BildBauer().createImageIcon("img/quizButton.png");
         BildButton quiz = new BildButton(quizIcon);
 
-        ImageIcon creditsIcon = new BildBauer().createImageIcon("Img/creditsButton.png");
+        ImageIcon creditsIcon = new BildBauer().createImageIcon("img/creditsButton.png");
         BildButton credits = new BildButton(creditsIcon);
 
         //Buttons dem VM5000.gui.BilderPanel hinzufügen

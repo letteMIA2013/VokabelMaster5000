@@ -1,6 +1,6 @@
 package gui;
 
-import Login.Login;
+import login.Login;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,12 +23,12 @@ public class LoginFenster {
 
     public LoginFenster() {
 
-        //Fenster für den Login
+        //Fenster für den
         final JFrame loginFenster = new JFrame("Anmeldung");
         loginFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel loginBg = new BilderPanel("/Img/loginBg.png");
+        BilderPanel loginBg = new BilderPanel("/img/loginBg.png");
 
         //gui.BilderPanel
         JPanel loginPanel = new JPanel(new GridBagLayout());
@@ -39,13 +39,13 @@ public class LoginFenster {
         final RoundedPassField pwText = new RoundedPassField(12);
 
         //DeinButton werden hier erstellt
-        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
+        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/img/cancelButton.png");
         BildButton zumMenu = new BildButton(zumMenuIcon, 400);
 
-        ImageIcon registrierungIcon = new BildBauer().createImageIcon("/Img/registrierungButton.png");
+        ImageIcon registrierungIcon = new BildBauer().createImageIcon("/img/registrierungButton.png");
         BildButton registrierung = new BildButton(registrierungIcon, 400);
 
-        ImageIcon loginIcon = new BildBauer().createImageIcon("/Img/loginButton.png");
+        ImageIcon loginIcon = new BildBauer().createImageIcon("/img/loginButton.png");
         BildButton login = new BildButton(loginIcon, 400);
 
         //ActionListener
