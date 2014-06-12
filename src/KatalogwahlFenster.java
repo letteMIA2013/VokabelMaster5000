@@ -5,37 +5,62 @@ import javax.swing.WindowConstants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.String;
+
+/**
+ * Created by Frances Schmidt
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
 
 public class KatalogwahlFenster {
 
     public KatalogwahlFenster() {
 
         //Fenster für die Katalogwahl
-        JFrame katalogFenster = new JFrame("Katalogauswahl");
+        final JFrame katalogFenster = new JFrame("Katalogauswahl");
         katalogFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
         BilderPanel katalogBg = new BilderPanel("Img/katalogwahlBg.png");
 
-        //VM5000.BilderPanel
+        //BilderPanel
         JPanel katalogPanel = new JPanel(new GridBagLayout());
         katalogPanel.setOpaque(false);
 
         //Buttons werden hier erstellt
         ImageIcon deutschEnglischIcon = new BildBauer().createImageIcon("Img/deEngButton.png");
-        DeinButton deutschEnglisch = new DeinButton(deutschEnglischIcon);
+        BildButton deutschEnglisch = new BildButton(deutschEnglischIcon);
 
         ImageIcon englischDeutschIcon = new BildBauer().createImageIcon("Img/engDeButton.png");
-        DeinButton englischDeutsch = new DeinButton(englischDeutschIcon);
+        BildButton englischDeutsch = new BildButton(englischDeutschIcon);
 
         ImageIcon zurueckIcon = new BildBauer().createImageIcon("Img/zurueckGrossButton.png");
-        DeinButton zurueck = new DeinButton(zurueckIcon);
+        BildButton zurueck = new BildButton(zurueckIcon);
+
+        //ActionListener
+        deutschEnglisch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                katalogFenster.setVisible(false);
+                katalogFenster.dispose();
+                new EngDeFenster();
+            }
+        });
+
+        /*englischDeutsch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EngDeFenster();
+            }
+        });*/
 
         //hier werden alle Elemente dem katalogPanel hinzugefügt
-        katalogPanel.add(deutschEnglisch,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.PAGE_START,GridBagConstraints.NONE,new Insets(120,0,0,0),0,0));
-        katalogPanel.add(englischDeutsch,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
-        katalogPanel.add(zurueck,new GridBagConstraints(0,2,0,1,1,1,GridBagConstraints.PAGE_END,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
+        katalogPanel.add(deutschEnglisch, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, new Insets(120, 0, 0, 0), 0, 0));
+        katalogPanel.add(englischDeutsch, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        katalogPanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
         katalogBg.add(katalogPanel);
 
@@ -43,11 +68,13 @@ public class KatalogwahlFenster {
         katalogFenster.add(katalogBg);
 
         //Fenstergröße setzen und anzeigen lassen
-        katalogFenster.setSize(415,400);
+        katalogFenster.setSize(415, 400);
+        katalogFenster.setLocationRelativeTo(null);
+        katalogFenster.setResizable(false);
         katalogFenster.setVisible(true);
     }
 
-    public static void main(String[] a){
+    public static void main(String[] a) {
 
         new KatalogwahlFenster();
 

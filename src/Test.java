@@ -6,4 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 public class Test {
+
+    public Test() {
+
+        System.out.println("TEST");
+
+    }
+
+    public static void main(String[] a) {
+
+        new Test();
+
+    }
 }

@@ -9,6 +9,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.lang.String;
 
+/**
+ * Created by Ka Yan Lam
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
+
 public class MenuFenster {
 
     public MenuFenster() {
@@ -27,13 +33,13 @@ public class MenuFenster {
 
         //Buttons
         ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("Img/vokabelnlernenButton.png");
-        DeinButton vokabelnLernen = new DeinButton(vokabelnLernenIcon);
+        BildButton vokabelnLernen = new BildButton(vokabelnLernenIcon);
 
         ImageIcon quizIcon = new BildBauer().createImageIcon("Img/quizButton.png");
-        DeinButton quiz = new DeinButton(quizIcon);
+        BildButton quiz = new BildButton(quizIcon);
 
         ImageIcon creditsIcon = new BildBauer().createImageIcon("Img/creditsButton.png");
-        DeinButton credits = new DeinButton(creditsIcon);
+        BildButton credits = new BildButton(creditsIcon);
 
         //Buttons dem VM5000.BilderPanel hinzufügen
         menuPanel.add(vokabelnLernen,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
@@ -46,6 +52,8 @@ public class MenuFenster {
 
         //Fenstergröße setzen und anzeigen lassen
         menuFenster.pack();
+        menuFenster.setLocationRelativeTo(null);
+        menuFenster.setResizable(false);
         menuFenster.setVisible(true);
 
     }

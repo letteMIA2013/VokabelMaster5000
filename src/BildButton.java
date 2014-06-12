@@ -3,12 +3,18 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.lang.String;
 
-public class DeinButton extends JButton {
+/**
+ * Created by Ka Yan Lam
+ * on 11 Jun 2014
+ * VokabelMaster5000
+ */
 
-    public DeinButton(String name, int dimensionWidth) {
+public class BildButton extends JButton {
+
+    public BildButton(String name, int dimensionWidth) {
 
         setText(name);
-        setPreferredSize(new Dimension(dimensionWidth,this.getPreferredSize().height));
+        setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
@@ -16,7 +22,7 @@ public class DeinButton extends JButton {
 
     }
 
-    public DeinButton(Icon icon) {
+    public BildButton(Icon icon) {
 
         setIcon(icon);
         setBorderPainted(false);
@@ -26,10 +32,10 @@ public class DeinButton extends JButton {
 
     }
 
-    public DeinButton(Icon icon, int dimensionWidth) {
+    public BildButton(Icon icon, int dimensionWidth) {
 
         setIcon(icon);
-        setPreferredSize(new Dimension(dimensionWidth,this.getPreferredSize().height));
+        setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
         setBorderPainted(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
