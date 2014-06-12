@@ -1,12 +1,11 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.lang.String;
 
 /**
@@ -19,13 +18,18 @@ public class MultiplayerFenster {
 
     Timer t;
     int count;
+    boolean buzz;
     JLabel time;
+    MeinLabel buzzer;
 
     public MultiplayerFenster() {
 
         //Fenster für den Multiplayer
         JFrame multiplayerFenster = new JFrame();
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        MyDispatcher myDispatcher = new MyDispatcher();
+        manager.addKeyEventDispatcher(myDispatcher);
 
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/img/multiplayerBg.png");
@@ -46,12 +50,12 @@ public class MultiplayerFenster {
         BildButton antwortVier = new BildButton(antwort, "Antwort 4");
 
         //Buzzer
-        MeinLabel buzzer = new MeinLabel(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
+        buzzer = new MeinLabel(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
 
         //Felder für die 3 Spieler + Punktestand
-        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Player 1");
-        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Player 2");
-        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Player 3");
+        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Rosa");
+        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Grün");
+        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Blau");
 
         ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/img/punkteLabel.png");
         MeinLabel spielerEinsPunkte = new MeinLabel(spielerPunkteIcon);
@@ -89,10 +93,16 @@ public class MultiplayerFenster {
 
         t.start();
 
+        //Wenn gebuzzert
+        if (buzz) {
+            aktiviereButtons();
+            manager.removeKeyEventDispatcher(myDispatcher);
+            buzz = false;
+        }
+
         //Timer und Frage dem multiplayerPanel hinzufügen
         multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-3, 0, 0, 215), 0, 0));
         multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(60, 0, 0, 0), 0, 0));
-
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
         multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
@@ -122,10 +132,39 @@ public class MultiplayerFenster {
 
     }
 
+    public void aktiviereButtons() {
+
+
+
+    }
+
+    private class MyDispatcher implements KeyEventDispatcher {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                //System.out.println(e.getKeyCode());
+                if (e.getKeyCode() == 83) {
+                    System.out.println("Rosa");
+                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRosaLabel.png"));
+                    buzz = true;
+                }
+
+                if (e.getKeyCode() == 66) {
+                    System.out.println("Grün");
+                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerGruenLabel.png"));
+                }
+
+                if (e.getKeyCode() == 76) {
+                    System.out.println("Blau");
+                    buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerBlauLabel.png"));
+                }
+            }
+            return false;
+        }
+    }
+
     public static void main(String[] a) {
-
         new MultiplayerFenster();
-
     }
 
 }
