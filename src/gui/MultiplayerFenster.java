@@ -1,15 +1,12 @@
 package gui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.BorderLayout;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.String;
 
 /**
@@ -20,27 +17,27 @@ import java.lang.String;
 
 public class MultiplayerFenster {
 
+    Timer t;
+    int count;
+    JLabel time;
+
     public MultiplayerFenster() {
 
         //Fenster für den Multiplayer
         JFrame multiplayerFenster = new JFrame();
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        //Hintergrundbild
+        BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
+
         //Fragepanel im Norden für den Timer, die Lösung der Frage und der Frage
-        JPanel fragePanel = new JPanel(new GridBagLayout());
+        JPanel multiplayerPanel = new JPanel(new GridBagLayout());
+        multiplayerPanel.setOpaque(false);
 
         //Felder für den Timer, die Lösung der Frage und der Frage
-        MeinLabel timer = new MeinLabel("Timer", true, Color.CYAN);
+        time = new JLabel();
         MeinLabel loesung = new MeinLabel("Lösung", true, Color.GREEN);
         MeinLabel frage = new MeinLabel("Vokabel", true, Color.YELLOW);
-
-        //Timer, Lösung und Frage dem fragePanel hinzufügen
-        fragePanel.add(timer, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        fragePanel.add(loesung, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        fragePanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 5, 20, 5), 0, 0));
-
-        //Antwortpanel in der Mitte für die Antwortmöglichkeiten und den Buzzer
-        JPanel antwortPanel = new JPanel();
 
         //Buttons für die Antworten
         BildButton antwortEins = new BildButton("Antwort Eins", 500);
@@ -51,54 +48,62 @@ public class MultiplayerFenster {
         //Buzzer
         MeinLabel buzzer = new MeinLabel("Buzzer", true, Color.RED);
 
-        //antwortEins, antwortZwei, antwortDrei, antwortVier und buzzer dem antwortPanel hinzufügen
-        antwortPanel.add(antwortEins);
-        antwortPanel.add(antwortZwei);
-        antwortPanel.add(antwortDrei);
-        antwortPanel.add(antwortVier);
-        antwortPanel.add(buzzer, BorderLayout.SOUTH);
-
-        //Spielerpanel im Süden für die Spieler + Punktestand
-        JPanel spielerPanel = new JPanel(new GridBagLayout());
-
         //Felder für die 3 Spieler + Punktestand
-        MeinLabel spielerEins = new MeinLabel("Spieler 1", true, Color.LIGHT_GRAY);
-        MeinLabel spielerEinsPunkte = new MeinLabel("S1 Punkte", true, Color.WHITE);
-        MeinLabel spielerZwei = new MeinLabel("Spieler 2", true, Color.LIGHT_GRAY);
-        MeinLabel spielerZweiPunkte = new MeinLabel("S2 Punkte", true, Color.WHITE);
-        MeinLabel spielerDrei = new MeinLabel("Spieler 3", true, Color.LIGHT_GRAY);
-        MeinLabel spielerDreiPunkte = new MeinLabel("S3 Punkte", true, Color.WHITE);
+        ImageIcon spielerEinsIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerEins = new MeinLabel(spielerEinsIcon, true);
 
-        //KeyListener
-        multiplayerFenster.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                System.out.println("gui");
-            }
+        ImageIcon spielerZweiIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerZwei = new MeinLabel(spielerZweiIcon, true);
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("gui");
-            }
+        ImageIcon spielerDreiIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerDrei = new MeinLabel(spielerDreiIcon, true);
 
+        ImageIcon spielerEinsPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerEinsPunkte = new MeinLabel(spielerEinsPunkteIcon, true);
+
+        ImageIcon spielerZweiPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerZweiPunkte = new MeinLabel(spielerZweiPunkteIcon, true);
+
+        ImageIcon spielerDreiPunkteIcon = new BildBauer().createImageIcon("/Img/spielerRosaLabel.png");
+        MeinLabel spielerDreiPunkte = new MeinLabel(spielerDreiPunkteIcon, true);
+
+        //Timer
+        count = 10;
+        t = new Timer(1000, new ActionListener() {
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void actionPerformed(ActionEvent e) {
+                //Zieht immer eine Sekunde ab
+                count--;
+
+                time.setText("00:00:" + String.valueOf(count));
+
+                if (count == 0) {
+                    System.out.println("Jetzt sollte die nächste Frage erscheinen");
+                    t.stop();
+                }
 
             }
         });
 
-        //Labels dem spielerPanel hinzufügen
-        spielerPanel.add(spielerEins, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        spielerPanel.add(spielerZwei, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        spielerPanel.add(spielerDrei, new GridBagConstraints(2, 0, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-        spielerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
-        spielerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
-        spielerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 1, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+        t.start();
+
+        //Timer, Lösung und Frage dem multiplayerPanel hinzufügen
+        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(loesung, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 5, 20, 5), 0, 0));
+
+        //Spieler und Punkte dem multiplayerPanel hinzufügen
+//        multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+//        multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+//        multiplayerPanel.add(spielerDrei, new GridBagConstraints(2, 0, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+//        multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+//        multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+//        multiplayerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 1, 0, 1, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, new Insets(5, 0, 5, 0), 0, 0));
+
+        multiplayerBg.add(multiplayerPanel);
 
         //Komponenten zum multiplayerFenster hinzufügen
-        multiplayerFenster.add(fragePanel, BorderLayout.NORTH);
-        multiplayerFenster.add(antwortPanel);
-        multiplayerFenster.add(spielerPanel, BorderLayout.SOUTH);
+        multiplayerFenster.add(multiplayerBg);
 
         //Fenstergröße setzen und anzeigen lassen
         multiplayerFenster.setSize(415, 400);
