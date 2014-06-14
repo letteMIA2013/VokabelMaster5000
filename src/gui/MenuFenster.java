@@ -1,7 +1,6 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -89,6 +88,32 @@ public class MenuFenster implements ActionListener {
             } else {
                 new LoginFenster();
             }
+        }
+
+        if (e.getSource() == this.quiz) {
+
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            menuFenster.setVisible(false);
+            menuFenster.dispose();
+            new MultiplayerFenster();
+        }
+
+        if (e.getSource() == this.credits) {
+
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            menuFenster.setVisible(false);
+            menuFenster.dispose();
+            if (istAngemeldet) {
+                new CreditsFenster(speicherVokabelnLernen);
+                JOptionPane.showMessageDialog(null, "Willkommen zurück " + speicherVokabelnLernen.getName() + "!");
+            } else {
+                new CreditsFenster();
+            }
+
         }
     }
 

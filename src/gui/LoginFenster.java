@@ -110,10 +110,11 @@ public class LoginFenster {
                             passwort = passwortString;
                             new Login(id, passwort);
 
-                            JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
-
                             loginFenster.setVisible(false);
                             loginFenster.dispose();
+
+                            JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
+
                             return;
                         }
                     }

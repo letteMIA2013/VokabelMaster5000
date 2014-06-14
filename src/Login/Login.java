@@ -63,6 +63,7 @@ public class Login {
         speicherVokabelnLernen.setAntwortenListeEngDe(listeAntwortEngDe);
         speicherVokabelnLernen.setName(id);
         speicherVokabelnLernen.setPasswort(passwort);
+        speicherVokabelnLernen.setIstAngemeldet(true);
 
         new KatalogwahlFenster(speicherVokabelnLernen);
     }
