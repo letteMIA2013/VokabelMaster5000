@@ -100,7 +100,6 @@ public class EngDeFenster implements ActionListener{
     }
 
     public int getFragePos() {
-
         int fragePos = 0;
 
         //Position der Vokabel in der ArrayList suchen und als Variable abspeichern
@@ -111,11 +110,9 @@ public class EngDeFenster implements ActionListener{
         }
 
         return fragePos;
-
     }
 
     public int getAntwortPos() {
-
         int antwortPos = 0;
 
         //Position der Antwort in der ArrayList suchen und als Variable abspeichern
@@ -126,14 +123,11 @@ public class EngDeFenster implements ActionListener{
         }
 
         return antwortPos;
-
     }
 
     public void nextVokabel() {
-
         zufallsVokabel = new Random().nextInt(listeFrage.size());
         vokabel.setText("" + listeFrage.get(zufallsVokabel));
-
     }
 
     @Override
