@@ -1,6 +1,6 @@
 package gui;
 
-import datenbank.LeseBenutzerdaten;
+import Datenbank.LeseBenutzerdaten;
 
 import javax.swing.*;
 import java.awt.*;
