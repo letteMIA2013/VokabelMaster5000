@@ -11,6 +11,8 @@ public class SpeicherVokabelnLernen {
 
     int zwSpDeEng;
     int zwSpEngDe;
+    String name;
+    String passwort;
     ArrayList<String> fragenListeDeEng;
     ArrayList<String> fragenListeEngDe;
     ArrayList<String> antwortenListeDeEng;
@@ -30,6 +32,18 @@ public class SpeicherVokabelnLernen {
 
     public void setZwSpEngDe(int zwSpEngDe) {
         this.zwSpEngDe = zwSpEngDe;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 
     public ArrayList<String> getFragenListeDeEng() {

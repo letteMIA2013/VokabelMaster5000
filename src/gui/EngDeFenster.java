@@ -15,7 +15,7 @@ import java.util.Random;
  * VokabelMaster5000
  */
 
-public class EngDeFenster implements ActionListener{
+public class EngDeFenster implements ActionListener {
 
     int zahlZwischenstand;
     int zufallsVokabel;

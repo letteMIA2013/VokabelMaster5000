@@ -4,16 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class HSFenster extends JFrame {
+/**
+ * Created by Justus Heyen
+ * on 12 Jun 2014
+ * VokabelMaster5000
+ */
 
+public class HSFenster extends JFrame {
 
     public HSFenster(ArrayList<String> daten) {
 
+        //Größe, Titel und Layout setzen
         setSize(400, 400);
         setTitle("Highscore");
-
         setLayout(new GridLayout(daten.size(), 3, 0, 5));
 
+        //Daten aus der Datenbank in Listen packen
         Map<String, String> map = new HashMap<String, String>();
         ArrayList<String> alleScores = new ArrayList<String>();
 
@@ -25,6 +31,7 @@ public class HSFenster extends JFrame {
             alleScores.add(score);
         }
 
+        //Nach Punktzahl sortieren
         Collections.sort(alleScores, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -34,7 +41,7 @@ public class HSFenster extends JFrame {
             }
         });
 
-        int i=1;
+        int i = 1;
 
         for (String score : alleScores) {
             String name = map.get(score);
@@ -43,22 +50,12 @@ public class HSFenster extends JFrame {
             add(new JLabel(score));
         }
 
-
-
-
-
         setVisible(true);
-
-
-
-
     }
-
 
     public static void main(String[] args) {
 
         // wir erzeugen uns ein paar Pseudo Daten:
-
         ArrayList<String> strings = new ArrayList<String>();
         strings.add("Justus/passwort/5435");
         strings.add("Marc/passwort/5");

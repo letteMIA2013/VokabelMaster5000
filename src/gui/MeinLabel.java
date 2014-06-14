@@ -15,33 +15,27 @@ import java.lang.String;
 public class MeinLabel extends JLabel {
 
     public MeinLabel(Icon icon, Color color) {
-
         setIcon(icon);
         setHorizontalAlignment(SwingConstants.CENTER);
         setOpaque(true);
         setBackground(color);
-
     }
 
     public MeinLabel(Icon icon, String text) {
-
         setIcon(icon);
         setText(text);
         setHorizontalAlignment(SwingConstants.CENTER);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.CENTER);
         setOpaque(false);
-
     }
 
     public MeinLabel(Icon icon) {
-
         setIcon(icon);
         setHorizontalAlignment(SwingConstants.CENTER);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.CENTER);
         setOpaque(false);
-
     }
 
 }

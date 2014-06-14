@@ -18,13 +18,11 @@ public class Login {
     String passwort;
 
     public Login(String id, String passwort) {
-
         this.id = id;
         this.passwort = passwort;
 
         auslesen();
         start();
-
     }
 
     public String auslesen() {
@@ -33,7 +31,6 @@ public class Login {
         System.out.println(id + " wurde erfolgreich eingeloggt.");
 
         return id + passwort;
-
     }
 
     public void start() {
@@ -64,9 +61,10 @@ public class Login {
         speicherVokabelnLernen.setFragenListeEngDe(listeFrageEngDe);
         speicherVokabelnLernen.setAntwortenListeDeEng(listeAntwortDeEng);
         speicherVokabelnLernen.setAntwortenListeEngDe(listeAntwortEngDe);
+        speicherVokabelnLernen.setName(id);
+        speicherVokabelnLernen.setPasswort(passwort);
 
-        KatalogwahlFenster k = new KatalogwahlFenster(speicherVokabelnLernen);
-
+        new KatalogwahlFenster(speicherVokabelnLernen);
     }
 
 }

@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * VokabelMaster5000
  */
 
-public class KatalogwahlFenster implements ActionListener{
+public class KatalogwahlFenster implements ActionListener {
 
     SpeicherVokabelnLernen speicherVokabelnLernen;
     JFrame katalogFenster;
@@ -97,7 +97,7 @@ public class KatalogwahlFenster implements ActionListener{
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
-            new MenuFenster();
+            new MenuFenster(true, speicherVokabelnLernen);
         }
     }
 

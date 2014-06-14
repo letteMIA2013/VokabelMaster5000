@@ -27,8 +27,6 @@ public class LoginFenster {
     ArrayList<String> listeName;
     ArrayList<String> listePasswort;
 
-    //boolean istAngemeldet;
-
     public LoginFenster() {
 
         //Benutzerdaten holen
@@ -37,7 +35,7 @@ public class LoginFenster {
         listeName = new ArrayList<String>();
         listePasswort = new ArrayList<String>();
 
-        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Fragen, Antworten
+        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Name, Passwort
         for (String[] pair : stringListe) {
             listeName.add(pair[0]);
             listePasswort.add(pair[1]);
@@ -67,15 +65,23 @@ public class LoginFenster {
         zumMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //Musik
+                new Musik("src/Img/klick.wav").start();
+
                 loginFenster.setVisible(false);
                 loginFenster.dispose();
-                new MenuFenster();
+                new MenuFenster(false, null);
             }
         });
 
         registrierung.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //Musik
+                new Musik("src/Img/klick.wav").start();
+
                 loginFenster.setVisible(false);
                 loginFenster.dispose();
                 new RegistrierungFenster();
@@ -86,6 +92,9 @@ public class LoginFenster {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //Musik
+                new Musik("src/Img/klick.wav").start();
 
                 //Passwort in einen String umwandeln, damit man einfacher abfragen kann
                 char[] pwTextZeichen = pwText.getPassword();
@@ -101,6 +110,8 @@ public class LoginFenster {
                             passwort = passwortString;
                             new Login(id, passwort);
 
+                            JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
+
                             loginFenster.setVisible(false);
                             loginFenster.dispose();
                             return;
@@ -108,7 +119,7 @@ public class LoginFenster {
                     }
                 }
 
-                JOptionPane.showMessageDialog(null, "ID oder Passwort wurde falsch eingegeben!");
+                JOptionPane.showMessageDialog(null, "ID und Passwort stimmen nicht überein!");
             }
         });
 
@@ -132,11 +143,6 @@ public class LoginFenster {
 
     }
 
-    public static void main(String[] a) {
-
-        new LoginFenster();
-
-    }
-
+    //public static void main(String[] a) { new LoginFenster(); }
 
 }
