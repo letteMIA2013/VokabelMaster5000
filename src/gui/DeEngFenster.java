@@ -20,9 +20,8 @@ public class DeEngFenster {
     int count;
     int zahlZwischenstand = 0;
     int zufallsVokabel;
-    int fragePos;
-    int antwortPos;
     Timer timer;
+    JFrame deEngFenster;
     JLabel vokabel;
     RoundedTextField eingabe;
     RoundedTextField ausgabe;
@@ -50,7 +49,7 @@ public class DeEngFenster {
         }
 
         //Fenster für die Katalogwahl
-        final JFrame deEngFenster = new JFrame("Deutsch/Englisch");
+        deEngFenster = new JFrame("Deutsch/Englisch");
         deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
@@ -118,9 +117,13 @@ public class DeEngFenster {
             public void actionPerformed(ActionEvent e) {
                 ok.removeActionListener(okListener);
 
+                //Musik
+                new Musik("src/img/klick.wav").start();
+
                 eingabe.setEditable(false);
                 timer.stop();
 
+                //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
                 if (eingabe.getText().length() == 0) {
                     ausgabe.setBackground(new Color(255, 80, 74));
                     ausgabe.setText("" + listeAntwort.get(getFragePos()));
@@ -129,6 +132,7 @@ public class DeEngFenster {
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
                 }
+
                 //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
                 //2 Getter-Methoden weiter unten
                 else if (getFragePos() == getAntwortPos()) {
@@ -163,6 +167,9 @@ public class DeEngFenster {
             public void actionPerformed(ActionEvent e) {
                 weiter.removeActionListener(weiterListener);
 
+                //Musik
+                new Musik("src/img/klick.wav").start();
+
                 //Zwischenstand wird um 1 aufaddiert
                 zahlZwischenstand++;
                 zwischenstand.setText(zahlZwischenstand + " / 12");
@@ -186,13 +193,15 @@ public class DeEngFenster {
         zurueck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //Musik
+                new Musik("src/img/klick.wav").start();
+
                 deEngFenster.setVisible(false);
                 deEngFenster.dispose();
                 new KatalogwahlFenster();
             }
         });
-
-        getFragePos();
 
         deEngBg.add(deEngPanel);
 
@@ -207,27 +216,20 @@ public class DeEngFenster {
 
     }
 
-    public static void main(String[] a) {
-
-        new DeEngFenster();
-        new Musik("src/img/klick.wav").start();
-
-    }
+    public static void main(String[] a) { new DeEngFenster(); }
 
     public void nextVokabel() {
 
         zufallsVokabel = new Random().nextInt(listeFrage.size());
         vokabel.setText("" + listeFrage.get(zufallsVokabel));
 
-        /*for (int i = 0; i < listeFrage.size(); i++) {
-            System.out.println("" + listeFrage.get(i));
-        }
-        System.out.println("-------------------------");*/
-
     }
 
     public int getFragePos() {
 
+        int fragePos = 0;
+
+        //Position der Vokabel in der ArrayList suchen und als Variable abspeichern
         for (String frage : listeFrage) {
             if (vokabel.getText().equals(frage)) {
                 fragePos = listeFrage.indexOf(frage);
@@ -240,6 +242,9 @@ public class DeEngFenster {
 
     public int getAntwortPos() {
 
+        int antwortPos = 0;
+
+        //Position der Antwort in der ArrayList suchen und als Variable abspeichern
         for (String antwort : listeAntwort) {
             if (eingabe.getText().equals(antwort)) {
                 antwortPos = listeAntwort.indexOf(antwort);
