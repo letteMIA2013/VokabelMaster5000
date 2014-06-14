@@ -28,14 +28,14 @@ public class EngDeFenster {
         engDeFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel engDeBg = new BilderPanel("/img/engDeBg.png");
+        BilderPanel engDeBg = new BilderPanel("/Img/engDeBg.png");
 
         //gui.BilderPanel
         JPanel engDePanel = new JPanel(new GridBagLayout());
         engDePanel.setOpaque(false);
 
         //Zwischenstandlabel
-        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
 
         //Timer
         count = 10;
@@ -64,9 +64,9 @@ public class EngDeFenster {
         ausgabe.setEditable(false);
 
         //Buttons werden hier erstellt
-        BildButton zurueck = new BildButton(new BildBauer().createImageIcon("/img/zurueckKleinButton.png"));
-        BildButton Ok = new BildButton(new BildBauer().createImageIcon("/img/okButton.png"));
-        weiter = new BildButton(new BildBauer().createImageIcon("/img/weiterButton.png"));
+        BildButton zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckKleinButton.png"));
+        BildButton Ok = new BildButton(new BildBauer().createImageIcon("/Img/okButton.png"));
+        weiter = new BildButton(new BildBauer().createImageIcon("/Img/weiterButton.png"));
 
         zurueck.addActionListener(new ActionListener() {
             @Override

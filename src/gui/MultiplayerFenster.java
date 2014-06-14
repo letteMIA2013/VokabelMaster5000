@@ -32,7 +32,7 @@ public class MultiplayerFenster implements KeyListener {
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel multiplayerBg = new BilderPanel("/img/multiplayerBg.png");
+        BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
 
         //Fragepanel im Norden für den Timer, die Lösung der Frage und der Frage
         JPanel multiplayerPanel = new JPanel(new GridBagLayout());
@@ -40,24 +40,24 @@ public class MultiplayerFenster implements KeyListener {
 
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
-        frage = new MeinLabel(new BildBauer().createImageIcon("/img/frageLabel.png"), "Question 1");
+        frage = new MeinLabel(new BildBauer().createImageIcon("/Img/frageLabel.png"), "Question 1");
 
         //Buttons für die Antworten
-        ImageIcon antwort = new BildBauer().createImageIcon("/img/antwortenLabel.png");
+        ImageIcon antwort = new BildBauer().createImageIcon("/Img/antwortenLabel.png");
         antwortEins = new BildButton(antwort, "Answer 1");
         antwortZwei = new BildButton(antwort, "Answer 1");
         antwortDrei = new BildButton(antwort, "Answer 1");
         antwortVier = new BildButton(antwort, "Answer 1");
 
         //Buzzer
-        buzzer = new MeinLabel(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
+        buzzer = new MeinLabel(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
 
         //Felder für die 3 Spieler + Punktestand
-        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/img/spielerRosaLabel.png"), "Rosa (S)");
-        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerGruenLabel.png"), "Grün (B)");
-        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/img/spielerBlauLabel.png"), "Blau (L)");
+        MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerRosaLabel.png"), "Rosa (S)");
+        MeinLabel spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerGruenLabel.png"), "Grün (B)");
+        MeinLabel spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerBlauLabel.png"), "Blau (L)");
 
-        ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/img/punkteLabel.png");
+        ImageIcon spielerPunkteIcon = new BildBauer().createImageIcon("/Img/punkteLabel.png");
         MeinLabel spielerEinsPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerZweiPunkte = new MeinLabel(spielerPunkteIcon);
         MeinLabel spielerDreiPunkte = new MeinLabel(spielerPunkteIcon);
@@ -106,7 +106,7 @@ public class MultiplayerFenster implements KeyListener {
         i++;
 
         multiplayerFenster.addKeyListener(this);
-        buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRotLabel.png"));
+        buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
         resettedTimer();
 
         frage.setText("Question " + i);
@@ -174,17 +174,17 @@ public class MultiplayerFenster implements KeyListener {
 
 
         if (e.getKeyCode() == 83) {
-            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerRosaLabel.png"));
+            buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRosaLabel.png"));
             multiplayerFenster.removeKeyListener(this);
         }
 
         if (e.getKeyCode() == 66) {
-            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerGruenLabel.png"));
+            buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerGruenLabel.png"));
             multiplayerFenster.removeKeyListener(this);
         }
 
         if (e.getKeyCode() == 76) {
-            buzzer.setIcon(new BildBauer().createImageIcon("/img/buzzerBlauLabel.png"));
+            buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerBlauLabel.png"));
             multiplayerFenster.removeKeyListener(this);
         }
 

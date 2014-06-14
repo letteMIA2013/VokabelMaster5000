@@ -26,7 +26,7 @@ public class RegistrierungFenster {
         registrierungsFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel registrierungsBg = new BilderPanel("/img/registrierungBg.png");
+        BilderPanel registrierungsBg = new BilderPanel("/Img/registrierungBg.png");
 
         //gui.BilderPanel
         JPanel registrierungsPanel = new JPanel(new GridBagLayout());
@@ -38,10 +38,10 @@ public class RegistrierungFenster {
         RoundedTextField pwNochmalText = new RoundedTextField(12);
 
         //Buttons werden hier erstellt
-        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/img/cancelButton.png");
+        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
         BildButton zumMenu = new BildButton(zumMenuIcon, 400);
 
-        ImageIcon signUpIcon = new BildBauer().createImageIcon("/img/signUpButton.png");
+        ImageIcon signUpIcon = new BildBauer().createImageIcon("/Img/signUpButton.png");
         BildButton signUp = new BildButton(signUpIcon, 400);
 
         //ActionListener

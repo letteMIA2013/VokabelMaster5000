@@ -53,14 +53,14 @@ public class DeEngFenster {
         deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
-        BilderPanel deEngBg = new BilderPanel("/img/deEngBg.png");
+        BilderPanel deEngBg = new BilderPanel("/Img/deEngBg.png");
 
         //BilderPanel
         JPanel deEngPanel = new JPanel(new GridBagLayout());
         deEngPanel.setOpaque(false);
 
         //Zwischenstandlabel
-        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
 
         //Timer
         count = 10;
@@ -98,9 +98,9 @@ public class DeEngFenster {
         vokabel.setText("" + listeFrage.get(zufallsVokabel));
 
         //Buttons werden hier erstellt
-        BildButton zurueck = new BildButton(new BildBauer().createImageIcon("/img/zurueckKleinButton.png"));
-        ok = new BildButton(new BildBauer().createImageIcon("/img/okButton.png"));
-        weiter = new BildButton(new BildBauer().createImageIcon("/img/weiterButton.png"));
+        BildButton zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckKleinButton.png"));
+        ok = new BildButton(new BildBauer().createImageIcon("/Img/okButton.png"));
+        weiter = new BildButton(new BildBauer().createImageIcon("/Img/weiterButton.png"));
 
         //hier werden alle Elemente dem deEngPanel hinzugefügt
         deEngPanel.add(zwischenstand, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
@@ -118,7 +118,7 @@ public class DeEngFenster {
                 ok.removeActionListener(okListener);
 
                 //Musik
-                new Musik("src/img/klick.wav").start();
+                new Musik("src/Img/klick.wav").start();
 
                 eingabe.setEditable(false);
                 timer.stop();
@@ -153,7 +153,7 @@ public class DeEngFenster {
 
                 //Weiter-Button wird bei der letzten Abfrage zum AuswertungsButton -> führt zur Statistik
                 if (listeFrage.size() == 0) {
-                    weiter.setIcon(new BildBauer().createImageIcon("/img/auswertungButton.png"));
+                    weiter.setIcon(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
                 } else {
                     weiter.addActionListener(weiterListener);
                 }
@@ -168,7 +168,7 @@ public class DeEngFenster {
                 weiter.removeActionListener(weiterListener);
 
                 //Musik
-                new Musik("src/img/klick.wav").start();
+                new Musik("src/Img/klick.wav").start();
 
                 //Zwischenstand wird um 1 aufaddiert
                 zahlZwischenstand++;
@@ -195,7 +195,7 @@ public class DeEngFenster {
             public void actionPerformed(ActionEvent e) {
 
                 //Musik
-                new Musik("src/img/klick.wav").start();
+                new Musik("src/Img/klick.wav").start();
 
                 deEngFenster.setVisible(false);
                 deEngFenster.dispose();
