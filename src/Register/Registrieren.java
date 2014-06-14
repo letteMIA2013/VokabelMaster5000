@@ -7,6 +7,17 @@ package Register;
  */
 
 public class Registrieren /*extends Anmeldung*/{
+
+    public Registrieren() {
+
+    }
+
+    public static void main(String[] a) {
+
+        new Registrieren();
+
+    }
+
     /*private String Namen;
     private int Passwort;
 

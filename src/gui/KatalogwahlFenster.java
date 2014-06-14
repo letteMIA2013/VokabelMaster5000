@@ -1,6 +1,5 @@
 package gui;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -9,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.String;
 
 /**
  * Created by Frances Schmidt
@@ -17,12 +15,19 @@ import java.lang.String;
  * VokabelMaster5000
  */
 
-public class KatalogwahlFenster {
+public class KatalogwahlFenster implements ActionListener{
 
-    public KatalogwahlFenster() {
+    SpeicherVokabelnLernen speicherVokabelnLernen;
+    JFrame katalogFenster;
+    BildButton deutschEnglisch;
+    BildButton englischDeutsch;
+    BildButton zurueck;
+
+    public KatalogwahlFenster(SpeicherVokabelnLernen s) {
+        speicherVokabelnLernen = s;
 
         //Fenster für die Katalogwahl
-        final JFrame katalogFenster = new JFrame("Katalogauswahl");
+        katalogFenster = new JFrame("Katalogauswahl");
         katalogFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
@@ -33,31 +38,16 @@ public class KatalogwahlFenster {
         katalogPanel.setOpaque(false);
 
         //Buttons werden hier erstellt
-        ImageIcon deutschEnglischIcon = new BildBauer().createImageIcon("/Img/deEngButton.png");
-        BildButton deutschEnglisch = new BildButton(deutschEnglischIcon);
-
-        ImageIcon englischDeutschIcon = new BildBauer().createImageIcon("/Img/engDeButton.png");
-        BildButton englischDeutsch = new BildButton(englischDeutschIcon);
-
-        ImageIcon zurueckIcon = new BildBauer().createImageIcon("/Img/zurueckGrossButton.png");
-        BildButton zurueck = new BildButton(zurueckIcon);
+        deutschEnglisch = new BildButton(new BildBauer().createImageIcon("/Img/deEngButton.png"));
+        englischDeutsch = new BildButton(new BildBauer().createImageIcon("/Img/engDeButton.png"));
+        zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckGrossButton.png"));
 
         //ActionListener
-        deutschEnglisch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                katalogFenster.setVisible(false);
-                katalogFenster.dispose();
-                new DeEngFenster();
-            }
-        });
+        deutschEnglisch.addActionListener(this);
+        englischDeutsch.addActionListener(this);
+        zurueck.addActionListener(this);
 
-        /*englischDeutsch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new gui.EngDeFenster();
-            }
-        });*/
+        //System.out.println("" + zwischendstand + fragenSpeicher.size() + antwortenSpeicher.size());
 
         //hier werden alle Elemente dem katalogPanel hinzugefügt
         katalogPanel.add(deutschEnglisch, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, new Insets(120, 0, 0, 0), 0, 0));
@@ -76,10 +66,39 @@ public class KatalogwahlFenster {
         katalogFenster.setVisible(true);
     }
 
-    public static void main(String[] a) {
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-        new KatalogwahlFenster();
+        //Überprüft, welcher Button gedrückt wurde
+        if (e.getSource() == deutschEnglisch) {
 
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            new DeEngFenster(speicherVokabelnLernen);
+            katalogFenster.setVisible(false);
+            katalogFenster.dispose();
+        }
+
+        if (e.getSource() == englischDeutsch) {
+
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            new EngDeFenster(speicherVokabelnLernen);
+            katalogFenster.setVisible(false);
+            katalogFenster.dispose();
+        }
+
+        if (e.getSource() == zurueck) {
+
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            katalogFenster.setVisible(false);
+            katalogFenster.dispose();
+            new MenuFenster();
+        }
     }
 
 }

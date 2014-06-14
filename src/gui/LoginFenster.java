@@ -1,14 +1,14 @@
 package gui;
 
+import Datenbank.LeseBenutzerdaten;
 import Login.Login;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.String;
+import java.util.ArrayList;
 
 /**
  * Created by Frances Schmidt
@@ -18,35 +18,50 @@ import java.lang.String;
 
 public class LoginFenster {
 
-    private String id;
-    private String passwort;
+    String id;
+    String passwort;
+    JFrame loginFenster;
+    RoundedTextField idText;
+    RoundedPassField pwText;
+    ArrayList<String[]> stringListe;
+    ArrayList<String> listeName;
+    ArrayList<String> listePasswort;
+
+    //boolean istAngemeldet;
 
     public LoginFenster() {
 
-        //Fenster für den
-        final JFrame loginFenster = new JFrame("Anmeldung");
+        //Benutzerdaten holen
+        LeseBenutzerdaten daten = new LeseBenutzerdaten();
+        stringListe = daten.getB();
+        listeName = new ArrayList<String>();
+        listePasswort = new ArrayList<String>();
+
+        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Fragen, Antworten
+        for (String[] pair : stringListe) {
+            listeName.add(pair[0]);
+            listePasswort.add(pair[1]);
+        }
+
+        //Fenster für den Login
+        loginFenster = new JFrame("Anmeldung");
         loginFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Hintergrundbild
         BilderPanel loginBg = new BilderPanel("/Img/loginBg.png");
 
-        //gui.BilderPanel
+        //BilderPanel
         JPanel loginPanel = new JPanel(new GridBagLayout());
         loginPanel.setOpaque(false);
 
         //Textfelder zum Abfragen der Logindaten
-        final RoundedTextField idText = new RoundedTextField(12);
-        final RoundedPassField pwText = new RoundedPassField(12);
+        idText = new RoundedTextField(12);
+        pwText = new RoundedPassField(12);
 
-        //DeinButton werden hier erstellt
-        ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
-        BildButton zumMenu = new BildButton(zumMenuIcon, 400);
-
-        ImageIcon registrierungIcon = new BildBauer().createImageIcon("/Img/registrierungButton.png");
-        BildButton registrierung = new BildButton(registrierungIcon, 400);
-
-        ImageIcon loginIcon = new BildBauer().createImageIcon("/Img/loginButton.png");
-        BildButton login = new BildButton(loginIcon, 400);
+        //Buttons werden hier erstellt
+        BildButton zumMenu = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
+        BildButton registrierung = new BildButton(new BildBauer().createImageIcon("/Img/registrierungButton.png"));
+        BildButton login = new BildButton(new BildBauer().createImageIcon("/Img/loginButton.png"));
 
         //ActionListener
         zumMenu.addActionListener(new ActionListener() {
@@ -71,13 +86,29 @@ public class LoginFenster {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                id = idText.getText();
 
                 //Passwort in einen String umwandeln, damit man einfacher abfragen kann
                 char[] pwTextZeichen = pwText.getPassword();
+                String passwortString = new String(pwTextZeichen);
 
-                passwort = new String(pwTextZeichen);
-                new Login(id, passwort);
+                //Wenn Daten stimmen, dann eingeloggt
+                for (String name : listeName) {
+                    for (String pw : listePasswort) {
+                        if (idText.getText().equals(name)  && passwortString.equals(pw)) {
+
+                            //Daten abspeichern
+                            id = idText.getText();
+                            passwort = passwortString;
+                            new Login(id, passwort);
+
+                            loginFenster.setVisible(false);
+                            loginFenster.dispose();
+                            return;
+                        }
+                    }
+                }
+
+                JOptionPane.showMessageDialog(null, "ID oder Passwort wurde falsch eingegeben!");
             }
         });
 

@@ -26,7 +26,7 @@ public class MenuFenster {
         menuFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Logo
-        ImageIcon logoIcon = new BildBauer().createImageIcon("Img/VM5000.png");
+        ImageIcon logoIcon = new BildBauer().createImageIcon("/Img/VM5000.png");
         MeinLabel logo = new MeinLabel(logoIcon, Color.WHITE);
 
         //Menupanel für die Buttons
@@ -34,13 +34,13 @@ public class MenuFenster {
         menuPanel.setBackground(Color.WHITE);
 
         //Buttons
-        ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("Img/vokabelnlernenButton.png");
+        ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("/Img/vokabelnlernenButton.png");
         BildButton vokabelnLernen = new BildButton(vokabelnLernenIcon);
 
-        ImageIcon quizIcon = new BildBauer().createImageIcon("Img/quizButton.png");
+        ImageIcon quizIcon = new BildBauer().createImageIcon("/Img/quizButton.png");
         BildButton quiz = new BildButton(quizIcon);
 
-        ImageIcon creditsIcon = new BildBauer().createImageIcon("Img/creditsButton.png");
+        ImageIcon creditsIcon = new BildBauer().createImageIcon("/Img/creditsButton.png");
         BildButton credits = new BildButton(creditsIcon);
 
         //Buttons dem VM5000.gui.BilderPanel hinzufügen
@@ -60,10 +60,6 @@ public class MenuFenster {
 
     }
 
-    public static void main(String[] a) {
-
-        new MenuFenster();
-
-    }
+    public static void main(String[] a) { new MenuFenster(); }
 
 }
