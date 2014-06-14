@@ -1,7 +1,5 @@
 package Register;
 
-import javax.swing.*;
-
 /**
  * Created by Maurice Fernitz
  * on 15 May 2014

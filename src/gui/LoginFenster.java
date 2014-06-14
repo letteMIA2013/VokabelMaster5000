@@ -1,6 +1,6 @@
 package gui;
 
-import login.Login;
+import Login.Login;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;

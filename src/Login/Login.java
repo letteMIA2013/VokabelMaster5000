@@ -9,15 +9,15 @@ package Login;
 public class Login {
 
     private String id;
-
     private String passwort;
 
-
     public Login(String id, String passwort) {
+
         this.id = id;
         this.passwort = passwort;
 
         auslesen();
+
     }
 
     public String auslesen() {
