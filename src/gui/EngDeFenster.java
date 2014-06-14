@@ -147,7 +147,7 @@ public class EngDeFenster implements ActionListener{
 
             engDeFenster.setVisible(false);
             if (zahlZwischenstand == 10) {
-                zahlZwischenstand = 1;
+                zahlZwischenstand = 0;
             }
             if (ausgabe.getText().length() != 0) {
                 zahlZwischenstand += 1;
