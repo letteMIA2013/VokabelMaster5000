@@ -1,5 +1,6 @@
 package gui;
 
+import Datenbank.LeseDeEngVok;
 import Datenbank.LeseHighscore;
 
 import javax.swing.*;
@@ -32,31 +33,26 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     BildButton antwortZwei;
     BildButton antwortDrei;
     BildButton antwortVier;
+    ArrayList<String> listeFrage;
+    ArrayList<String> listeAntwort;
     ArrayList<String> liste;
 
     public MultiplayerFenster() {
-
-        //Highscore aus der Datenbank
-        LeseHighscore daten = new LeseHighscore();
-        ArrayList<String[]> stringListe = daten.getB();
-
-        liste = new ArrayList<String>();
-
-        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Name, Punkte
-        for (String[] pair : stringListe) {
-            liste.add(pair[0] + "/" + pair[1]);
-        }
+        highscore();
+        fragenkatalog();
 
         //Fenster für den Multiplayer
         multiplayerFenster = new JFrame();
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Spieleranzahl + Namen
-        String anzahlSpielerString = JOptionPane.showInputDialog("Anzahl an Spielern eingeben (2-3):");
-        anzahlSpieler = Integer.parseInt(anzahlSpielerString);
+        // Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
+        Object[] options = {"2 Spieler", "3 Spieler"};
+        anzahlSpieler = JOptionPane.showOptionDialog(null, "Wie viele Spieler?", "Quiz", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        System.out.println(anzahlSpieler);
         String nameRosa = JOptionPane.showInputDialog("Spieler 1");
         String nameGruen = JOptionPane.showInputDialog("Spieler 2");
-        if (anzahlSpieler == 3) {
+        if (anzahlSpieler == 1) {
             nameBlau = JOptionPane.showInputDialog("Spieler 3");
         }
 
@@ -84,7 +80,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Felder für die 3 Spieler + Punktestand
         MeinLabel spielerEins = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerRosaLabel.png"), nameRosa);
-        if (anzahlSpieler == 3) {
+        if (anzahlSpieler == 1) {
             spielerZwei = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerGruenLabel.png"), nameGruen);
             spielerDrei = new MeinLabel(new BildBauer().createImageIcon("/Img/spielerBlauLabel.png"), nameBlau);
         } else {
@@ -99,6 +95,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Timer zu Beginn der Abfrage
         resettedTimer();
+
+        //ActionListener
+        zurueck.addActionListener(this);
 
         //KeyListener
         multiplayerFenster.setFocusable(true);
@@ -119,7 +118,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         //Spieler und Punkte dem multiplayerPanel hinzufügen
         multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 300), 0, 0));
         multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 300), 0, 0));
-        if (anzahlSpieler == 3) {
+        if (anzahlSpieler == 1) {
             multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 0), 0, 0));
             multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 0), 0, 0));
         }
@@ -151,6 +150,40 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         antwortZwei.setText("Answer " + i);
         antwortDrei.setText("Answer " + i);
         antwortVier.setText("Answer " + i);
+    }
+
+    public void highscore() {
+
+        //Highscore aus der Datenbank
+        LeseHighscore daten = new LeseHighscore();
+        ArrayList<String[]> stringListe = daten.getB();
+
+        liste = new ArrayList<String>();
+
+        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Name, Punkte
+        for (String[] pair : stringListe) {
+            liste.add(pair[0] + "/" + pair[1]);
+        }
+    }
+
+    public void fragenkatalog() {
+
+        //Vokabeln aus der Datenbank
+        LeseDeEngVok daten = new LeseDeEngVok();
+        ArrayList<String[]> stringListe = daten.getB();
+        listeFrage = new ArrayList<String>();
+        listeAntwort = new ArrayList<String>();
+
+        //Die übergebene Datenbank in 2 ArrayListen unterbringen: Fragen, Antworten
+        for (String[] pair : stringListe) {
+            listeFrage.add(pair[0]);
+            listeAntwort.add(pair[1]);
+        }
+
+        for (String[] pair : stringListe) {
+            listeFrage.add(pair[1]);
+            listeAntwort.add(pair[0]);
+        }
     }
 
     public void resettedTimer() {
@@ -190,6 +223,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         timer.start();
     }
 
+    public void buzzered() {
+
+        //Timer resetten
+        timer.stop();
+        resettedTimer();
+
+        //Musik
+        new Musik("src/Img/buzzer.wav").start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -206,34 +249,41 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() != 83 && e.getKeyCode() != 66 && e.getKeyCode() != 76) {
+            System.out.println("mh...");
+        }
 
-        //Timer resetten
-        timer.stop();
-        resettedTimer();
-
-        //Musik
-        new Musik("src/Img/buzzer.wav").start();
-
+        //Rosa Buzzer
         if (e.getKeyCode() == 83) {
             buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRosaLabel.png"));
             multiplayerFenster.removeKeyListener(this);
+            buzzered();
         }
 
-        if (anzahlSpieler == 3) {
+        //Bei 3 Spielern
+        if (anzahlSpieler == 1) {
+
+            //Gruener Buzzer
             if (e.getKeyCode() == 66) {
                 buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerGruenLabel.png"));
                 multiplayerFenster.removeKeyListener(this);
                 new HSFenster(liste);
+                buzzered();
             }
 
+            //Blauer Buzzer
             if (e.getKeyCode() == 76) {
                 buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerBlauLabel.png"));
                 multiplayerFenster.removeKeyListener(this);
+                buzzered();
             }
         } else {
+
+            //Gruener Buzzer
             if (e.getKeyCode() == 76) {
                 buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerGruenLabel.png"));
                 multiplayerFenster.removeKeyListener(this);
+                buzzered();
             }
         }
     }
