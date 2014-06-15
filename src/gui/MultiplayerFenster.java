@@ -16,6 +16,7 @@ public class MultiplayerFenster implements KeyListener {
     JFrame multiplayerFenster;
     MeinLabel frage;
     JLabel time;
+    BildButton zurueck;
     BildButton antwortEins;
     BildButton antwortZwei;
     BildButton antwortDrei;
@@ -41,6 +42,7 @@ public class MultiplayerFenster implements KeyListener {
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
         frage = new MeinLabel(new BildBauer().createImageIcon("/Img/frageLabel.png"), "Question 1");
+        zurueck = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
 
         //Buttons für die Antworten
         ImageIcon antwort = new BildBauer().createImageIcon("/Img/antwortenLabel.png");
@@ -70,8 +72,9 @@ public class MultiplayerFenster implements KeyListener {
         multiplayerFenster.addKeyListener(this);
 
         //Timer und Frage dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-3, 0, 0, 215), 0, 0));
-        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(60, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-35, 0, 0, 215), 0, 0));
+        multiplayerPanel.add(zurueck, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(8, 350, 0, 0), 0, 0));
+        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), 0, 0));
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
         multiplayerPanel.add(antwortEins, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
@@ -98,11 +101,9 @@ public class MultiplayerFenster implements KeyListener {
         multiplayerFenster.setLocationRelativeTo(null);
         multiplayerFenster.setResizable(false);
         multiplayerFenster.setVisible(true);
-
     }
 
     public void naechsteFrage() {
-
         i++;
 
         multiplayerFenster.addKeyListener(this);
@@ -114,12 +115,10 @@ public class MultiplayerFenster implements KeyListener {
         antwortZwei.setText("Answer " + i);
         antwortDrei.setText("Answer " + i);
         antwortVier.setText("Answer " + i);
-
     }
 
     public void resettedTimer() {
-
-        count = 11;
+        count = 21;
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +135,9 @@ public class MultiplayerFenster implements KeyListener {
                 //färbt die Schriftfarbe rot ab 5sec abwärts
                 if(count <= 5) {
                     time.setForeground(Color.RED);
+
+                    //Musik
+                    new Musik("src/Img/klick.wav").start();
                 } else {
                     time.setForeground(Color.BLACK);
                 }
@@ -146,12 +148,10 @@ public class MultiplayerFenster implements KeyListener {
                     timer.stop();
                     naechsteFrage();
                 }
-
             }
         });
 
         timer.start();
-
     }
 
     @Override
@@ -166,12 +166,8 @@ public class MultiplayerFenster implements KeyListener {
         timer.stop();
         resettedTimer();
 
-        //Buttons einen Fokus setzen
-        antwortEins.setFocusPainted(true);
-        antwortZwei.setFocusPainted(true);
-        antwortDrei.setFocusPainted(true);
-        antwortVier.setFocusPainted(true);
-
+        //Musik
+        new Musik("src/Img/buzzer.wav").start();
 
         if (e.getKeyCode() == 83) {
             buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRosaLabel.png"));
@@ -187,17 +183,10 @@ public class MultiplayerFenster implements KeyListener {
             buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerBlauLabel.png"));
             multiplayerFenster.removeKeyListener(this);
         }
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
-    }
-
-    public static void main(String[] a) {
-
-        new MultiplayerFenster();
 
     }
 
