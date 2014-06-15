@@ -3,7 +3,6 @@ package gui;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.Color;
 import java.lang.String;
 
 /**
@@ -13,13 +12,6 @@ import java.lang.String;
  */
 
 public class MeinLabel extends JLabel {
-
-    public MeinLabel(Icon icon, Color color) {
-        setIcon(icon);
-        setHorizontalAlignment(SwingConstants.CENTER);
-        setOpaque(true);
-        setBackground(color);
-    }
 
     public MeinLabel(Icon icon, String text) {
         setIcon(icon);

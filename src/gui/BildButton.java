@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.Dimension;
-import java.lang.String;
 
 /**
  * Created by Ka Yan Lam
@@ -14,15 +13,6 @@ public class BildButton extends JButton {
 
     public BildButton(Icon icon) {
         setIcon(icon);
-        setBorderPainted(false);
-        setFocusPainted(false);
-        setContentAreaFilled(false);
-        setHorizontalAlignment(CENTER);
-    }
-
-    public BildButton(Icon icon, String text) {
-        setIcon(icon);
-        setText(text);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.CENTER);
         setBorderPainted(false);
