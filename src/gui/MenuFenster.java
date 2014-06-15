@@ -67,10 +67,6 @@ public class MenuFenster implements ActionListener {
         menuFenster.setVisible(true);
     }
 
-    public static void main(String[] a) {
-        new MenuFenster(false, null);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

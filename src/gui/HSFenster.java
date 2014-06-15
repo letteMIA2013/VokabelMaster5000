@@ -17,7 +17,12 @@ public class HSFenster extends JFrame {
         //Größe, Titel und Layout setzen
         setSize(400, 400);
         setTitle("Highscore");
-        setLayout(new GridLayout(daten.size(), 3, 0, 5));
+        setLayout(new GridLayout(6, 3, 5, 5));
+        setLocationRelativeTo(null);
+        setResizable(false);
+        add(new JLabel("Platz"));
+        add(new JLabel("Name"));
+        add(new JLabel("Punkte"));
 
         //Daten aus der Datenbank in Listen packen
         Map<String, String> map = new HashMap<String, String>();
@@ -25,7 +30,7 @@ public class HSFenster extends JFrame {
 
         for (String s : daten) {
             String[] split = s.split("/");
-            String score = split[2];
+            String score = split[1];
             String name = split[0];
             map.put(score, name);
             alleScores.add(score);
@@ -44,10 +49,12 @@ public class HSFenster extends JFrame {
         int i = 1;
 
         for (String score : alleScores) {
-            String name = map.get(score);
-            add(new JLabel("" + i++));
-            add(new JLabel(name));
-            add(new JLabel(score));
+            if (i <= 5) {
+                String name = map.get(score);
+                add(new JLabel("" + i++));
+                add(new JLabel(name));
+                add(new JLabel(score));
+            }
         }
 
         setVisible(true);
@@ -56,12 +63,12 @@ public class HSFenster extends JFrame {
     public static void main(String[] args) {
 
         // wir erzeugen uns ein paar Pseudo Daten:
-        ArrayList<String> strings = new ArrayList<String>();
+        /*ArrayList<String> strings = new ArrayList<String>();
         strings.add("Justus/passwort/5435");
         strings.add("Marc/passwort/5");
         strings.add("Ka-Yan/passwort/57934");
-        strings.add("Marius/passwort/176");
+        strings.add("Marius/passwort/176");*/
 
-        new HSFenster(strings);
+        //new HSFenster(daten);
     }
 }

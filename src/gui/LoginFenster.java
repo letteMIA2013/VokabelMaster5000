@@ -26,6 +26,7 @@ public class LoginFenster {
     ArrayList<String[]> stringListe;
     ArrayList<String> listeName;
     ArrayList<String> listePasswort;
+    ArrayList<String> listePunkte;
 
     public LoginFenster() {
 
@@ -34,11 +35,13 @@ public class LoginFenster {
         stringListe = daten.getB();
         listeName = new ArrayList<String>();
         listePasswort = new ArrayList<String>();
+        listePunkte = new ArrayList<String>();
 
         //Die übergebene Datenbank in 2 ArrayListen unterbringen: Name, Passwort
         for (String[] pair : stringListe) {
             listeName.add(pair[0]);
             listePasswort.add(pair[1]);
+            listePunkte.add(pair[2]);
         }
 
         //Fenster für den Login
@@ -105,10 +108,13 @@ public class LoginFenster {
                     for (String pw : listePasswort) {
                         if (idText.getText().equals(name)  && passwortString.equals(pw)) {
 
+                            String highscoreString = listePunkte.get(listeName.indexOf(name));
+                            int highscore = Integer.parseInt(highscoreString);
+
                             //Daten abspeichern
                             id = idText.getText();
                             passwort = passwortString;
-                            new Login(id, passwort);
+                            new Login(id, passwort, highscore);
 
                             loginFenster.setVisible(false);
                             loginFenster.dispose();
@@ -117,6 +123,7 @@ public class LoginFenster {
 
                             return;
                         }
+
                     }
                 }
 

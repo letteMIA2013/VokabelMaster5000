@@ -11,6 +11,8 @@ public class SpeicherVokabelnLernen {
 
     int zwSpDeEng;
     int zwSpEngDe;
+    int punkte;
+
     boolean istAngemeldet;
     String name;
     String passwort;
@@ -35,8 +37,12 @@ public class SpeicherVokabelnLernen {
         this.zwSpEngDe = zwSpEngDe;
     }
 
-    public boolean isIstAngemeldet() {
-        return istAngemeldet;
+    public int getPunkte() {
+        return punkte;
+    }
+
+    public void setPunkte(int punkte) {
+        this.punkte = punkte;
     }
 
     public void setIstAngemeldet(boolean istAngemeldet) {

@@ -12,6 +12,7 @@ import gui.Musik;
 public class Start {
 
     public static void main(String[] a) {
+
         new MenuFenster(false, null);
         new Musik("src/Img/intro.wav").start();
     }

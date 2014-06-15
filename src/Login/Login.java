@@ -4,6 +4,7 @@ import Datenbank.LeseDeEngVok;
 import gui.KatalogwahlFenster;
 import gui.SpeicherVokabelnLernen;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,10 +17,12 @@ public class Login {
 
     String id;
     String passwort;
+    int punkte;
 
-    public Login(String id, String passwort) {
+    public Login(String id, String passwort, int punkte) {
         this.id = id;
         this.passwort = passwort;
+        this.punkte  = punkte;
 
         auslesen();
         start();
@@ -28,9 +31,9 @@ public class Login {
     public String auslesen() {
 
         //System.out.println("ID: " + id + "\nPasswort: " + passwort);
-        System.out.println(id + " wurde erfolgreich eingeloggt.");
+        System.out.println(id + " wurde erfolgreich eingeloggt. Highscore: " + punkte);
 
-        return id + passwort;
+        return id + " wurde erfolgreich eingeloggt. Highscore: " + punkte;
     }
 
     public void start() {
@@ -64,6 +67,7 @@ public class Login {
         speicherVokabelnLernen.setName(id);
         speicherVokabelnLernen.setPasswort(passwort);
         speicherVokabelnLernen.setIstAngemeldet(true);
+        speicherVokabelnLernen.setPunkte(punkte);
 
         new KatalogwahlFenster(speicherVokabelnLernen);
     }

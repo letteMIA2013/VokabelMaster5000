@@ -57,7 +57,7 @@ public class DeEngFenster implements ActionListener {
         deEngPanel.setOpaque(false);
 
         //Zwischenstandlabel
-        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/zwischenstandLabel.png"), zahlZwischenstand + " / 10");
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/zwischenstandLabel.png"), zahlZwischenstand + " / 86");
 
         //(Text)felder für die Vokabelabfrage, Eingabe und Ausgabe der Lösungen
         vokabel = new JLabel();
@@ -142,7 +142,7 @@ public class DeEngFenster implements ActionListener {
             new Musik("src/Img/klick.wav").start();
 
             deEngFenster.setVisible(false);
-            if (zahlZwischenstand == 10) {
+            if (zahlZwischenstand == 86) {
                 zahlZwischenstand = 0;
             }
             if (ausgabe.getText().length() != 0) {
@@ -199,7 +199,7 @@ public class DeEngFenster implements ActionListener {
             }
 
             //Weiter-Button wird bei der letzten Abfrage zum AuswertungsButton -> führt zur Statistik
-            if (listeFrage.size() <= 76) {
+            if (listeFrage.size() <= 0) {
                 weiter.setIcon(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
             } else {
                 weiter.addActionListener(this);
@@ -215,7 +215,7 @@ public class DeEngFenster implements ActionListener {
             //Zwischenstand wird um 1 aufaddiert
             zahlZwischenstand++;
             System.out.println("" + zahlZwischenstand);
-            zwischenstand.setText(zahlZwischenstand + " / 10");
+            zwischenstand.setText(zahlZwischenstand + " / 86");
 
             eingabe.setEditable(true);
             eingabe.setText("");
@@ -225,7 +225,7 @@ public class DeEngFenster implements ActionListener {
 
             nextVokabel();
 
-            if (listeFrage.size() >= 75) {
+            if (listeFrage.size() > 0) {
                 ok.addActionListener(this);
             }
         }
