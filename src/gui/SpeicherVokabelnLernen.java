@@ -37,10 +37,6 @@ public class SpeicherVokabelnLernen {
         this.zwSpEngDe = zwSpEngDe;
     }
 
-    public int getPunkte() {
-        return punkte;
-    }
-
     public void setPunkte(int punkte) {
         this.punkte = punkte;
     }
