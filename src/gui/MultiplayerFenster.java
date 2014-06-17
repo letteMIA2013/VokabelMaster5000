@@ -210,10 +210,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             b.setIcon(new BildBauer().createImageIcon("/Img/antwortenButton.png"));
 
             if (b.getText().length() == 0) {
-                if (getFragePos() < 87) {
-                    zufallsAntwort = new Random().nextInt(86);
+                if (getFragePos() < 86) {
+                    zufallsAntwort = new Random().nextInt(85);
+                    while (zufallsAntwort == zufallsVokabel) {
+                        zufallsAntwort = new Random().nextInt(85);
+                    }
                 } else {
-                    zufallsAntwort = new Random().nextInt(86) + 86;
+                    zufallsAntwort = new Random().nextInt(85) + 86;
+                    while (zufallsAntwort == zufallsVokabel) {
+                        zufallsAntwort = new Random().nextInt(85) + 86;
+                    }
                 }
                 b.setText("" + listeAntwort.get(zufallsAntwort));
             }
