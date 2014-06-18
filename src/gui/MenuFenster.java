@@ -1,12 +1,15 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * Created by Ka Yan Lam
@@ -30,6 +33,8 @@ public class MenuFenster implements ActionListener {
         //Fenster für das Menue
         menuFenster = new JFrame("Menü");
         menuFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        /*Image image = ImageIO.read(new File("image.gif"));
+        menuFenster.setIconImage(image); */
 
         //Hintergrundbild
         BilderPanel menuBg = new BilderPanel("/Img/VM5000.png");

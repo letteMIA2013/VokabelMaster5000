@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -15,11 +17,15 @@ import java.util.Random;
  * VokabelMaster5000
  */
 
-public class DeEngFenster implements ActionListener {
+public class DeEngFenster implements ActionListener, KeyListener {
 
     int zahlZwischenstand;
     int zufallsVokabel;
+    int richtigeAntworten = 0;
+    int count;
+    boolean istAuswertung;
     SpeicherVokabelnLernen speicherVokabelnLernen;
+    Timer timer;
     JFrame deEngFenster;
     JLabel vokabel;
     RoundedTextField eingabe;
@@ -27,6 +33,7 @@ public class DeEngFenster implements ActionListener {
     BildButton zurueck;
     BildButton ok;
     BildButton weiter;
+    BildButton auswertung;
     MeinLabel zwischenstand;
     ArrayList<String> listeFrage;
     ArrayList<String> listeAntwort;
@@ -62,9 +69,13 @@ public class DeEngFenster implements ActionListener {
         //(Text)felder für die Vokabelabfrage, Eingabe und Ausgabe der Lösungen
         vokabel = new JLabel();
         vokabel.setFont(font);
-        ausgabe = new RoundedTextField(12);
         eingabe = new RoundedTextField(12);
+        ausgabe = new RoundedTextField(12);
         ausgabe.setEditable(false);
+
+        //Timer starten
+        startTimer();
+        speicherVokabelnLernen.setTime(count);
 
         //Für eine zufällig ausgewählte Vokabel aus der Fragen-ArrayListe
         nextVokabel();
@@ -73,6 +84,7 @@ public class DeEngFenster implements ActionListener {
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckKleinButton.png"));
         ok = new BildButton(new BildBauer().createImageIcon("/Img/okButton.png"));
         weiter = new BildButton(new BildBauer().createImageIcon("/Img/weiterButton.png"));
+        auswertung = new BildButton(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
 
         //hier werden alle Elemente dem deEngPanel hinzugefügt
         deEngPanel.add(zwischenstand, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
@@ -82,10 +94,13 @@ public class DeEngFenster implements ActionListener {
         deEngPanel.add(zurueck, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 200), 0, 0));
         deEngPanel.add(ok, new GridBagConstraints(1, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
         deEngPanel.add(weiter, new GridBagConstraints(2, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 200, 0, 0), 0, 0));
+        deEngPanel.add(auswertung, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         //ActionListener
         zurueck.addActionListener(this);
         ok.addActionListener(this);
+        eingabe.addKeyListener(this);
+        auswertung.addActionListener(this);
 
         deEngBg.add(deEngPanel);
 
@@ -101,6 +116,27 @@ public class DeEngFenster implements ActionListener {
 
     //public static void main(String[] a) { new DeEngFenster(); }
 
+    public void startTimer() {
+        count = speicherVokabelnLernen.getTime();
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //Zieht immer eine Sekunde ab
+                count++;
+
+                //Wenn Zeit abgelaufen, dann nächste Frage
+                if (istAuswertung) {
+                    System.out.println("Zeit: " + count);
+                    timer.stop();
+                    speicherVokabelnLernen.setTime(count);
+                }
+            }
+        });
+
+        timer.start();
+    }
+
     public int getFragePos() {
         int fragePos = 0;
 
@@ -114,6 +150,10 @@ public class DeEngFenster implements ActionListener {
         return fragePos;
     }
 
+    /**
+     *
+     * @return eine Zahl, die die Position der Antwort in der ArrayList darstellt.
+     */
     public int getAntwortPos() {
         int antwortPos = 0;
 
@@ -126,6 +166,7 @@ public class DeEngFenster implements ActionListener {
 
         return antwortPos;
     }
+
 
     public void nextVokabel() {
         zufallsVokabel = new Random().nextInt(listeFrage.size());
@@ -153,6 +194,8 @@ public class DeEngFenster implements ActionListener {
             speicherVokabelnLernen.setZwSpDeEng(zahlZwischenstand);
             speicherVokabelnLernen.setFragenListeDeEng(listeFrage);
             speicherVokabelnLernen.setAntwortenListeDeEng(listeAntwort);
+            speicherVokabelnLernen.setRichtigeAntworten(richtigeAntworten);
+            speicherVokabelnLernen.setTime(count);
             new KatalogwahlFenster(speicherVokabelnLernen);
             deEngFenster.dispose();
         }
@@ -168,11 +211,12 @@ public class DeEngFenster implements ActionListener {
             if (eingabe.getText().length() == 0) {
                 ausgabe.setBackground(new Color(255, 80, 74));
                 ausgabe.setText("" + listeAntwort.get(getFragePos()));
-                System.out.println("nein1: " + listeFrage.size());
+                System.out.println("nein1: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
+
                 //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                 listeFrage.remove(zufallsVokabel);
                 listeAntwort.remove(zufallsVokabel);
-                System.out.println("nein1: " + listeFrage.size());
+                System.out.println("nein1: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
             } else {
 
                 //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
@@ -180,21 +224,22 @@ public class DeEngFenster implements ActionListener {
                 if (getFragePos() == getAntwortPos()) {
                     ausgabe.setBackground(new Color(180, 238, 180));
                     ausgabe.setText("Richtig!");
-                    System.out.println("ja: " + listeFrage.size());
+                    richtigeAntworten++;
+                    System.out.println("ja: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
 
                     //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
-                    System.out.println("ja: " + listeFrage.size());
+                    System.out.println("ja: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
                 } else {
                     ausgabe.setBackground(new Color(255, 80, 74));
                     ausgabe.setText("" + listeAntwort.get(getFragePos()));
-                    System.out.println("nein2: " + listeFrage.size());
+                    System.out.println("nein2: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
 
                     //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
-                    System.out.println("nein2: " + listeFrage.size());
+                    System.out.println("nein2: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
                 }
             }
 
@@ -229,6 +274,78 @@ public class DeEngFenster implements ActionListener {
                 ok.addActionListener(this);
             }
         }
+
+        if (e.getSource() == this.auswertung) {
+            istAuswertung = true;
+
+            new StatistikFenster(speicherVokabelnLernen);
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        //Mit Enter kann man bestätigen
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            ok.removeActionListener(this);
+            eingabe.setEditable(false);
+
+            //Musik
+            new Musik("src/Img/klick.wav").start();
+
+            //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
+            if (eingabe.getText().length() == 0) {
+                ausgabe.setBackground(new Color(255, 80, 74));
+                ausgabe.setText("" + listeAntwort.get(getFragePos()));
+                System.out.println("nein1: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
+
+                //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                listeFrage.remove(zufallsVokabel);
+                listeAntwort.remove(zufallsVokabel);
+                System.out.println("nein1: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
+            } else {
+
+                //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
+                //2 Getter-Methoden weiter unten
+                if (getFragePos() == getAntwortPos()) {
+                    ausgabe.setBackground(new Color(180, 238, 180));
+                    ausgabe.setText("Richtig!");
+                    richtigeAntworten++;
+                    System.out.println("ja: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
+
+                    //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                    listeFrage.remove(zufallsVokabel);
+                    listeAntwort.remove(zufallsVokabel);
+                    System.out.println("ja: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
+                } else {
+                    ausgabe.setBackground(new Color(255, 80, 74));
+                    ausgabe.setText("" + listeAntwort.get(getFragePos()));
+                    System.out.println("nein2: " + listeFrage.size() + " Richtige Antworten: " + richtigeAntworten);
+
+                    //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                    listeFrage.remove(zufallsVokabel);
+                    listeAntwort.remove(zufallsVokabel);
+                    System.out.println("nein2: " + listeFrage.size() +  " Richtige Antworten: " +richtigeAntworten);
+                }
+            }
+
+            //Weiter-Button wird bei der letzten Abfrage zum AuswertungsButton -> führt zur Statistik
+            if (listeFrage.size() <= 0) {
+                weiter.setIcon(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
+            } else {
+                weiter.addActionListener(this);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
 }

@@ -157,9 +157,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setVisible(true);
     }
 
-    public static void main(String[] a) {
-        new MultiplayerFenster();
-    }
+//    public static void main(String[] a) {
+//        new MultiplayerFenster();
+//    }
 
     public int getFragePos() {
         int fragePos = 0;

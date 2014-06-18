@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class StatistikFenster {
 
-    public StatistikFenster(String namee, int zeit, int fragen, int punktee) {
+    public StatistikFenster(SpeicherVokabelnLernen s) {
+
 
         JFrame statistikFenster = new JFrame("Auswertung");
         JPanel statistikPanel = new JPanel(new GridLayout(2, 4));
@@ -16,10 +17,10 @@ public class StatistikFenster {
         JLabel time = new MeinLabel("Zeit in s");
         JLabel richtigeFragen = new MeinLabel("Anzahl richtiger Fragen");
         JLabel punkte = new MeinLabel("Erreichte Punktzahl");
-        JLabel nameUser = new MeinLabel("" + namee);
-        JLabel timeUser = new MeinLabel("" + zeit);
-        JLabel richtigeFragenUser = new MeinLabel("" + fragen + "/40");
-        JLabel punkteUser = new MeinLabel("" + punktee + "/100");
+        JLabel nameUser = new MeinLabel("" + s.getName());
+        JLabel timeUser = new MeinLabel("" + s.getTime());
+        JLabel richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntworten() + "/40");
+        JLabel punkteUser = new MeinLabel("" + s.getPunkte() + "/100");
 
         statistikFenster.add(statistikPanel);
         statistikPanel.add(name);
@@ -52,11 +53,11 @@ public class StatistikFenster {
         }
     }
 
-    public static void main(String[] a) {
-
-        new StatistikFenster("Peter", 89, 20, 50);
-
-    }
+//    public static void main(String[] a) {
+//
+//        new StatistikFenster();
+//
+//    }
 
 
 }

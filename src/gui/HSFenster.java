@@ -67,8 +67,8 @@ public class HSFenster extends JFrame {
         strings.add("Justus/passwort/5435");
         strings.add("Marc/passwort/5");
         strings.add("Ka-Yan/passwort/57934");
-        strings.add("Marius/passwort/176");*/
+        strings.add("Marius/passwort/176");
 
-        //new HSFenster(daten);
+        new HSFenster(strings);*/
     }
 }
