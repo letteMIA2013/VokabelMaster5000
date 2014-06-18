@@ -11,7 +11,11 @@ import java.lang.System;
  */
 
 public class BildBauer {
-
+    /**
+     * @param pfad der Parameter gibt an das man bei dieser Methode einen String übergeben muss
+     * @return Es soll eine URL zurück gegeben werden diese Methode haben wir z.B.
+     * hier hinzugefügt {@link gui.KatalogwahlFenster}
+     */
     public ImageIcon createImageIcon(String pfad) {
         java.net.URL imgURL = getClass().getResource(pfad);
         if (imgURL != null) {
