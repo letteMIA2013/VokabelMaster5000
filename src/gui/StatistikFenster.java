@@ -25,11 +25,6 @@ public class StatistikFenster {
         JPanel statistikPanel = new JPanel(new GridLayout(2, 2));
 
         // Tabellenkopf mit Zeilen
-        JLabel name = new MeinLabel("Name");
-        JLabel time = new MeinLabel("Zeit in s");
-        JLabel richtigeFragen = new MeinLabel("Anzahl richtiger Fragen");
-        JLabel punkte = new MeinLabel("Erfolg in %");
-
         JLabel nameUser = new MeinLabel("" + s.getName());
         if (istDeEng) {
             timeUser = new MeinLabel("" + s.getTimeDeEng());
