@@ -14,11 +14,15 @@ public class StatistikFenster {
 
     /**
      * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
-     * @param s ist die Speicherablage, von denen wir uns die Daten holen
+     * @param s ist die Speicherablage, aus denen wir uns die Daten holen
      */
     public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
         JFrame statistikFenster = new JFrame("Auswertung");
-        JPanel statistikPanel = new JPanel(new GridLayout(2, 4));
+
+        //Hintergrundbild
+        BilderPanel statistikBg = new BilderPanel("/Img/statsBg.png");
+
+        JPanel statistikPanel = new JPanel(new GridLayout(2, 2));
 
         // Tabellenkopf mit Zeilen
         JLabel name = new MeinLabel("Name");
@@ -30,28 +34,25 @@ public class StatistikFenster {
         if (istDeEng) {
             timeUser = new MeinLabel("" + s.getTimeDeEng());
             richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/" + s.getZwSpDeEng());
-            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenDeEng())/100) + "/86");
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenDeEng())/100));
         } else {
             timeUser = new MeinLabel("" + s.getTimeEngDe());
             richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenEngDe() + "/" + s.getZwSpEngDe());
-            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenEngDe())/100) + "/86");
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenEngDe())/100));
         }
 
+        statistikBg.add(statistikPanel);
+        statistikFenster.add(statistikBg);
 
-
-        statistikFenster.add(statistikPanel);
-        statistikPanel.add(name);
-        statistikPanel.add(time);
-        statistikPanel.add(richtigeFragen);
-        statistikPanel.add(punkte);
         statistikPanel.add(nameUser);
-        statistikPanel.add(timeUser);
-        statistikPanel.add(richtigeFragenUser);
         statistikPanel.add(punkteUser);
+        statistikPanel.add(richtigeFragenUser);
+        statistikPanel.add(timeUser);
 
-        statistikFenster.pack();
-        statistikFenster.setVisible(true);
         statistikFenster.setSize(415, 400);
+        statistikFenster.setLocationRelativeTo(null);
+        statistikFenster.setResizable(false);
+        statistikFenster.setVisible(true);
 
     }
 

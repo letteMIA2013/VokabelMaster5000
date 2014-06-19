@@ -22,7 +22,7 @@ Vater/father
 Mutter/mother
 Kind/child
 Kinder/children
-vervollstaendigen/complete
+vervollständigen/complete
 nerven/annoy
 Beschwerde/complaint
 beschweren/complain
