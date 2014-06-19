@@ -18,8 +18,11 @@ public class SchreibeBenutzerDaten
         KEIN_PASSWORT,
         NUTZER_SCHON_VORHANDEN,
         KEIN_FEHLER,
-        UNBEKANNTER_NUTZER;
+        UNBEKANNTER_NUTZER,
+        REGISTRIERT;
     }
+
+
 
     public static FEHLER_TYP highScoreAendern(String id, int neuerWert) {
         PrintWriter pw = null;
@@ -80,6 +83,8 @@ public class SchreibeBenutzerDaten
                 return FEHLER_TYP.NUTZER_SCHON_VORHANDEN;
 
             }
+            JOptionPane.showMessageDialog(null,"Sie Wurden Erfolgreich registriert");
+
         }
 
 

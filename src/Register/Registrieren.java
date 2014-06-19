@@ -25,6 +25,7 @@ private String neueid;
         if(pw.equals(pwwiederholen)){
             SchreibeBenutzerDaten neuerBenutzer = new SchreibeBenutzerDaten();
             neuerBenutzer.benutzerAnlegen(neueid,neuespw);
+
         }
         else{
         JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");

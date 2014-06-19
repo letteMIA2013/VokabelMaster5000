@@ -36,6 +36,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     boolean buttonDrei;
     boolean buttonVier;
     String nameBlau;
+    String nameRosa;
+    String nameGruen;
     Timer timer;
     Timer pause;
     JFrame multiplayerFenster;
@@ -68,17 +70,34 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         //Bei 2 Spielern = 0   ;   Bei 3 Spielern = 1
         anzahlSpieler = JOptionPane.showOptionDialog(null, "Wie viele Spieler?", "Quiz", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
-        String nameRosa = JOptionPane.showInputDialog("Spieler 1");
-        String nameGruen = JOptionPane.showInputDialog("Spieler 2");
+         nameRosa = JOptionPane.showInputDialog("Spieler 1");
+         nameGruen = JOptionPane.showInputDialog("Spieler 2");
         //dopplete namen nicht nutzbar
-        if(nameGruen.equals(nameRosa)){
+
+
+
+        while(nameGruen.equals(nameRosa)){
             JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
             nameGruen = JOptionPane.showInputDialog("Spieler 2");
-        }
-        if (anzahlSpieler == 1) {
-            nameBlau = JOptionPane.showInputDialog("Spieler 3");
+
         }
 
+        if (anzahlSpieler == 1) {
+            nameBlau = JOptionPane.showInputDialog("Spieler 3");
+            while(nameBlau.equals(nameRosa) || nameBlau.equals(nameGruen)){
+                JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
+                nameBlau = JOptionPane.showInputDialog("Spieler 3");
+            }
+        }
+
+
+
+        if(anzahlSpieler == 0){
+            JOptionPane.showMessageDialog(null,  nameRosa + " hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L !" );
+        }
+        if(anzahlSpieler == 1){
+            JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + "hat den Buzzerkey B !" );
+        }
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
 
@@ -407,7 +426,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             timer.stop();
             multiplayerFenster.setVisible(false);
             multiplayerFenster.dispose();
-            new MenuFenster();
+            new MenuFenster(false, null);
         }
 
         deaktiviereButton();
@@ -493,10 +512,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         }
 
     }
-    //verhindert das der Name im Quiz öfters benutzt wird
-    public void Spieler(String verdoppeleterName){
 
-    }
 
     @Override
     public void keyReleased(KeyEvent e) {

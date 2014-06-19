@@ -30,7 +30,7 @@ public class KatalogwahlFenster implements ActionListener {
 
     /**
      *
-      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
      *           damit dort alles zwischengespeichert wird
      *  Im Konstruktor wird das Fenster gebaut, wo die Größe, die Sichtbarkeit und dem Hintergrund
      *  ein Bild hinzugefügt wird.

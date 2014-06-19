@@ -127,7 +127,6 @@ public class LoginFenster {
                         }
                     }
                 }
-
                 JOptionPane.showMessageDialog(null, "ID und Passwort stimmen nicht überein!");
             }
         });
