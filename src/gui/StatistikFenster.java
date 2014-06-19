@@ -4,8 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * Diese Klasse ist für die erstellung des Statiskfensters zuständig
+ */
 public class StatistikFenster {
 
+    /**
+     * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
+     * @param s
+     */
     public StatistikFenster(SpeicherVokabelnLernen s) {
 
 
@@ -38,6 +45,9 @@ public class StatistikFenster {
 
     }
 
+    /**
+     * Diese Klasse erweiter JLabel und setzt alle Texte zentriert ein
+     */
     private class MeinLabel extends JLabel {
         private MeinLabel(String t) {
 

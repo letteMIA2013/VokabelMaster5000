@@ -17,8 +17,14 @@ import java.lang.String;
  * VokabelMaster5000
  */
 
+/**
+ * Diese Klasse ist für die Erstellung des Registrierungs Fensters zuständig
+ */
 public class RegistrierungFenster {
 
+    /**
+     * In dieser Methode wird das Fenster erstellt, der Hintergrund wird gesetzt und eine weiterleitung zum Loginfenster durch ein ActionListener
+     */
     public RegistrierungFenster() {
 
         //Fenster für die Registrierung
@@ -47,6 +53,9 @@ public class RegistrierungFenster {
         //ActionListener
         zumMenu.addActionListener(new ActionListener() {
             @Override
+            /**
+             * Dieser ActionListener dient nur dazu, eine Weiterleitung zum Loginfenster zu bilden
+             */
             public void actionPerformed(ActionEvent e) {
                 registrierungsFenster.setVisible(false);
                 registrierungsFenster.dispose();
@@ -74,6 +83,10 @@ public class RegistrierungFenster {
 
     }
 
+    /**
+     * Das Registrierungsfenster wird erstellt
+     * @param a
+     */
     public static void main(String[] a) {
 
         new RegistrierungFenster();

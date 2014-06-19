@@ -33,8 +33,8 @@ public class MenuFenster implements ActionListener {
         //Fenster für das Menue
         menuFenster = new JFrame("Menü");
         menuFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        ImageIcon fensterIcon = new BildBauer().createImageIcon("/Img/vmWinIco.png");
-        menuFenster.setIconImage(fensterIcon.getImage());
+        /*Image image = ImageIO.read(new File("image.gif"));
+        menuFenster.setIconImage(image); */
 
         //Hintergrundbild
         BilderPanel menuBg = new BilderPanel("/Img/VM5000.png");
