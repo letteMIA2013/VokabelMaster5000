@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class StatistikFenster {
 
+    /**
+     * dieser konstuctor macht folgendes: bla bla
+     * @param s das ding ist fü foghendes da
+     */
     public StatistikFenster(SpeicherVokabelnLernen s) {
 
 
