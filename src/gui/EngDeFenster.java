@@ -21,7 +21,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
 
     int zahlZwischenstand;
     int zufallsVokabel;
-    int richtigeAntworten = 0;
+    int richtigeAntworten;
     int count;
     boolean istAuswertung;
     SpeicherVokabelnLernen speicherVokabelnLernen;
@@ -45,6 +45,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
         speicherVokabelnLernen = s;
 
         //Die Daten aus dem Speicher den Variablen übergeben, damit man dort weitermachen kann, wo man abgebrochen hat
+        richtigeAntworten = s.getRichtigeAntwortenEngDe();
         zahlZwischenstand = speicherVokabelnLernen.getZwSpEngDe();
         listeFrage = speicherVokabelnLernen.getFragenListeEngDe();
         listeAntwort = speicherVokabelnLernen.getAntwortenListeEngDe();
@@ -87,6 +88,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckKleinButton.png"));
         ok = new BildButton(new BildBauer().createImageIcon("/Img/okButton.png"));
         weiter = new BildButton(new BildBauer().createImageIcon("/Img/weiterButton.png"));
+        auswertung = new BildButton(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
 
         //hier werden alle Elemente dem deEngPanel hinzugefügt
         engDePanel.add(zwischenstand, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
@@ -96,6 +98,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
         engDePanel.add(zurueck, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 200), 0, 0));
         engDePanel.add(ok, new GridBagConstraints(1, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
         engDePanel.add(weiter, new GridBagConstraints(2, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 200, 0, 0), 0, 0));
+        engDePanel.add(auswertung, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         //ActionListener
         zurueck.addActionListener(this);
@@ -119,7 +122,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
      * Startet den Timer. Beim Klicken auf den Auswertungsbutton wird der Timer gestoppt und die Statistik wird angezeigt.
      */
     public void startTimer() {
-        count = speicherVokabelnLernen.getTime();
+        count = speicherVokabelnLernen.getTimeEngDe();
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,8 +134,13 @@ public class EngDeFenster implements ActionListener, KeyListener {
                 if (istAuswertung) {
                     System.out.println("Zeit: " + count);
                     timer.stop();
-                    speicherVokabelnLernen.setTime(count);
-                    new StatistikFenster(speicherVokabelnLernen);
+                    speicherVokabelnLernen.setTimeEngDe(count);
+                    speicherVokabelnLernen.setRichtigeAntwortenEngDe(richtigeAntworten);
+                    if (ausgabe.getText().length() == 0) {
+                        zahlZwischenstand--;
+                    }
+                    speicherVokabelnLernen.setZwSpEngDe(zahlZwischenstand);
+                    new StatistikFenster(speicherVokabelnLernen, false);
                 }
             }
         });
@@ -140,6 +148,9 @@ public class EngDeFenster implements ActionListener, KeyListener {
         timer.start();
     }
 
+    /**
+     * @return eine Zahl, die die Position der Frage in der Fragen-ArrayList darstellt.
+     */
     public int getFragePos() {
         int fragePos = 0;
 
@@ -153,6 +164,9 @@ public class EngDeFenster implements ActionListener, KeyListener {
         return fragePos;
     }
 
+    /**
+     * @return eine Zahl, die die Position der Antwort in der Antworten-ArrayList darstellt.
+     */
     public int getAntwortPos() {
         int antwortPos = 0;
 
@@ -166,6 +180,9 @@ public class EngDeFenster implements ActionListener, KeyListener {
         return antwortPos;
     }
 
+    /**
+     * Gibt die nächste Vokabel zufällig aus der Fragen-ArrayListe heraus.
+     */
     public void nextVokabel() {
         zufallsVokabel = new Random().nextInt(listeFrage.size());
         vokabel.setText("" + listeFrage.get(zufallsVokabel));
@@ -175,15 +192,21 @@ public class EngDeFenster implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
 
         //Überprüft, welcher Button gedrückt wurde
+
+        //Zurück-Button
         if (e.getSource() == this.zurueck) {
 
-            //Musik
+            //Klick-Geräusch
             new Musik("src/Img/klick.wav").start();
 
+            //Speichert den Zwischenstand, wenn man mit dem Lernen abbricht
+            //Wenn der Zwischenstand bei der letzten Vokabel angelangt ist, dann setzen wir den wieder auf
             engDeFenster.setVisible(false);
-            if (zahlZwischenstand == 10) {
+            if (zahlZwischenstand == 86) {
                 zahlZwischenstand = 0;
             }
+
+            //Beim erneutem Eintreten zum Lernen wird der Zwischenstand automatisch um 1 erhöht
             if (ausgabe.getText().length() != 0) {
                 zahlZwischenstand += 1;
             }
@@ -192,81 +215,94 @@ public class EngDeFenster implements ActionListener, KeyListener {
             speicherVokabelnLernen.setZwSpEngDe(zahlZwischenstand);
             speicherVokabelnLernen.setFragenListeEngDe(listeFrage);
             speicherVokabelnLernen.setAntwortenListeEngDe(listeAntwort);
+            speicherVokabelnLernen.setRichtigeAntwortenEngDe(richtigeAntworten);
+            speicherVokabelnLernen.setTimeEngDe(count);
             new KatalogwahlFenster(speicherVokabelnLernen);
             engDeFenster.dispose();
         }
 
+        //Ok-Button
         if (e.getSource() == this.ok) {
             ok.removeActionListener(this);
             eingabe.setEditable(false);
 
-            //Musik
+            //Klick-Geräusch
             new Musik("src/Img/klick.wav").start();
 
             //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
             if (eingabe.getText().length() == 0) {
                 ausgabe.setBackground(new Color(255, 80, 74));
                 ausgabe.setText("" + listeAntwort.get(getFragePos()));
-                System.out.println("nein1: " + listeFrage.size());
+
                 //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                 listeFrage.remove(zufallsVokabel);
                 listeAntwort.remove(zufallsVokabel);
-                System.out.println("nein1: " + listeFrage.size());
             } else {
 
                 //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
                 //2 Getter-Methoden weiter unten
+
+                //richtig
                 if (getFragePos() == getAntwortPos()) {
                     ausgabe.setBackground(new Color(180, 238, 180));
                     ausgabe.setText("Richtig!");
-                    System.out.println("ja: " + listeFrage.size());
+                    richtigeAntworten++;
 
                     //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
-                    System.out.println("ja: " + listeFrage.size());
                 } else {
                     ausgabe.setBackground(new Color(255, 80, 74));
                     ausgabe.setText("" + listeAntwort.get(getFragePos()));
-                    System.out.println("nein2: " + listeFrage.size());
 
                     //schmeißt die schon abgefragten Vokabeln und Lösungen raus
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
-                    System.out.println("nein2: " + listeFrage.size());
                 }
             }
 
-            //Weiter-Button wird bei der letzten Abfrage zum AuswertungsButton -> führt zur Statistik
-            if (listeFrage.size() <= 76) {
-                weiter.setIcon(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
+            //Weiter-Button wird bei der letzten Abfrage zum Auswertungsbutton -> führt zur Statistik
+            if (listeFrage.size() <= 0) {
+                weiter.removeActionListener(this);
             } else {
                 weiter.addActionListener(this);
             }
         }
 
+        //Weiter-Button
         if (e.getSource() == this.weiter) {
             weiter.removeActionListener(this);
 
-            //Musik
+            //Klick-Geräusch
             new Musik("src/Img/klick.wav").start();
 
             //Zwischenstand wird um 1 aufaddiert
             zahlZwischenstand++;
-            System.out.println("" + zahlZwischenstand);
-            zwischenstand.setText(zahlZwischenstand + " / 10");
+            zwischenstand.setText(zahlZwischenstand + " / 86");
 
+            //Bei dem Eingabefenster kann man wieder was eingeben + hat den Fokus
             eingabe.setEditable(true);
-            eingabe.setText("");
             eingabe.setFocusable(true);
+
+            //Hintergrundfarbe des Lösungsfeldes wieder auf Grau setzen
             ausgabe.setBackground(Color.LIGHT_GRAY);
+
+            //Text zurücksetzen
+            eingabe.setText("");
             ausgabe.setText("");
 
+            //Gibt die nächste Vokabel aus
             nextVokabel();
 
-            if (listeFrage.size() >= 75) {
+            //Fügt den Listener für den Ok-Button nur dann wieder hinzu, wenn noch Fragen in der Fragen-ArrayListe sind
+            if (listeFrage.size() > 0) {
                 ok.addActionListener(this);
             }
+        }
+
+        //setzt istAuswertung auf true, damit der Timer darauf reagieren kann (s. oben in der Methode startTimer)
+        if (e.getSource() == this.auswertung) {
+            istAuswertung = true;
         }
     }
 

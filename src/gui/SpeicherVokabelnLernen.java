@@ -16,8 +16,10 @@ public class SpeicherVokabelnLernen {
     int zwSpDeEng;
     int zwSpEngDe;
     int punkte;
-    int richtigeAntworten;
-    int time;
+    int richtigeAntwortenDeEng;
+    int richtigeAntwortenEngDe;
+    int timeDeEng;
+    int timeEngDe;
     boolean istAngemeldet;
     String name;
     String passwort;
@@ -50,20 +52,36 @@ public class SpeicherVokabelnLernen {
         this.punkte = punkte;
     }
 
-    public int getRichtigeAntworten() {
-        return richtigeAntworten;
+    public int getRichtigeAntwortenDeEng() {
+        return richtigeAntwortenDeEng;
     }
 
-    public void setRichtigeAntworten(int richtigeAntworten) {
-        this.richtigeAntworten = richtigeAntworten;
+    public void setRichtigeAntwortenDeEng(int richtigeAntwortenDeEng) {
+        this.richtigeAntwortenDeEng = richtigeAntwortenDeEng;
     }
 
-    public int getTime() {
-        return time;
+    public int getRichtigeAntwortenEngDe() {
+        return richtigeAntwortenEngDe;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setRichtigeAntwortenEngDe(int richtigeAntwortenEngDe) {
+        this.richtigeAntwortenEngDe = richtigeAntwortenEngDe;
+    }
+
+    public int getTimeDeEng() {
+        return timeDeEng;
+    }
+
+    public void setTimeDeEng(int timeDeEng) {
+        this.timeDeEng = timeDeEng;
+    }
+
+    public int getTimeEngDe() {
+        return timeEngDe;
+    }
+
+    public void setTimeEngDe(int timeEngDe) {
+        this.timeEngDe = timeEngDe;
     }
 
     public void setIstAngemeldet(boolean istAngemeldet) {

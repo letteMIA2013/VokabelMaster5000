@@ -121,7 +121,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
      * Startet den Timer. Beim Klicken auf den Auswertungsbutton wird der Timer gestoppt und die Statistik wird angezeigt.
      */
     public void startTimer() {
-        count = speicherVokabelnLernen.getTime();
+        count = speicherVokabelnLernen.getTimeDeEng();
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,8 +133,8 @@ public class DeEngFenster implements ActionListener, KeyListener {
                 if (istAuswertung) {
                     System.out.println("Zeit: " + count);
                     timer.stop();
-                    speicherVokabelnLernen.setTime(count);
-                    new StatistikFenster(speicherVokabelnLernen);
+                    speicherVokabelnLernen.setTimeDeEng(count);
+                    new StatistikFenster(speicherVokabelnLernen, true);
                 }
             }
         });
@@ -210,8 +210,8 @@ public class DeEngFenster implements ActionListener, KeyListener {
             speicherVokabelnLernen.setZwSpDeEng(zahlZwischenstand);
             speicherVokabelnLernen.setFragenListeDeEng(listeFrage);
             speicherVokabelnLernen.setAntwortenListeDeEng(listeAntwort);
-            speicherVokabelnLernen.setRichtigeAntworten(richtigeAntworten);
-            speicherVokabelnLernen.setTime(count);
+            speicherVokabelnLernen.setRichtigeAntwortenDeEng(richtigeAntworten);
+            speicherVokabelnLernen.setTimeDeEng(count);
             new KatalogwahlFenster(speicherVokabelnLernen);
             deEngFenster.dispose();
         }
