@@ -34,7 +34,7 @@ public class StatistikFenster {
 
         statistikFenster.pack();
         statistikFenster.setVisible(true);
-        statistikFenster.setSize(600, 300);
+        statistikFenster.setSize(415, 400);
 
     }
 
@@ -45,19 +45,19 @@ public class StatistikFenster {
             setOpaque(true);
             setHorizontalAlignment(CENTER);
 
-            int r = new Random().nextInt(255);
-            int g = new Random().nextInt(255);
-            int b = new Random().nextInt(255);
+            /*int r = new Random().nextInt(50);
+            int g = new Random().nextInt(50);
+            int b = new Random().nextInt(50);
             Color color = new Color(r, g, b);
-            setBackground(color);
+            setBackground(color);*/
         }
     }
 
-//    public static void main(String[] a) {
+    public static void main(String[] a) {
 //
 //        new StatistikFenster();
 //
-//    }
+   }
 
 
 }
