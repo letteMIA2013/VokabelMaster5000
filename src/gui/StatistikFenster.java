@@ -22,7 +22,7 @@ public class StatistikFenster {
         //Hintergrundbild
         BilderPanel statistikBg = new BilderPanel("/Img/statsBg.png");
 
-        JPanel statistikPanel = new JPanel(new GridLayout(2, 2));
+        JPanel statistikPanel = new JPanel(new GridBagLayout());
 
         // Tabellenkopf mit Zeilen
         JLabel nameUser = new MeinLabel("" + s.getName());
@@ -39,10 +39,10 @@ public class StatistikFenster {
         statistikBg.add(statistikPanel);
         statistikFenster.add(statistikBg);
 
-        statistikPanel.add(nameUser);
-        statistikPanel.add(punkteUser);
-        statistikPanel.add(richtigeFragenUser);
-        statistikPanel.add(timeUser);
+        statistikPanel.add(nameUser, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
+        statistikPanel.add(punkteUser, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(72, 0, 0, 0), 0, 0));
+        statistikPanel.add(richtigeFragenUser, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
+        statistikPanel.add(timeUser, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         statistikFenster.setSize(415, 400);
         statistikFenster.setLocationRelativeTo(null);
