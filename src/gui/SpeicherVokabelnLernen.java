@@ -7,6 +7,10 @@ import java.util.ArrayList;
  * on 14 Jun 2014
  * VokabelMaster5000
  */
+
+/**
+ * In dieser Klasse werden die Daten in ArrayLists gespeichert
+ */
 public class SpeicherVokabelnLernen {
 
     int zwSpDeEng;
