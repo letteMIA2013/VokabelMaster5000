@@ -13,7 +13,7 @@ public class SpeicherVokabelnLernen {
     int zwSpEngDe;
     int punkte;
     int richtigeAntworten;
-    int time = 0;
+    int time;
     boolean istAngemeldet;
     String name;
     String passwort;

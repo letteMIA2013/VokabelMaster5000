@@ -299,9 +299,6 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 //färbt die Schriftfarbe rot ab 5sec abwärts
                 if(count <= 5) {
                     time.setForeground(Color.RED);
-
-                    //Musik
-                    new Musik("src/Img/klick.wav").start();
                 } else {
                     time.setForeground(Color.BLACK);
                 }
@@ -402,6 +399,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Überprüft, welcher Button gedrückt wurde
         if (e.getSource() == this.zurueck) {
+            timer.stop();
             multiplayerFenster.setVisible(false);
             multiplayerFenster.dispose();
             new MenuFenster(false, null);

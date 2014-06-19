@@ -32,7 +32,7 @@ public class LoginFenster {
 
         //Benutzerdaten holen
         LeseBenutzerdaten daten = new LeseBenutzerdaten();
-        stringListe = daten.getB();
+        stringListe = daten.leseUserdaten();
         listeName = new ArrayList<String>();
         listePasswort = new ArrayList<String>();
         listePunkte = new ArrayList<String>();

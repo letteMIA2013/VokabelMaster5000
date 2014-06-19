@@ -42,10 +42,10 @@ import java.util.ArrayList;
                 }
             }
             while( zeile != null);
-            for (String[] pair : b) {
+            /*for (String[] pair : b) {
                 System.out.println("User: " + pair[0] + " -> " + "Passwort: " + pair[1] + " -> "+ "Highscore: " + pair[2]);
 
-            }
+            }*/
             //String zeile = br.readLine();
 
 
