@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 /**
  * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
  * In dieser Klasse wird das KatalogFenster erstellt, wo man dann über Buttons aussuchen kann,
- * Was man lernen möchte oder ob man zum Menu zurück möchte.
+ * was man lernen möchte oder ob man zum Menu zurück möchte.
  */
 public class KatalogwahlFenster implements ActionListener {
 

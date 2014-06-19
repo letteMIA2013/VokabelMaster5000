@@ -23,7 +23,7 @@ public class CreditsFenster implements ActionListener {
     BildButton zurueck;
 
     /**
-     * Im Konstruktor wird die Methode fensterAnzeige() benutzt, damit das Credit Fenster beim aufrufen dieser Klasse
+     * Im Konstruktor wird die Methode fensterAnzeige() benutzt, damit das Credit Fenster beim Aufrufen dieser Klasse
      * erstellt wird. Diese Klasse wird in der Klasse {@link gui.MenuFenster} benutzt.
      */
     public CreditsFenster() {
