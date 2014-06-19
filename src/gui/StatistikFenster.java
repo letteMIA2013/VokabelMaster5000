@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 /**
  * Diese Klasse ist für die erstellung des Statiskfensters zuständig
@@ -15,7 +14,7 @@ public class StatistikFenster {
 
     /**
      * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
-     * @param s
+     * @param s ist die Speicherablage, von denen wir uns die Daten holen
      */
     public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
         JFrame statistikFenster = new JFrame("Auswertung");
@@ -25,16 +24,17 @@ public class StatistikFenster {
         JLabel name = new MeinLabel("Name");
         JLabel time = new MeinLabel("Zeit in s");
         JLabel richtigeFragen = new MeinLabel("Anzahl richtiger Fragen");
-        JLabel punkte = new MeinLabel("Erreichte Punktzahl");
+        JLabel punkte = new MeinLabel("Erfolg in %");
+
         JLabel nameUser = new MeinLabel("" + s.getName());
         if (istDeEng) {
             timeUser = new MeinLabel("" + s.getTimeDeEng());
-            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/86");
-            punkteUser = new MeinLabel("" + s.getPunkte() + "/" + s.getFragenListeDeEng().size());
+            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/" + s.getZwSpDeEng());
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenDeEng())/100) + "/86");
         } else {
             timeUser = new MeinLabel("" + s.getTimeEngDe());
             richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenEngDe() + "/" + s.getZwSpEngDe());
-            punkteUser = new MeinLabel("" + (s.getRichtigeAntwortenEngDe()/86) + "/86");
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenEngDe())/100) + "/86");
         }
 
 
