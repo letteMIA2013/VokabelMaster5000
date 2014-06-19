@@ -119,7 +119,7 @@ public class LoginFenster {
                             if (listeName.indexOf(name) == listePasswort.indexOf(pw)) {
                                 int highscore = Integer.parseInt(listePunkte.get(listeName.indexOf(name)));
 
-                                //Daten abspeichern
+                                //Daten werden abgespeichert
                                 id = idText.getText();
                                 passwort = passwortString;
                                 new Login(id, passwort, highscore);

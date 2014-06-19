@@ -134,6 +134,11 @@ public class DeEngFenster implements ActionListener, KeyListener {
                     System.out.println("Zeit: " + count);
                     timer.stop();
                     speicherVokabelnLernen.setTimeDeEng(count);
+                    speicherVokabelnLernen.setRichtigeAntwortenDeEng(richtigeAntworten);
+                    if (ausgabe.getText().length() == 0) {
+                        zahlZwischenstand--;
+                    }
+                    speicherVokabelnLernen.setZwSpDeEng(zahlZwischenstand);
                     new StatistikFenster(speicherVokabelnLernen, true);
                 }
             }

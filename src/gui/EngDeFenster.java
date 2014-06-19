@@ -130,7 +130,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
                 //Zieht immer eine Sekunde ab
                 count++;
 
-                //Wenn Zeit abgelaufen, dann nächste Frage
+                //Wenn die Zeit abgelaufen, dann nächste Frage
                 if (istAuswertung) {
                     System.out.println("Zeit: " + count);
                     timer.stop();
