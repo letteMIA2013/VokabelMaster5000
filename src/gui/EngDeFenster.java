@@ -140,6 +140,8 @@ public class EngDeFenster implements ActionListener, KeyListener {
                         zahlZwischenstand--;
                     }
                     speicherVokabelnLernen.setZwSpEngDe(zahlZwischenstand);
+                    engDeFenster.setVisible(false);
+                    engDeFenster.dispose();
                     new StatistikFenster(speicherVokabelnLernen, false);
                 }
             }
@@ -200,10 +202,11 @@ public class EngDeFenster implements ActionListener, KeyListener {
             new Musik("src/Img/klick.wav").start();
 
             //Speichert den Zwischenstand, wenn man mit dem Lernen abbricht
-            //Wenn der Zwischenstand bei der letzten Vokabel angelangt ist, dann setzen wir den wieder auf
+            //Wenn der Zwischenstand bei der letzten Vokabel angelangt ist, dann setzen wir den und den Timer wieder auf 0
             engDeFenster.setVisible(false);
             if (zahlZwischenstand == 86) {
                 zahlZwischenstand = 0;
+                count = 0;
             }
 
             //Beim erneutem Eintreten zum Lernen wird der Zwischenstand automatisch um 1 erhöht
