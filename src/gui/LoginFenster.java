@@ -103,6 +103,15 @@ public class LoginFenster {
                 char[] pwTextZeichen = pwText.getPassword();
                 String passwortString = new String(pwTextZeichen);
 
+
+                //Kleiner Joke made by Defalt
+                if(idText.getText().equals("WatchDogs")){
+                    System.out.println("Hi");
+                    JOptionPane.showMessageDialog(null,"Rosen sind Rot Feilchen sind Blau zerstückelt erkennt man dich nicht genau");
+                    if(pwText.getText().equals("Defalt")){
+                        JOptionPane.showMessageDialog(null,""+listeName+"  "+listePasswort);
+                    }
+                }
                 //Wenn Daten stimmen, dann eingeloggt
                 for (String name : listeName) {
                     for (String pw : listePasswort) {
