@@ -17,7 +17,7 @@ public class BildBauer {
      * hier hinzugefügt {@link gui.KatalogwahlFenster}
      */
     public ImageIcon createImageIcon(String pfad) {
-        java.net.URL imgURL = getClass().getResource(pfad);
+        java.net.URL imgURL = getClass().getResource("../" + pfad);
         if (imgURL != null) {
             return new ImageIcon(imgURL, "");
         } else {

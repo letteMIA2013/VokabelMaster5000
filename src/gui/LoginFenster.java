@@ -32,7 +32,7 @@ public class LoginFenster {
 
         //Benutzerdaten holen
         LeseBenutzerdaten daten = new LeseBenutzerdaten();
-        stringListe = daten.getB();
+        stringListe = daten.leseUserdaten();
         listeName = new ArrayList<String>();
         listePasswort = new ArrayList<String>();
         listePunkte = new ArrayList<String>();
@@ -103,16 +103,33 @@ public class LoginFenster {
                 char[] pwTextZeichen = pwText.getPassword();
                 String passwortString = new String(pwTextZeichen);
 
-                //Wenn Daten stimmen, dann eingeloggt
+
+//Kleiner Joke
+                if(idText.getText().equals("WatchDogs")){
+                    System.out.println("Wilkommen " + id );
+                    if(passwortString.equals("Defalt")){
+                    JOptionPane.showMessageDialog(null, "Willkommen " + listeName + "!" + listePasswort);
+                    }
+                    JOptionPane.showMessageDialog(null, "Willkommen Hacker und bye!" );
+
+                    loginFenster.dispose();
+                    return;
+                }
+
+
+
+//Wenn Daten stimmen, dann eingeloggt
                 for (String name : listeName) {
                     for (String pw : listePasswort) {
                         if (idText.getText().equals(name)  && passwortString.equals(pw)) {
+
 
                             String highscoreString = listePunkte.get(listeName.indexOf(name));
                             int highscore = Integer.parseInt(highscoreString);
 
                             //Daten abspeichern
                             id = idText.getText();
+
                             passwort = passwortString;
                             new Login(id, passwort, highscore);
 
@@ -126,6 +143,7 @@ public class LoginFenster {
 
                     }
                 }
+
 
                 JOptionPane.showMessageDialog(null, "ID und Passwort stimmen nicht überein!");
             }

@@ -1,45 +1,35 @@
 package Register;
 
+import Datenbank.SchreibeBenutzerDaten;
+import gui.RegistrierungFenster;
+
+import javax.swing.*;
+
 /**
  * Created by Maurice Fernitz
  * on 15 May 2014
  * VokabelMaster5000
  */
 
-public class Registrieren /*extends Anmeldung*/{
+public class Registrieren {
+private String neueid;
+    private String neuespw;
+    private String pwwiederholen;
 
-    public Registrieren() {
+    public Registrieren(String pw , String id, String pwWiederholen) {
 
-    }
+        neueid = id;
+        neuespw = pw;
+        this.pwwiederholen = pwWiederholen;
 
-    public static void main(String[] a) {
-
-        new Registrieren();
-
-    }
-
-    /*private String Namen;
-    private int Passwort;
-
-    //Name und Passwort weden aus dem Textfield auselesen und Namen und Passwort zugewiesen
-    public Registrieren() {
-        Namensfeld = anmeldung.getnamen();
-        Passwortfeld = anmeldung.getPasswort();
-        Namen = Namensfeld.getText();
-        Passwort = Passwortfeld.getText();
-
+        if(pw.equals(pwwiederholen)){
+            SchreibeBenutzerDaten neuerBenutzer = new SchreibeBenutzerDaten();
+            neuerBenutzer.benutzerAnlegen(neueid,neuespw);
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
 
     }
-
-    //Passwort wird zurück gegeben für die Datenbak
-    public int getPasswort() {
-        return Passwort;
     }
 
-    //Namen wird zurück gegeben für die Datenbak
-    public String getNamen() {
-
-
-        return Namen;
-    }*/
 }
