@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -109,4 +110,6 @@ public class SpeicherVokabelnLernen {
     public void setAntwortenListeEngDe(ArrayList<String> antwortenListeEngDe) {
         this.antwortenListeEngDe = antwortenListeEngDe;
     }
+
+
 }

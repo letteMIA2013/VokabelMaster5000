@@ -12,6 +12,8 @@ public class StatistikFenster {
         JFrame statistikFenster = new JFrame("Auswertung");
         JPanel statistikPanel = new JPanel(new GridLayout(2, 4));
 
+
+
         // Tabellenkopf mit Zeilen
         JLabel name = new MeinLabel("Name");
         JLabel time = new MeinLabel("Zeit in s");
@@ -32,11 +34,15 @@ public class StatistikFenster {
         statistikPanel.add(richtigeFragenUser);
         statistikPanel.add(punkteUser);
 
+
+        statistikFenster.setSize(300, 300);
         statistikFenster.pack();
         statistikFenster.setVisible(true);
-        statistikFenster.setSize(600, 300);
+
 
     }
+
+
 
     private class MeinLabel extends JLabel {
         private MeinLabel(String t) {
@@ -53,11 +59,9 @@ public class StatistikFenster {
         }
     }
 
-//    public static void main(String[] a) {
-//
-//        new StatistikFenster();
-//
-//    }
+   public static void main(String[] a) {
+
+   }
 
 
 }
