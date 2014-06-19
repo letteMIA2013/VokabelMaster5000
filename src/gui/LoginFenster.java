@@ -107,23 +107,24 @@ public class LoginFenster {
                 for (String name : listeName) {
                     for (String pw : listePasswort) {
                         if (idText.getText().equals(name)  && passwortString.equals(pw)) {
+                            if (listeName.indexOf(name) == listePasswort.indexOf(pw)) {
+                                int highscore = Integer.parseInt(listePunkte.get(listeName.indexOf(name)));
 
-                            String highscoreString = listePunkte.get(listeName.indexOf(name));
-                            int highscore = Integer.parseInt(highscoreString);
+                                //Daten abspeichern
+                                id = idText.getText();
+                                passwort = passwortString;
+                                new Login(id, passwort, highscore);
 
-                            //Daten abspeichern
-                            id = idText.getText();
-                            passwort = passwortString;
-                            new Login(id, passwort, highscore);
+                                loginFenster.setVisible(false);
+                                loginFenster.dispose();
 
-                            loginFenster.setVisible(false);
-                            loginFenster.dispose();
+                                JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
 
-                            JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
-
-                            return;
+                                return;
+                            }  else {
+                                System.out.println("Nö!");
+                            }
                         }
-
                     }
                 }
 

@@ -79,7 +79,6 @@ public class DeEngFenster implements ActionListener, KeyListener {
 
         //Timer starten
         startTimer();
-        speicherVokabelnLernen.setTime(count);
 
         //Für eine zufällig ausgewählte Vokabel aus der Fragen-ArrayListe
         nextVokabel();

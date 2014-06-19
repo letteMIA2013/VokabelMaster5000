@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -15,11 +17,15 @@ import java.util.Random;
  * VokabelMaster5000
  */
 
-public class EngDeFenster implements ActionListener {
+public class EngDeFenster implements ActionListener, KeyListener {
 
     int zahlZwischenstand;
     int zufallsVokabel;
+    int richtigeAntworten = 0;
+    int count;
+    boolean istAuswertung;
     SpeicherVokabelnLernen speicherVokabelnLernen;
+    Timer timer;
     JFrame engDeFenster;
     JLabel vokabel;
     RoundedTextField eingabe;
@@ -27,14 +33,18 @@ public class EngDeFenster implements ActionListener {
     BildButton zurueck;
     BildButton ok;
     BildButton weiter;
+    BildButton auswertung;
     MeinLabel zwischenstand;
     ArrayList<String> listeFrage;
     ArrayList<String> listeAntwort;
     Font font;
 
     public EngDeFenster(SpeicherVokabelnLernen s) {
+
+        //Parameter als globale Klasseneigenschaft abspeichern
         speicherVokabelnLernen = s;
 
+        //Die Daten aus dem Speicher den Variablen übergeben, damit man dort weitermachen kann, wo man abgebrochen hat
         zahlZwischenstand = speicherVokabelnLernen.getZwSpEngDe();
         listeFrage = speicherVokabelnLernen.getFragenListeEngDe();
         listeAntwort = speicherVokabelnLernen.getAntwortenListeEngDe();
@@ -46,6 +56,7 @@ public class EngDeFenster implements ActionListener {
         //Hintergrundbild
         BilderPanel engDeBg = new BilderPanel("/Img/engDeBg.png");
 
+        //Schriftart für die abgefragte Vokabel
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/Img/Chalkduster.ttf"))).deriveFont(Font.PLAIN, 15);
         } catch (Exception ex) {
@@ -62,9 +73,12 @@ public class EngDeFenster implements ActionListener {
         //(Text)felder für die Vokabelabfrage, Eingabe und Ausgabe der Lösungen
         vokabel = new JLabel();
         vokabel.setFont(font);
-        ausgabe = new RoundedTextField(12);
         eingabe = new RoundedTextField(12);
+        ausgabe = new RoundedTextField(12);
         ausgabe.setEditable(false);
+
+        //Timer starten
+        startTimer();
 
         //Für eine zufällig ausgewählte Vokabel aus der Fragen-ArrayListe
         nextVokabel();
@@ -86,6 +100,8 @@ public class EngDeFenster implements ActionListener {
         //ActionListener
         zurueck.addActionListener(this);
         ok.addActionListener(this);
+        eingabe.addKeyListener(this);
+        auswertung.addActionListener(this);
 
         engDeBg.add(engDePanel);
 
@@ -97,6 +113,31 @@ public class EngDeFenster implements ActionListener {
         engDeFenster.setLocationRelativeTo(null);
         engDeFenster.setResizable(false);
         engDeFenster.setVisible(true);
+    }
+
+    /**
+     * Startet den Timer. Beim Klicken auf den Auswertungsbutton wird der Timer gestoppt und die Statistik wird angezeigt.
+     */
+    public void startTimer() {
+        count = speicherVokabelnLernen.getTime();
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //Zieht immer eine Sekunde ab
+                count++;
+
+                //Wenn Zeit abgelaufen, dann nächste Frage
+                if (istAuswertung) {
+                    System.out.println("Zeit: " + count);
+                    timer.stop();
+                    speicherVokabelnLernen.setTime(count);
+                    new StatistikFenster(speicherVokabelnLernen);
+                }
+            }
+        });
+
+        timer.start();
     }
 
     public int getFragePos() {
@@ -227,6 +268,66 @@ public class EngDeFenster implements ActionListener {
                 ok.addActionListener(this);
             }
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        //Mit Enter kann man bestätigen
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            ok.removeActionListener(this);
+            eingabe.setEditable(false);
+
+            //Klick-Geräusch
+            new Musik("src/Img/klick.wav").start();
+
+            //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
+            if (eingabe.getText().length() == 0) {
+                ausgabe.setBackground(new Color(255, 80, 74));
+                ausgabe.setText("" + listeAntwort.get(getFragePos()));
+
+                //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                listeFrage.remove(zufallsVokabel);
+                listeAntwort.remove(zufallsVokabel);
+            } else {
+
+                //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
+                //2 Getter-Methoden weiter unten
+                if (getFragePos() == getAntwortPos()) {
+                    ausgabe.setBackground(new Color(180, 238, 180));
+                    ausgabe.setText("Richtig!");
+                    richtigeAntworten++;
+
+                    //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                    listeFrage.remove(zufallsVokabel);
+                    listeAntwort.remove(zufallsVokabel);
+                } else {
+                    ausgabe.setBackground(new Color(255, 80, 74));
+                    ausgabe.setText("" + listeAntwort.get(getFragePos()));
+
+                    //schmeißt die schon abgefragten Vokabeln und Lösungen raus
+                    listeFrage.remove(zufallsVokabel);
+                    listeAntwort.remove(zufallsVokabel);
+                }
+            }
+
+            //Weiter-Button wird bei der letzten Abfrage zum AuswertungsButton -> führt zur Statistik
+            if (listeFrage.size() <= 0) {
+                weiter.setIcon(new BildBauer().createImageIcon("/Img/auswertungButton.png"));
+            } else {
+                weiter.addActionListener(this);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
 }
