@@ -1,5 +1,7 @@
 package gui;
 
+import Register.Registrieren;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -39,9 +41,12 @@ public class RegistrierungFenster {
         registrierungsPanel.setOpaque(false);
 
         //Textfelder zum Abfragen der Daten
-        RoundedTextField idText = new RoundedTextField(12);
-        RoundedTextField pwText = new RoundedTextField(12);
-        RoundedTextField pwNochmalText = new RoundedTextField(12);
+        final RoundedTextField idText = new RoundedTextField(12);
+       final RoundedTextField pwText = new RoundedTextField(12);
+       final  RoundedTextField pwNochmalText = new RoundedTextField(12);
+
+
+
 
         //Buttons werden hier erstellt
         ImageIcon zumMenuIcon = new BildBauer().createImageIcon("/Img/cancelButton.png");
@@ -60,6 +65,13 @@ public class RegistrierungFenster {
                 registrierungsFenster.setVisible(false);
                 registrierungsFenster.dispose();
                 new LoginFenster();
+            }
+        });
+        signUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //made by Defalt rgistrieren
+                Registrieren rgister = new Registrieren(pwText.getText(),idText.getText(),pwNochmalText.getText());
             }
         });
 

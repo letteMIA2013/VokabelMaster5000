@@ -70,6 +70,11 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         String nameRosa = JOptionPane.showInputDialog("Spieler 1");
         String nameGruen = JOptionPane.showInputDialog("Spieler 2");
+        //dopplete namen nicht nutzbar
+        if(nameGruen.equals(nameRosa)){
+            JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
+            nameGruen = JOptionPane.showInputDialog("Spieler 2");
+        }
         if (anzahlSpieler == 1) {
             nameBlau = JOptionPane.showInputDialog("Spieler 3");
         }
@@ -402,7 +407,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             timer.stop();
             multiplayerFenster.setVisible(false);
             multiplayerFenster.dispose();
-            new MenuFenster(false, null);
+            new MenuFenster();
         }
 
         deaktiviereButton();
@@ -486,6 +491,11 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 buzzered();
             }
         }
+
+    }
+    //verhindert das der Name im Quiz öfters benutzt wird
+    public void Spieler(String verdoppeleterName){
+
     }
 
     @Override

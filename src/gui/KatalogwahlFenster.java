@@ -15,6 +15,11 @@ import java.awt.event.ActionListener;
  * VokabelMaster5000
  */
 
+/**
+ * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
+ * In dieser Klasse wird das KatalogFenster erstellt, wo man dann über Buttons aussuchen kann,
+ * was man lernen möchte oder ob man zum Menu zurück möchte.
+ */
 public class KatalogwahlFenster implements ActionListener {
 
     SpeicherVokabelnLernen speicherVokabelnLernen;
@@ -23,6 +28,16 @@ public class KatalogwahlFenster implements ActionListener {
     BildButton englischDeutsch;
     BildButton zurueck;
 
+    /**
+     *
+      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     *           damit dort alles zwischengespeichert wird
+     *  Im Konstruktor wird das Fenster gebaut, wo die Größe, die Sichtbarkeit und dem Hintergrund
+     *  ein Bild hinzugefügt wird.
+     *  Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
+     *  Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     *  Die 3 Buttons besitzen alle ein ActionListener.
+     */
     public KatalogwahlFenster(SpeicherVokabelnLernen s) {
         speicherVokabelnLernen = s;
 
@@ -66,6 +81,13 @@ public class KatalogwahlFenster implements ActionListener {
         katalogFenster.setVisible(true);
     }
 
+    /**
+     *
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     *
+     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
+     * kommt ein Klick Sound und das katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

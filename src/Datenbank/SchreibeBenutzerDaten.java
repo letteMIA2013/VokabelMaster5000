@@ -1,5 +1,6 @@
 package Datenbank;
 
+import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -75,7 +76,9 @@ public class SchreibeBenutzerDaten
 
         for (String[] datenSatz : alleVorhandenenDaten) {
             if (datenSatz[0].equals(id)){
+                JOptionPane.showMessageDialog(null,"Die id ist bereits vergeben");
                 return FEHLER_TYP.NUTZER_SCHON_VORHANDEN;
+
             }
         }
 
