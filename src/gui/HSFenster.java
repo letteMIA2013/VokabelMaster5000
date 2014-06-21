@@ -17,7 +17,7 @@ public class HSFenster extends JFrame {
         //Größe, Titel und Layout setzen
         setSize(400, 400);
         setTitle("Highscore");
-        setLayout(new GridLayout(0, 3, 5, 5));
+        setLayout(new GridLayout(6, 3, 5, 5));
         setLocationRelativeTo(null);
         setResizable(false);
         add(new JLabel("Platz"));

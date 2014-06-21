@@ -63,7 +63,6 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     Font font;
 
     public MultiplayerFenster() {
-        highscore();
         fragenKatalog();
 
         //Fenster für den Multiplayer
@@ -279,6 +278,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 schreibeHighscore.highScoreAendern(nameGruen, punkteGruen);
                 schreibeHighscore.highScoreAendern(nameBlau, punkteBlau);
             }
+
+            highscore();
             new HSFenster(liste);
         }
     }
