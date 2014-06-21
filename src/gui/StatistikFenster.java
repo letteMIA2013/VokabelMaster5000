@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class StatistikFenster {
 
+    boolean istDeEngKatalog;
     SpeicherVokabelnLernen speicherVokabelnLernen;
     JFrame statistikFenster;
     MeinLabel timeUser;
@@ -22,6 +23,7 @@ public class StatistikFenster {
      */
     public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
         speicherVokabelnLernen = s;
+        istDeEngKatalog = istDeEng;
 
         statistikFenster = new JFrame("Auswertung");
 
@@ -33,13 +35,13 @@ public class StatistikFenster {
 
         // Tabellenkopf mit Zeilen
         MeinLabel nameUser = new MeinLabel(s.getName());
-        if (istDeEng) {
+        if (istDeEngKatalog) {
             timeUser = new MeinLabel("" + s.getTimeDeEng());
-            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/" + s.getZwSpDeEng());
+            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/" + s.getZwischenStandDeEng());
             punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenDeEng())/100));
         } else {
             timeUser = new MeinLabel("" + s.getTimeEngDe());
-            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenEngDe() + "/" + s.getZwSpEngDe());
+            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenEngDe() + "/" + s.getZwischenStandEngDe());
             punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenEngDe())/100));
         }
 
@@ -49,6 +51,8 @@ public class StatistikFenster {
             public void actionPerformed(ActionEvent e) {
                 statistikFenster.setVisible(false);
                 statistikFenster.dispose();
+                speicherVokabelnLernen.setZwischenStandDeEng(1);
+                speicherVokabelnLernen.setZwischenStandEngDe(1);
                 new KatalogwahlFenster(speicherVokabelnLernen);
             }
         });

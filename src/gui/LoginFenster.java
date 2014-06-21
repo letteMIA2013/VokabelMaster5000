@@ -70,7 +70,7 @@ public class LoginFenster {
             public void actionPerformed(ActionEvent e) {
 
                 //Musik
-                new Musik("src/Img/klick.wav").start();
+                new Musik("src/sound/klick.wav").start();
 
                 loginFenster.setVisible(false);
                 loginFenster.dispose();
@@ -83,7 +83,7 @@ public class LoginFenster {
             public void actionPerformed(ActionEvent e) {
 
                 //Musik
-                new Musik("src/Img/klick.wav").start();
+                new Musik("src/sound/klick.wav").start();
 
                 loginFenster.setVisible(false);
                 loginFenster.dispose();
@@ -97,7 +97,7 @@ public class LoginFenster {
             public void actionPerformed(ActionEvent e) {
 
                 //Musik
-                new Musik("src/Img/klick.wav").start();
+                new Musik("src/sound/klick.wav").start();
 
                 //Passwort in einen String umwandeln, damit man einfacher abfragen kann
                 char[] pwTextZeichen = pwText.getPassword();

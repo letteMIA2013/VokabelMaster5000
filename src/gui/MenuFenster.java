@@ -74,7 +74,7 @@ public class MenuFenster implements ActionListener {
         if (e.getSource() == this.vokabelnLernen) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             menuFenster.setVisible(false);
             menuFenster.dispose();
@@ -89,7 +89,7 @@ public class MenuFenster implements ActionListener {
         if (e.getSource() == this.quiz) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             menuFenster.setVisible(false);
             menuFenster.dispose();
@@ -99,7 +99,7 @@ public class MenuFenster implements ActionListener {
         if (e.getSource() == this.credits) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             menuFenster.setVisible(false);
             menuFenster.dispose();

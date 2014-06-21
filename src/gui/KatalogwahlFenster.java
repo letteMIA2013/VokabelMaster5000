@@ -95,7 +95,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == deutschEnglisch) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             new DeEngFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -105,7 +105,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == englischDeutsch) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             new EngDeFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -115,7 +115,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == zurueck) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();

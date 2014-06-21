@@ -4,7 +4,6 @@ import Datenbank.LeseDeEngVok;
 import gui.KatalogwahlFenster;
 import gui.SpeicherVokabelnLernen;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -58,12 +57,12 @@ public class Login {
         }
 
         SpeicherVokabelnLernen speicherVokabelnLernen = new SpeicherVokabelnLernen();
-        speicherVokabelnLernen.setZwSpDeEng(1);
-        speicherVokabelnLernen.setZwSpEngDe(1);
-        speicherVokabelnLernen.setFragenListeDeEng(listeFrageDeEng);
-        speicherVokabelnLernen.setFragenListeEngDe(listeFrageEngDe);
-        speicherVokabelnLernen.setAntwortenListeDeEng(listeAntwortDeEng);
-        speicherVokabelnLernen.setAntwortenListeEngDe(listeAntwortEngDe);
+        speicherVokabelnLernen.setZwischenStandDeEng(1);
+        speicherVokabelnLernen.setZwischenStandEngDe(1);
+        speicherVokabelnLernen.setAlleFragenListeDeEng(listeFrageDeEng);
+        speicherVokabelnLernen.setAlleFragenListeEngDe(listeFrageEngDe);
+        speicherVokabelnLernen.setAlleAntwortenListeDeEng(listeAntwortDeEng);
+        speicherVokabelnLernen.setAlleAntwortenListeEngDe(listeAntwortEngDe);
         speicherVokabelnLernen.setName(id);
         speicherVokabelnLernen.setPasswort(passwort);
         speicherVokabelnLernen.setIstAngemeldet(true);

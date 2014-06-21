@@ -347,7 +347,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         resettedTimer();
 
         //Musik
-        new Musik("src/Img/buzzer.wav").start();
+        new Musik("src/sound/buzzer.wav").start();
 
         buttons.get(0).addActionListener(this);
         buttons.get(1).addActionListener(this);

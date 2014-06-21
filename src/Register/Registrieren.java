@@ -1,7 +1,6 @@
 package Register;
 
 import Datenbank.SchreibeBenutzerDaten;
-import gui.RegistrierungFenster;
 
 import javax.swing.*;
 
@@ -12,19 +11,12 @@ import javax.swing.*;
  */
 
 public class Registrieren {
-private String neueid;
-    private String neuespw;
-    private String pwwiederholen;
 
     public Registrieren(String pw , String id, String pwWiederholen) {
 
-        neueid = id;
-        neuespw = pw;
-        this.pwwiederholen = pwWiederholen;
-
-        if(pw.equals(pwwiederholen)){
+        if(pw.equals(pwWiederholen)){
             SchreibeBenutzerDaten neuerBenutzer = new SchreibeBenutzerDaten();
-            neuerBenutzer.benutzerAnlegen(neueid,neuespw);
+            neuerBenutzer.benutzerAnlegen(id,pw);
 
         }
         else{
