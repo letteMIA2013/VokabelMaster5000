@@ -63,12 +63,12 @@ public class HSFenster extends JFrame {
     public static void main(String[] args) {
 
         // wir erzeugen uns ein paar Pseudo Daten:
-        /*ArrayList<String> strings = new ArrayList<String>();
-        strings.add("Justus/passwort/5435");
-        strings.add("Marc/passwort/5");
-        strings.add("Ka-Yan/passwort/57934");
-        strings.add("Marius/passwort/176");
+        ArrayList<String> strings = new ArrayList<String>();
+        strings.add("Justus/5435");
+        strings.add("Marc/5");
+        strings.add("Ka-Yan/57934");
+        strings.add("Marius/176");
 
-        new HSFenster(strings);*/
+        new HSFenster(strings);
     }
 }

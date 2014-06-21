@@ -12,7 +12,7 @@ import java.lang.String;
  */
 
 /**
- * Diese Klasse erweiter JLabel und setzt alle Texte zentriert ein
+ * Diese Klasse erweitert JLabel
  */
 public class MeinLabel extends JLabel {
 

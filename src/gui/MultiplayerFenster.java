@@ -28,6 +28,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     int punkteGruen = 0;
     int punkteBlau = 0;
     int gedruecktPos;
+    int zahlZwischenstand;
     boolean buzzRosa;
     boolean buzzGruen;
     boolean buzzBlau;
@@ -42,7 +43,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     Timer pause;
     JFrame multiplayerFenster;
     JLabel time;
-    MeinLabel frage;
+    JLabel frage;
+    MeinLabel zwischenstand;
     MeinLabel buzzer;
     MeinLabel spielerZwei;
     MeinLabel spielerDrei;
@@ -70,18 +72,15 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         //Bei 2 Spielern = 0   ;   Bei 3 Spielern = 1
         anzahlSpieler = JOptionPane.showOptionDialog(null, "Wie viele Spieler?", "Quiz", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
-         nameRosa = JOptionPane.showInputDialog("Spieler 1");
-         nameGruen = JOptionPane.showInputDialog("Spieler 2");
+        nameRosa = JOptionPane.showInputDialog("Spieler 1");
+        nameGruen = JOptionPane.showInputDialog("Spieler 2");
+
         //dopplete namen nicht nutzbar
-
-
-
         while(nameGruen.equals(nameRosa)){
             JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
             nameGruen = JOptionPane.showInputDialog("Spieler 2");
 
         }
-
         if (anzahlSpieler == 1) {
             nameBlau = JOptionPane.showInputDialog("Spieler 3");
             while(nameBlau.equals(nameRosa) || nameBlau.equals(nameGruen)){
@@ -89,15 +88,13 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 nameBlau = JOptionPane.showInputDialog("Spieler 3");
             }
         }
-
-
-
         if(anzahlSpieler == 0){
             JOptionPane.showMessageDialog(null,  nameRosa + " hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L !" );
         }
         if(anzahlSpieler == 1){
             JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + " hat den Buzzerkey B !" );
         }
+
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
 
@@ -107,7 +104,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
-        frage = new MeinLabel(new BildBauer().createImageIcon("/Img/frageLabel.png"));
+        frage = new JLabel();
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/frageLabel.png"), zahlZwischenstand + " / 10");
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
 
         //Buttons für die Antworten in die Buttons-ArrayListe einfügen
@@ -147,10 +145,11 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setFocusable(true);
         multiplayerFenster.addKeyListener(this);
 
-        //Timer und Frage dem multiplayerPanel hinzufügen
+        //Timer, Frage und Zwischenstand dem multiplayerPanel hinzufügen
         multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-35, 0, 0, 215), 0, 0));
         multiplayerPanel.add(zurueck, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(8, 350, 0, 0), 0, 0));
-        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(zwischenstand, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
         multiplayerPanel.add(buttons.get(0), new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
@@ -199,6 +198,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     }
 
     public void naechsteFrage() {
+        zahlZwischenstand++;
         multiplayerFenster.setFocusable(true);
         multiplayerFenster.addKeyListener(this);
 
@@ -255,7 +255,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Highscore aus der Datenbank
         LeseHighscore daten = new LeseHighscore();
-        ArrayList<String[]> stringListe = daten.getB();
+        ArrayList<String[]> stringListe = daten.leseUserdaten();
 
         liste = new ArrayList<String>();
 
