@@ -28,7 +28,6 @@ public class SchreibeBenutzerDaten
 
         ArrayList<String[]> alleVorhandenenDaten = LeseBenutzerdaten.leseUserdaten();
 
-
         boolean datenAktualisiert = false;
 
         try

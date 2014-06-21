@@ -16,13 +16,16 @@ public class SchreibeHighscore {
 
     //Enums zum anzeigen des Fehlertyps
     public enum FEHLER_TYP{
-        KEIN_FEHLER
+        KEIN_FEHLER,
+        UNBEKANNTER_NUTZER
     }
 
     public static FEHLER_TYP highScoreAendern(String id, int neuerWert) {
         PrintWriter pw = null;
 
         ArrayList<String[]> alleVorhandenenDaten = LeseHighscore.leseUserdaten();
+
+        boolean datenAktualisiert = false;
 
         try
         {
@@ -32,6 +35,7 @@ public class SchreibeHighscore {
 
                 if (pair[0].equals(id)){
                     pw.println( pair[0] + "/" + neuerWert);
+                    datenAktualisiert = true;
                 }
                 else{
                     pw.println( pair[0] + "/" + pair[1]);
@@ -55,7 +59,7 @@ public class SchreibeHighscore {
                 pw.close();
             }
         }
-        return FEHLER_TYP.KEIN_FEHLER;
+        return datenAktualisiert? FEHLER_TYP.KEIN_FEHLER: FEHLER_TYP.UNBEKANNTER_NUTZER;
     }
 
     public static FEHLER_TYP benutzerAnlegen(String id) {
@@ -92,8 +96,8 @@ public class SchreibeHighscore {
         return FEHLER_TYP.KEIN_FEHLER;
     }
 
-    public static void main(String[] args) {
-        FEHLER_TYP ky = SchreibeHighscore.highScoreAendern("Ka Yan", 30);
+    /*public static void main(String[] args) {
+        FEHLER_TYP ky = SchreibeHighscore.highScoreAendern("Ka Yan00", 30);
         System.out.println(ky);
         FEHLER_TYP neu = SchreibeHighscore.benutzerAnlegen("Ka Yan00");
         System.out.println(neu);
@@ -102,5 +106,5 @@ public class SchreibeHighscore {
         for (String[] string : strings) {
             System.out.println(string[0] + ", " + string[1]);
         }
-    }
+    }*/
 }
