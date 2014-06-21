@@ -27,6 +27,7 @@ public class KatalogwahlFenster implements ActionListener {
     BildButton deutschEnglisch;
     BildButton englischDeutsch;
     BildButton zurueck;
+    BildButton ausloggen;
 
     /**
      *
@@ -56,11 +57,13 @@ public class KatalogwahlFenster implements ActionListener {
         deutschEnglisch = new BildButton(new BildBauer().createImageIcon("/Img/deEngButton.png"));
         englischDeutsch = new BildButton(new BildBauer().createImageIcon("/Img/engDeButton.png"));
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckGrossButton.png"));
+        ausloggen = new BildButton(new BildBauer().createImageIcon("/Img/ausloggenButton.png"));
 
         //ActionListener
         deutschEnglisch.addActionListener(this);
         englischDeutsch.addActionListener(this);
         zurueck.addActionListener(this);
+        ausloggen.addActionListener(this);
 
         //System.out.println("" + zwischendstand + fragenSpeicher.size() + antwortenSpeicher.size());
 
@@ -68,6 +71,7 @@ public class KatalogwahlFenster implements ActionListener {
         katalogPanel.add(deutschEnglisch, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, new Insets(120, 0, 0, 0), 0, 0));
         katalogPanel.add(englischDeutsch, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
         katalogPanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        katalogPanel.add(ausloggen, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
         katalogBg.add(katalogPanel);
 
@@ -120,6 +124,16 @@ public class KatalogwahlFenster implements ActionListener {
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
             new MenuFenster(true, speicherVokabelnLernen);
+        }
+
+        if (e.getSource() == this.ausloggen) {
+
+            //Musik
+            new Musik("src/sound/klick.wav").start();
+
+            katalogFenster.setVisible(false);
+            katalogFenster.dispose();
+            new MenuFenster(false, null);
         }
     }
 
