@@ -5,8 +5,7 @@ import Login.Login;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.lang.String;
 import java.util.ArrayList;
 
@@ -77,6 +76,61 @@ public class LoginFenster {
                 new MenuFenster(false, null);
             }
         });
+
+        KeyListener keyListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //Musik
+                    new Musik("src/sound/klick.wav").start();
+
+                    //Passwort in einen String umwandeln, damit man einfacher abfragen kann
+                    char[] pwTextZeichen = pwText.getPassword();
+                    String passwortString = new String(pwTextZeichen);
+
+                    //Kleiner Joke made by Defalt
+                    if (idText.getText().equals("WatchDogs")) {
+                        System.out.println("Hi");
+                        JOptionPane.showMessageDialog(null, "Rosen sind Rot Feilchen sind Blau zerstückelt erkennt man dich nicht genau");
+                        String pwString = new String(pwText.getPassword());
+                        if (pwString.equals("Defalt")) {
+                            JOptionPane.showMessageDialog(null, "Name: " + listeName + " | Passwort: " + listePasswort);
+                        }
+                    }
+
+                    //Wenn Daten stimmen, dann eingeloggt
+                    for (String name : listeName) {
+                        for (String pw : listePasswort) {
+                            if (idText.getText().equals(name) && passwortString.equals(pw)) {
+                                if (listeName.indexOf(name) == listePasswort.indexOf(pw)) {
+                                    int highscore = Integer.parseInt(listePunkte.get(listeName.indexOf(name)));
+
+                                    //Daten werden abgespeichert
+                                    id = idText.getText();
+                                    passwort = passwortString;
+                                    new Login(id, passwort, highscore);
+
+                                    loginFenster.setVisible(false);
+                                    loginFenster.dispose();
+
+                                    JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
+
+                                    return;
+                                } else {
+                                    System.out.println("Nö!");
+                                }
+                            }
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "ID und Passwort stimmen nicht überein!");
+                }
+            }
+        };
+
+        idText.addKeyListener(keyListener);
+        pwText.addKeyListener(keyListener);
 
         registrierung.addActionListener(new ActionListener() {
             @Override
