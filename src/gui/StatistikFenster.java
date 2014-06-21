@@ -51,8 +51,12 @@ public class StatistikFenster {
             public void actionPerformed(ActionEvent e) {
                 statistikFenster.setVisible(false);
                 statistikFenster.dispose();
-                speicherVokabelnLernen.setZwischenStandDeEng(1);
-                speicherVokabelnLernen.setZwischenStandEngDe(1);
+                if (speicherVokabelnLernen.getZwischenStandDeEng() == 86) {
+                    speicherVokabelnLernen.setZwischenStandDeEng(1);
+                }
+                if (speicherVokabelnLernen.getZwischenStandEngDe() == 86) {
+                    speicherVokabelnLernen.setZwischenStandEngDe(1);
+                }
                 new KatalogwahlFenster(speicherVokabelnLernen);
             }
         });

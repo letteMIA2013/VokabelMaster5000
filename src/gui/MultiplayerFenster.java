@@ -96,7 +96,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             JOptionPane.showMessageDialog(null,  nameRosa + " hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L !" );
         }
         if(anzahlSpieler == 1){
-            JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + "hat den Buzzerkey B !" );
+            JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + " hat den Buzzerkey B !" );
         }
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");

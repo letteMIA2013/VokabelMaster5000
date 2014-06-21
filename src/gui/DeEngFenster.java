@@ -21,7 +21,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
 
     int zahlZwischenstand;
     int zufallsVokabel;
-    int richtigeAntworten = 0;
+    int richtigeAntworten;
     int count;
     boolean istAuswertung;
     SpeicherVokabelnLernen speicherVokabelnLernen;

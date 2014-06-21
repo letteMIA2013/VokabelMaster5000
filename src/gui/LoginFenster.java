@@ -58,6 +58,14 @@ public class LoginFenster {
         idText = new RoundedTextField(12);
         pwText = new RoundedPassField(12);
 
+        loginFenster.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                super.windowOpened(e);
+                idText.requestFocus();
+            }
+        });
+
         //Buttons werden hier erstellt
         BildButton zumMenu = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
         BildButton registrierung = new BildButton(new BildBauer().createImageIcon("/Img/registrierungButton.png"));
