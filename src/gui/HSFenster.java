@@ -60,15 +60,4 @@ public class HSFenster extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-
-        // wir erzeugen uns ein paar Pseudo Daten:
-        ArrayList<String> strings = new ArrayList<String>();
-        strings.add("Justus/5435");
-        strings.add("Marc/5");
-        strings.add("Ka-Yan/57934");
-        strings.add("Marius/176");
-
-        new HSFenster(strings);
-    }
 }

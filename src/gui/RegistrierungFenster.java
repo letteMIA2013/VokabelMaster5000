@@ -95,14 +95,4 @@ public class RegistrierungFenster {
 
     }
 
-    /**
-     * Das Registrierungsfenster wird erstellt
-     * @param a
-     */
-    public static void main(String[] a) {
-
-        new RegistrierungFenster();
-
-    }
-
 }

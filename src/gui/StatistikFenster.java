@@ -84,12 +84,5 @@ public class StatistikFenster {
         statistikFenster.setVisible(true);
     }
 
-    public static void main(String[] a) {
-//
-//        new StatistikFenster();
-//
-   }
-
-
 }
 
