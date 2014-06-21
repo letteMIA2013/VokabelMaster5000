@@ -148,13 +148,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
                     timer.stop();
                     speicherVokabelnLernen.setTimeDeEng(count);
                     speicherVokabelnLernen.setRichtigeAntwortenDeEng(richtigeAntworten);
-                    if (ausgabe.getText().length() != 0) {
-                        zahlZwischenstand += 1;
-                    }
-                    if (ausgabe.getText().length() == 0) {
-                        zahlZwischenstand -= 1;
-                    }
-                    if (zahlZwischenstand == 87) {
+                    if (ausgabe.getText().length() == 0 || zahlZwischenstand == 87) {
                         zahlZwischenstand -= 1;
                     }
                     speicherVokabelnLernen.setZwischenStandDeEng(zahlZwischenstand);

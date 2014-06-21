@@ -150,8 +150,6 @@ public class EngDeFenster implements ActionListener, KeyListener {
                     speicherVokabelnLernen.setRichtigeAntwortenEngDe(richtigeAntworten);
                     if (ausgabe.getText().length() == 0 || zahlZwischenstand == 87) {
                         zahlZwischenstand -= 1;
-                    } else if (ausgabe.getText().length() != 0) {
-                        zahlZwischenstand += 1;
                     }
                     speicherVokabelnLernen.setZwischenStandEngDe(zahlZwischenstand);
                     engDeFenster.setVisible(false);

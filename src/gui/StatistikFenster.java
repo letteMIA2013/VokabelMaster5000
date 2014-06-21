@@ -51,12 +51,20 @@ public class StatistikFenster {
             public void actionPerformed(ActionEvent e) {
                 statistikFenster.setVisible(false);
                 statistikFenster.dispose();
-                if (speicherVokabelnLernen.getZwischenStandDeEng() == 86) {
-                    speicherVokabelnLernen.setZwischenStandDeEng(1);
+                if (istDeEngKatalog) {
+                    if (speicherVokabelnLernen.getZwischenStandDeEng() == 86) {
+                        speicherVokabelnLernen.setZwischenStandDeEng(1);
+                    } else if (speicherVokabelnLernen.getZwischenStandDeEng() < 86) {
+                        speicherVokabelnLernen.setZwischenStandDeEng(speicherVokabelnLernen.getZwischenStandDeEng() + 1);
+                    }
+                } else {
+                    if (speicherVokabelnLernen.getZwischenStandEngDe() == 86) {
+                        speicherVokabelnLernen.setZwischenStandEngDe(1);
+                    } else if (speicherVokabelnLernen.getZwischenStandEngDe() < 86) {
+                        speicherVokabelnLernen.setZwischenStandEngDe(speicherVokabelnLernen.getZwischenStandEngDe() + 1);
+                    }
                 }
-                if (speicherVokabelnLernen.getZwischenStandEngDe() == 86) {
-                    speicherVokabelnLernen.setZwischenStandEngDe(1);
-                }
+
                 new KatalogwahlFenster(speicherVokabelnLernen);
             }
         });
