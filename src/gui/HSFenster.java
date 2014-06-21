@@ -17,7 +17,7 @@ public class HSFenster extends JFrame {
         //Größe, Titel und Layout setzen
         setSize(400, 400);
         setTitle("Highscore");
-        setLayout(new GridLayout(6, 3, 5, 5));
+        setLayout(new GridLayout(0, 3, 5, 5));
         setLocationRelativeTo(null);
         setResizable(false);
         add(new JLabel("Platz"));
@@ -60,4 +60,15 @@ public class HSFenster extends JFrame {
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+
+        // wir erzeugen uns ein paar Pseudo Daten:
+        ArrayList<String> strings = new ArrayList<String>();
+        strings.add("Justus/5435");
+        strings.add("Marc/5");
+        strings.add("Ka-Yan/57934");
+        strings.add("Marius/176");
+
+        new HSFenster(strings);
+    }
 }

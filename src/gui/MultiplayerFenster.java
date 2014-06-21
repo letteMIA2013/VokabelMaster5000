@@ -2,6 +2,7 @@ package gui;
 
 import Datenbank.LeseDeEngVok;
 import Datenbank.LeseHighscore;
+import Datenbank.SchreibeHighscore;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,6 +39,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     boolean buttonZwei;
     boolean buttonDrei;
     boolean buttonVier;
+    SchreibeHighscore schreibeHighscore;
     String nameBlau;
     String nameRosa;
     String nameGruen;
@@ -69,6 +71,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Spieleranzahl + Namen
+        schreibeHighscore = new SchreibeHighscore();
+
         // Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
         Object[] options = {"2 Spieler", "3 Spieler"};
 
@@ -91,10 +95,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 nameBlau = JOptionPane.showInputDialog("Spieler 3");
             }
         }
+
+        schreibeHighscore.benutzerAnlegen(nameRosa);
+
         if(anzahlSpieler == 0){
+            schreibeHighscore.benutzerAnlegen(nameGruen);
             JOptionPane.showMessageDialog(null,  nameRosa + " hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L !" );
         }
         if(anzahlSpieler == 1){
+            schreibeHighscore.benutzerAnlegen(nameGruen);
+            schreibeHighscore.benutzerAnlegen(nameBlau);
             JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + " hat den Buzzerkey B !" );
         }
 
@@ -204,58 +214,73 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     }
 
     public void naechsteFrage() {
-        zahlZwischenstand++;
-        zwischenstand.setText(zahlZwischenstand + " / 10");
-        multiplayerFenster.setFocusable(true);
-        multiplayerFenster.addKeyListener(this);
+        if (zahlZwischenstand < 5) {
+            zahlZwischenstand++;
+            zwischenstand.setText(zahlZwischenstand + " / 10");
+            multiplayerFenster.setFocusable(true);
+            multiplayerFenster.addKeyListener(this);
 
-        buttons.get(0).setText("");
-        buttons.get(1).setText("");
-        buttons.get(2).setText("");
-        buttons.get(3).setText("");
-        buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
-        resettedTimer();
+            buttons.get(0).setText("");
+            buttons.get(1).setText("");
+            buttons.get(2).setText("");
+            buttons.get(3).setText("");
+            buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
+            resettedTimer();
 
-        //zufällige Fragen
-        zufallsVokabel = new Random().nextInt(listeFrage.size());
-        frage.setText("" + listeFrage.get(zufallsVokabel));
+            //zufällige Fragen
+            zufallsVokabel = new Random().nextInt(listeFrage.size());
+            frage.setText("" + listeFrage.get(zufallsVokabel));
 
-        //zufällige Antworten: 3 falsche und 1 richtige
-        zufallsPos = new Random().nextInt(4);
+            //zufällige Antworten: 3 falsche und 1 richtige
+            zufallsPos = new Random().nextInt(4);
 
-        //Zufallsposition der richtigen Lösung
-        switch(zufallsPos) {
-            case 0: buttons.get(0).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 1: buttons.get(1).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 2: buttons.get(2).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 3: buttons.get(3).setText("" + listeAntwort.get(getFragePos()));
-        }
-
-        //restliche Buttons mit Zufallsantworten füllen
-        //Wenn deutsche Vokabelabfrage, dann englische Antworten und andersherum
-        for (BildButton b : buttons) {
-            b.setFocusable(false);
-            b.setIcon(new BildBauer().createImageIcon("/Img/antwortenButton.png"));
-
-            if (b.getText().length() == 0) {
-                if (getFragePos() < 86) {
-                    zufallsAntwort = new Random().nextInt(85);
-                    while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort))) {
-                        zufallsAntwort = new Random().nextInt(85);
-                    }
-                } else {
-                    zufallsAntwort = new Random().nextInt(85) + 86;
-                    while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort))) {
-                        zufallsAntwort = new Random().nextInt(85) + 86;
-                    }
-                }
-                b.setText("" + listeAntwort.get(zufallsAntwort));
+            //Zufallsposition der richtigen Lösung
+            switch (zufallsPos) {
+                case 0:
+                    buttons.get(0).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 1:
+                    buttons.get(1).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 2:
+                    buttons.get(2).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 3:
+                    buttons.get(3).setText("" + listeAntwort.get(getFragePos()));
             }
-        }
 
+            //restliche Buttons mit Zufallsantworten füllen
+            //Wenn deutsche Vokabelabfrage, dann englische Antworten und andersherum
+            for (BildButton b : buttons) {
+                b.setFocusable(false);
+                b.setIcon(new BildBauer().createImageIcon("/Img/antwortenButton.png"));
+
+                if (b.getText().length() == 0) {
+                    if (getFragePos() < 86) {
+                        zufallsAntwort = new Random().nextInt(85);
+                        while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(3).getText().equals(listeAntwort.get(zufallsAntwort))) {
+                            zufallsAntwort = new Random().nextInt(85);
+                        }
+                    } else {
+                        zufallsAntwort = new Random().nextInt(85) + 86;
+                        while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(3).getText().equals(listeAntwort.get(zufallsAntwort))) {
+                            zufallsAntwort = new Random().nextInt(85) + 86;
+                        }
+                    }
+                    b.setText("" + listeAntwort.get(zufallsAntwort));
+                }
+            }
+        } else {
+            schreibeHighscore.highScoreAendern(nameRosa, punkteRosa);
+            if(anzahlSpieler == 0){
+                schreibeHighscore.highScoreAendern(nameGruen, punkteGruen);
+            }
+            if(anzahlSpieler == 1){
+                schreibeHighscore.highScoreAendern(nameGruen, punkteGruen);
+                schreibeHighscore.highScoreAendern(nameBlau, punkteBlau);
+            }
+            new HSFenster(liste);
+        }
     }
 
     public void highscore() {
