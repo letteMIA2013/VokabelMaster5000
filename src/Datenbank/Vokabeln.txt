@@ -65,7 +65,7 @@ einbeziehen/involve
 Pferd/horse
 Schlange/snake
 schlagen/beat
-Essen/eat
+essen/eat
 gestern/yesterday
 morgen/tommorow
 Eltern/parents

@@ -72,24 +72,26 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         //Spieleranzahl + Namen
         schreibeHighscore = new SchreibeHighscore();
 
-        // Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
+        //Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
         Object[] options = {"2 Spieler", "3 Spieler"};
 
         //Bei 2 Spielern = 0   ;   Bei 3 Spielern = 1
         anzahlSpieler = JOptionPane.showOptionDialog(null, "Wie viele Spieler?", "Quiz", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
+        //dopplete Namen nicht nutzbar
         nameRosa = JOptionPane.showInputDialog("Spieler 1");
+        while("".equals(nameRosa)){
+            JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
+            nameRosa = JOptionPane.showInputDialog("Spieler 1");
+        }
         nameGruen = JOptionPane.showInputDialog("Spieler 2");
-
-        //dopplete namen nicht nutzbar
-        while(nameGruen.equals(nameRosa)){
+        while(nameGruen.equals(nameRosa) || "".equals(nameGruen)){
             JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
             nameGruen = JOptionPane.showInputDialog("Spieler 2");
-
         }
         if (anzahlSpieler == 1) {
             nameBlau = JOptionPane.showInputDialog("Spieler 3");
-            while(nameBlau.equals(nameRosa) || nameBlau.equals(nameGruen)){
+            while(nameBlau.equals(nameRosa) || nameBlau.equals(nameGruen) || "".equals(nameBlau)){
                 JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
                 nameBlau = JOptionPane.showInputDialog("Spieler 3");
             }
@@ -124,7 +126,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
         frage = new JLabel();
-        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/antwortenButton.png"), zahlZwischenstand + " / 10");
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/antwortenButton.png"), zahlZwischenstand + " / 5");
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
 
         //Buttons für die Antworten in die Buttons-ArrayListe einfügen
@@ -215,7 +217,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     public void naechsteFrage() {
         if (zahlZwischenstand < 5) {
             zahlZwischenstand++;
-            zwischenstand.setText(zahlZwischenstand + " / 10");
+            zwischenstand.setText(zahlZwischenstand + " / 5");
             multiplayerFenster.setFocusable(true);
             multiplayerFenster.addKeyListener(this);
 
