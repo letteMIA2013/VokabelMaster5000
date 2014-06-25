@@ -3,11 +3,8 @@ package Datenbank;
 import gui.MenuFenster;
 
 /**
- * Created by Ka Yan Lam
- * on 13 Jun 2014
- * VokabelMaster5000
+ * Startet das Programm Vokabel Master 5000.
  */
-
 public class Start {
 
     public static void main(String[] a) {

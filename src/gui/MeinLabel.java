@@ -6,13 +6,7 @@ import javax.swing.SwingConstants;
 import java.lang.String;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
- */
-
-/**
- * Diese Klasse erweitert JLabel
+ * Diese Klasse erweitert JLabel mit verschiedenen Konstruktorenauswahl.
  */
 public class MeinLabel extends JLabel {
 

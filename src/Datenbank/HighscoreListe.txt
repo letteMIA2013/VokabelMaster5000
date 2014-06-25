@@ -2,3 +2,6 @@ ioio/0
 opop/1
 lolo/0
 uiui/2
+ert/0
+wet/0
+rwtwe/0

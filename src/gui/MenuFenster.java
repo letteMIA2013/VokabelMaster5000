@@ -8,12 +8,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
- */
-
 public class MenuFenster implements ActionListener {
 
     boolean istAngemeldet;

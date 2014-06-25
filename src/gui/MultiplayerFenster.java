@@ -71,7 +71,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     Font font;
 
     /**
-     *
+     * Im Konstruktor wird das Fenster gebaut.
+     * Bei zwei Spielern gibt es nur zwei Buzzer und bei drei Spielern drei Buzzer.
+     * Dem Fenster/JFrame bekommt den KeyListener.
      */
     public MultiplayerFenster() {
         fragenKatalog();
@@ -212,6 +214,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setVisible(true);
     }
 
+    /**
+     * In dieser Methode wird die Position der Frage dargestellt.
+     * @return eine Zahl, die die Position der Frage in der Fragen-ArrayList darstellt.
+     */
     public int getFragePos() {
         int fragePos = 0;
 
@@ -225,10 +231,20 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         return fragePos;
     }
 
+    /**
+     * In dieser Methode wird die Position der ausgewählten Antwort dargestellt.
+     * @return eine Zahl, die die Position der ausgewählten Antwort in der Antwort-ArrayList darstellt.
+     */
     public int getGedruecktPos() {
         return gedruecktPos;
     }
 
+    /**
+     * Addiert den Zwischenstand um einen auf und setzt den Timer zurück.
+     * Setzt mit der Klasse {@link java.util.Random} die Position des Buttons mit der richtigen Antwort fest.
+     * Die restlichen Buttons werden mit falschen Antworten aus der Antworten-ArrayListe gefüllt.
+     * Nach der letzten Frage erscheint die Highscore.
+     */
     public void naechsteFrage() {
         if (zahlZwischenstand < 2) {
             zahlZwischenstand++;
@@ -301,6 +317,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * In dieser Methode werden die Daten aus der Highscore Datenbank ausgelesen und in eine
+     * neue ArrayListe gepackt.
+     */
     public void highscore() {
 
         //Highscore aus der Datenbank
@@ -315,6 +335,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * In der Methode werden die Fragen und Antworten aus der Datenbank {@link Datenbank.LeseDeEngVok} ausgelesen
+     * und in die entsprechende ArrayList für Fragen und Antworten gepackt.
+     */
     public void fragenKatalog() {
 
         //Vokabeln aus der Datenbank
@@ -328,13 +352,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             listeFrage.add(pair[0]);
             listeAntwort.add(pair[1]);
         }
-
         for (String[] pair : stringListe) {
             listeFrage.add(pair[1]);
             listeAntwort.add(pair[0]);
         }
     }
 
+    /**
+     * Diese Methode beinhaltet einen Timer.
+     * Der Timer läuft drei Sekunden und ruft dann die nächste Frage auf.
+     */
     public void kleinePauseTimer() {
         countPause = 3;
         pause = new Timer(1000, new ActionListener() {
@@ -355,6 +382,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         pause.start();
     }
 
+    /**
+     *
+     */
     public void resettedTimer() {
         count = 21;
         timer = new Timer(1000, new ActionListener() {

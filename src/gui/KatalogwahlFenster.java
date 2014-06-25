@@ -17,12 +17,12 @@ import java.awt.event.ActionListener;
  */
 public class KatalogwahlFenster implements ActionListener {
 
-    SpeicherVokabelnLernen speicherVokabelnLernen;
-    JFrame katalogFenster;
-    BildButton deutschEnglisch;
-    BildButton englischDeutsch;
-    BildButton zurueck;
-    BildButton ausloggen;
+    private SpeicherVokabelnLernen speicherVokabelnLernen;
+    private JFrame katalogFenster;
+    private BildButton deutschEnglisch;
+    private BildButton englischDeutsch;
+    private BildButton zurueck;
+    private BildButton ausloggen;
 
     /**
      * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
@@ -91,7 +91,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == deutschEnglisch) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click01.wav").start();
 
             new DeEngFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -101,7 +101,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == englischDeutsch) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click02.wav").start();
 
             new EngDeFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -111,7 +111,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == zurueck) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click03.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
@@ -121,7 +121,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == this.ausloggen) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click03.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
