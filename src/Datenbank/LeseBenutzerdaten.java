@@ -15,6 +15,7 @@ public class LeseBenutzerdaten {
 
     public static FileReader fr;
 
+
     public static ArrayList<String[]> leseUserdaten() {
 
         try {
