@@ -2,10 +2,13 @@ package gui;
 
 import Datenbank.LeseDeEngVok;
 import Datenbank.LeseHighscore;
+import Datenbank.SchreibeHighscore;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,6 +31,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     int punkteGruen = 0;
     int punkteBlau = 0;
     int gedruecktPos;
+    int zahlZwischenstand;
     boolean buzzRosa;
     boolean buzzGruen;
     boolean buzzBlau;
@@ -35,12 +39,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     boolean buttonZwei;
     boolean buttonDrei;
     boolean buttonVier;
+    SchreibeHighscore schreibeHighscore;
     String nameBlau;
+    String nameRosa;
+    String nameGruen;
     Timer timer;
     Timer pause;
     JFrame multiplayerFenster;
     JLabel time;
-    MeinLabel frage;
+    JLabel frage;
+    MeinLabel zwischenstand;
     MeinLabel buzzer;
     MeinLabel spielerZwei;
     MeinLabel spielerDrei;
@@ -52,9 +60,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     ArrayList<String> listeFrage;
     ArrayList<String> listeAntwort;
     ArrayList<String> liste;
+    Font font;
 
     public MultiplayerFenster() {
-        highscore();
         fragenKatalog();
 
         //Fenster für den Multiplayer
@@ -62,25 +70,54 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Spieleranzahl + Namen
-        // Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
+        schreibeHighscore = new SchreibeHighscore();
+
+        //Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
         Object[] options = {"2 Spieler", "3 Spieler"};
 
         //Bei 2 Spielern = 0   ;   Bei 3 Spielern = 1
         anzahlSpieler = JOptionPane.showOptionDialog(null, "Wie viele Spieler?", "Quiz", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
-        String nameRosa = JOptionPane.showInputDialog("Spieler 1");
-        String nameGruen = JOptionPane.showInputDialog("Spieler 2");
-        //dopplete namen nicht nutzbar
-        if(nameGruen.equals(nameRosa)){
+        //dopplete Namen nicht nutzbar
+        nameRosa = JOptionPane.showInputDialog("Spieler 1");
+        while("".equals(nameRosa)){
+            JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
+            nameRosa = JOptionPane.showInputDialog("Spieler 1");
+        }
+        nameGruen = JOptionPane.showInputDialog("Spieler 2");
+        while(nameGruen.equals(nameRosa) || "".equals(nameGruen)){
             JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
             nameGruen = JOptionPane.showInputDialog("Spieler 2");
         }
         if (anzahlSpieler == 1) {
             nameBlau = JOptionPane.showInputDialog("Spieler 3");
+            while(nameBlau.equals(nameRosa) || nameBlau.equals(nameGruen) || "".equals(nameBlau)){
+                JOptionPane.showMessageDialog(null,"Bitte anderen Namen eingeben");
+                nameBlau = JOptionPane.showInputDialog("Spieler 3");
+            }
+        }
+
+        schreibeHighscore.benutzerAnlegen(nameRosa);
+
+        if(anzahlSpieler == 0){
+            schreibeHighscore.benutzerAnlegen(nameGruen);
+            JOptionPane.showMessageDialog(null,  nameRosa + " hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L !" );
+        }
+        if(anzahlSpieler == 1){
+            schreibeHighscore.benutzerAnlegen(nameGruen);
+            schreibeHighscore.benutzerAnlegen(nameBlau);
+            JOptionPane.showMessageDialog(null,  nameRosa +" hat den Buzzerkey S ! " + nameGruen + " hat den Buzzerkey L ! " + nameBlau + " hat den Buzzerkey B !" );
         }
 
         //Hintergrundbild
         BilderPanel multiplayerBg = new BilderPanel("/Img/multiplayerBg.png");
+
+        //Schriftart für die abgefragte Vokabel
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/fonts/Chalkduster.ttf"))).deriveFont(Font.PLAIN, 16);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         //Fragepanel im Norden für den Timer, die Lösung der Frage und der Frage
         JPanel multiplayerPanel = new JPanel(new GridBagLayout());
@@ -88,7 +125,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Felder für den Timer und der Frage
         time = new JLabel("00:00");
-        frage = new MeinLabel(new BildBauer().createImageIcon("/Img/frageLabel.png"));
+        frage = new JLabel();
+        zwischenstand = new MeinLabel(new BildBauer().createImageIcon("/Img/antwortenButton.png"), zahlZwischenstand + " / 5");
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
 
         //Buttons für die Antworten in die Buttons-ArrayListe einfügen
@@ -128,27 +166,28 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setFocusable(true);
         multiplayerFenster.addKeyListener(this);
 
-        //Timer und Frage dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-35, 0, 0, 215), 0, 0));
-        multiplayerPanel.add(zurueck, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(8, 350, 0, 0), 0, 0));
-        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), 0, 0));
+        //Timer, Frage und Zwischenstand dem multiplayerPanel hinzufügen
+        multiplayerPanel.add(time, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-30, 0, 0, 215), 0, 0));
+        multiplayerPanel.add(zurueck, new GridBagConstraints(1, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 350, 0, 0), 0, 0));
+        multiplayerPanel.add(frage, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(zwischenstand, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(15, 0, 0, 0), 0, 0));
 
         //Antworten und Buzzer dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(buttons.get(0), new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(buttons.get(1), new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(buttons.get(2), new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(buttons.get(3), new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
-        multiplayerPanel.add(buzzer, new GridBagConstraints(0, 6, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buttons.get(0), new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buttons.get(1), new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buttons.get(2), new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buttons.get(3), new GridBagConstraints(0, 6, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-5, 0, 0, 0), 0, 0));
+        multiplayerPanel.add(buzzer, new GridBagConstraints(0, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 0, 0, 0), 0, 0));
 
         //Spieler und Punkte dem multiplayerPanel hinzufügen
-        multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 300), 0, 0));
-        multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 300), 0, 0));
+        multiplayerPanel.add(spielerEins, new GridBagConstraints(0, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 300), 0, 0));
+        multiplayerPanel.add(spielerEinsPunkte, new GridBagConstraints(0, 9, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 300), 0, 0));
         if (anzahlSpieler == 1) {
-            multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 0), 0, 0));
-            multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 0), 0, 0));
+            multiplayerPanel.add(spielerZwei, new GridBagConstraints(1, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 0, 0, 0), 0, 0));
+            multiplayerPanel.add(spielerZweiPunkte, new GridBagConstraints(1, 9, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 0, 0, 0), 0, 0));
         }
-        multiplayerPanel.add(spielerDrei, new GridBagConstraints(2, 7, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 300, 0, 0), 0, 0));
-        multiplayerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 300, 0, 0), 0, 0));
+        multiplayerPanel.add(spielerDrei, new GridBagConstraints(2, 8, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(20, 300, 0, 0), 0, 0));
+        multiplayerPanel.add(spielerDreiPunkte, new GridBagConstraints(2, 9, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 300, 0, 0), 0, 0));
 
         multiplayerBg.add(multiplayerPanel);
 
@@ -161,10 +200,6 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setResizable(false);
         multiplayerFenster.setVisible(true);
     }
-
-//    public static void main(String[] a) {
-//        new MultiplayerFenster();
-//    }
 
     public int getFragePos() {
         int fragePos = 0;
@@ -180,63 +215,82 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     }
 
     public void naechsteFrage() {
-        multiplayerFenster.setFocusable(true);
-        multiplayerFenster.addKeyListener(this);
+        if (zahlZwischenstand < 5) {
+            zahlZwischenstand++;
+            zwischenstand.setText(zahlZwischenstand + " / 5");
+            multiplayerFenster.setFocusable(true);
+            multiplayerFenster.addKeyListener(this);
 
-        buttons.get(0).setText("");
-        buttons.get(1).setText("");
-        buttons.get(2).setText("");
-        buttons.get(3).setText("");
-        buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
-        resettedTimer();
+            buttons.get(0).setText("");
+            buttons.get(1).setText("");
+            buttons.get(2).setText("");
+            buttons.get(3).setText("");
+            buzzer.setIcon(new BildBauer().createImageIcon("/Img/buzzerRotLabel.png"));
+            resettedTimer();
 
-        //zufällige Fragen
-        zufallsVokabel = new Random().nextInt(listeFrage.size());
-        frage.setText("" + listeFrage.get(zufallsVokabel));
+            //zufällige Fragen
+            zufallsVokabel = new Random().nextInt(listeFrage.size());
+            frage.setText("" + listeFrage.get(zufallsVokabel));
 
-        //zufällige Antworten: 3 falsche und 1 richtige
-        zufallsPos = new Random().nextInt(4);
+            //zufällige Antworten: 3 falsche und 1 richtige
+            zufallsPos = new Random().nextInt(4);
 
-        //Zufallsposition der richtigen Lösung
-        switch(zufallsPos) {
-            case 0: buttons.get(0).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 1: buttons.get(1).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 2: buttons.get(2).setText("" + listeAntwort.get(getFragePos()));
-                break;
-            case 3: buttons.get(3).setText("" + listeAntwort.get(getFragePos()));
-        }
-
-        //restliche Buttons mit Zufallsantworten füllen
-        //Wenn deutsche Vokabelabfrage, dann englische Antworten und andersherum
-        for (BildButton b : buttons) {
-            b.setFocusable(false);
-            b.setIcon(new BildBauer().createImageIcon("/Img/antwortenButton.png"));
-
-            if (b.getText().length() == 0) {
-                if (getFragePos() < 86) {
-                    zufallsAntwort = new Random().nextInt(85);
-                    while (zufallsAntwort == zufallsVokabel) {
-                        zufallsAntwort = new Random().nextInt(85);
-                    }
-                } else {
-                    zufallsAntwort = new Random().nextInt(85) + 86;
-                    while (zufallsAntwort == zufallsVokabel) {
-                        zufallsAntwort = new Random().nextInt(85) + 86;
-                    }
-                }
-                b.setText("" + listeAntwort.get(zufallsAntwort));
+            //Zufallsposition der richtigen Lösung
+            switch (zufallsPos) {
+                case 0:
+                    buttons.get(0).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 1:
+                    buttons.get(1).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 2:
+                    buttons.get(2).setText("" + listeAntwort.get(getFragePos()));
+                    break;
+                case 3:
+                    buttons.get(3).setText("" + listeAntwort.get(getFragePos()));
             }
-        }
 
+            //restliche Buttons mit Zufallsantworten füllen
+            //Wenn deutsche Vokabelabfrage, dann englische Antworten und andersherum
+            for (BildButton b : buttons) {
+                b.setFocusable(false);
+                b.setIcon(new BildBauer().createImageIcon("/Img/antwortenButton.png"));
+
+                if (b.getText().length() == 0) {
+                    if (getFragePos() < 86) {
+                        zufallsAntwort = new Random().nextInt(85);
+                        while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(3).getText().equals(listeAntwort.get(zufallsAntwort))) {
+                            zufallsAntwort = new Random().nextInt(85);
+                        }
+                    } else {
+                        zufallsAntwort = new Random().nextInt(85) + 86;
+                        while (buttons.get(0).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(1).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(2).getText().equals(listeAntwort.get(zufallsAntwort)) || buttons.get(3).getText().equals(listeAntwort.get(zufallsAntwort))) {
+                            zufallsAntwort = new Random().nextInt(85) + 86;
+                        }
+                    }
+                    b.setText("" + listeAntwort.get(zufallsAntwort));
+                }
+            }
+        } else {
+            schreibeHighscore.highScoreAendern(nameRosa, punkteRosa);
+            if(anzahlSpieler == 0){
+                schreibeHighscore.highScoreAendern(nameGruen, punkteGruen);
+            }
+            if(anzahlSpieler == 1){
+                schreibeHighscore.highScoreAendern(nameGruen, punkteGruen);
+                schreibeHighscore.highScoreAendern(nameBlau, punkteBlau);
+            }
+
+            highscore();
+            new HSFenster(liste);
+        }
     }
 
     public void highscore() {
 
         //Highscore aus der Datenbank
         LeseHighscore daten = new LeseHighscore();
-        ArrayList<String[]> stringListe = daten.getB();
+        ArrayList<String[]> stringListe = daten.leseUserdaten();
 
         liste = new ArrayList<String>();
 
@@ -304,9 +358,6 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 //färbt die Schriftfarbe rot ab 5sec abwärts
                 if(count <= 5) {
                     time.setForeground(Color.RED);
-
-                    //Musik
-                    new Musik("src/Img/klick.wav").start();
                 } else {
                     time.setForeground(Color.BLACK);
                 }
@@ -331,7 +382,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         resettedTimer();
 
         //Musik
-        new Musik("src/Img/buzzer.wav").start();
+        new Musik("src/sound/buzzer.wav").start();
 
         buttons.get(0).addActionListener(this);
         buttons.get(1).addActionListener(this);
@@ -407,9 +458,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
         //Überprüft, welcher Button gedrückt wurde
         if (e.getSource() == this.zurueck) {
+            timer.stop();
             multiplayerFenster.setVisible(false);
             multiplayerFenster.dispose();
-            new MenuFenster();
+            new MenuFenster(false, null);
         }
 
         deaktiviereButton();
@@ -493,10 +545,6 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
                 buzzered();
             }
         }
-
-    }
-    //verhindert das der Name im Quiz öfters benutzt wird
-    public void Spieler(String verdoppeleterName){
 
     }
 

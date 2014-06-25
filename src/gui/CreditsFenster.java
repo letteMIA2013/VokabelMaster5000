@@ -83,7 +83,7 @@ public class CreditsFenster implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //Musik
-        new Musik("src/Img/klick.wav").start();
+        new Musik("src/sound/klick.wav").start();
 
         creditsFenster.setVisible(false);
         creditsFenster.dispose();
