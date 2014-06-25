@@ -2,15 +2,12 @@ package gui;
 
 import Register.Registrieren;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.lang.String;
 
 /**
@@ -37,7 +34,7 @@ public class RegistrierungFenster {
         BilderPanel registrierungsBg = new BilderPanel("/Img/registrierungBg.png");
 
         //gui.BilderPanel
-        JPanel registrierungsPanel = new JPanel(new GridBagLayout());
+       final JPanel registrierungsPanel = new JPanel(new GridBagLayout());
         registrierungsPanel.setOpaque(false);
 
         //Textfelder zum Abfragen der Daten
@@ -46,6 +43,34 @@ public class RegistrierungFenster {
        final  RoundedTextField pwNochmalText = new RoundedTextField(12);
 
 
+        //Zum Passwortstärke anzeigen
+       final  JLabel passwortstaerke = new JLabel("   ");
+        passwortstaerke.setBackground(Color.black);
+        pwText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+                if(pwText.getText().length() <= 6){
+                    System.out.println("Anzahl der Zeichen: " + pwText.getText().length());
+                    passwortstaerke.setBackground(Color.red);
+                    passwortstaerke.setText("Das Passwort ist schwach");
+                    passwortstaerke.setOpaque(true);
+//                    passwortstaerke.setSize(100,15);
+                    passwortstaerke.setVisible(true);
+
+                }
+
+                if(pwText.getText().length() >= 6){
+                    System.out.println("Anzahl der Zeichen: " + pwText.getText().length());
+                    passwortstaerke.setBackground(Color.ORANGE);
+                    passwortstaerke.setText("Das Passwort ist nahja");
+                    passwortstaerke.setOpaque(true);
+//                    passwortstaerke.setSize(100,15);
+                    passwortstaerke.setVisible(true);
+
+                }
+            }
+        });
 
 
         //Buttons werden hier erstellt
@@ -54,6 +79,10 @@ public class RegistrierungFenster {
 
         ImageIcon signUpIcon = new BildBauer().createImageIcon("/Img/signUpButton.png");
         BildButton signUp = new BildButton(signUpIcon, 400);
+
+
+
+
 
         //ActionListener
         zumMenu.addActionListener(new ActionListener() {
@@ -71,6 +100,7 @@ public class RegistrierungFenster {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //made by Defalt rgistrieren
+
                 Registrieren rgister = new Registrieren(pwText.getText(),idText.getText(),pwNochmalText.getText());
             }
         });
@@ -79,8 +109,10 @@ public class RegistrierungFenster {
         registrierungsPanel.add(zumMenu, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 350, 0, 0), 0, 0));
         registrierungsPanel.add(idText, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(123, 150, 0, 0), 0, 0));
         registrierungsPanel.add(pwText, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(13, 150, 0, 0), 0, 0));
-        registrierungsPanel.add(pwNochmalText, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(15, 150, 0, 0), 0, 0));
-        registrierungsPanel.add(signUp, new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
+        registrierungsPanel.add(passwortstaerke, new GridBagConstraints(0, 4, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 200,0,0), 0, 0));
+        registrierungsPanel.add(pwNochmalText, new GridBagConstraints(0, 5, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 150, 0, 0), 0, 0));
+        registrierungsPanel.add(signUp, new GridBagConstraints(0, 6, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
+
 
         registrierungsBg.add(registrierungsPanel);
 
