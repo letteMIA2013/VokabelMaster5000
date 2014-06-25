@@ -1,15 +1,15 @@
 Flugplatz/airport
 Zelt/tent
-leihen/borrow
+leihen/to borrow
 Geschichte/history
-versuchen/try
+versuchen/to try
 vertrauen/trust
-zustimmen/agree
-einladen/invite
+zustimmen/to agree
+einladen/to invite
 Satz/sentence
-öffnen/open
-schließen/close
-nehmen/take
+öffnen/to open
+schließen/to close
+nehmen/to take
 Licht/light
 Hitze/heat
 Bevölkerung/population
@@ -22,30 +22,30 @@ Vater/father
 Mutter/mother
 Kind/child
 Kinder/children
-vervollständigen/complete
-nerven/annoy
+vervollständigen/to complete
+nerven/to annoy
 Beschwerde/complaint
-beschweren/complain
+beschweren/to complain
 Vielfalt/variety
 monoton/monotonous
-meckern/beef
-motzen/bitch
-jammern/whine
-nörgeln/nag
-fallen/fall
-rennen/run
-gehen/walk
-springen/jump
-schreien/shout
-schreiben/write
-lesen/read
-Teller/dishes
+meckern/to beef
+motzen/to bitch
+jammern/to whine
+nörgeln/to nag
+fallen/to fall
+rennen/to run
+gehen/to walk
+springen/to jump
+schreien/to shout
+schreiben/to write
+lesen/to read
+Geschirr/dishes
 Flasche/bottle
-tragen/carry
+tragen/to carry
 Schokolade/choclate
 Himbeere/raspberry
 Erdbeere/strawberry
-übersetzen/translate
+übersetzen/to translate
 Eis/ice
 Bombe/bomb
 Auto/car
@@ -58,19 +58,19 @@ Bär/bear
 Bier/beer
 Lehrer/teacher
 Schüler/pupil
-Person/people
-anbieten/advertise
+Menschen/people
+anbieten/to advertise
 notwendig/necessary
-einbeziehen/involve
+einbeziehen/to involve
 Pferd/horse
 Schlange/snake
-schlagen/beat
-essen/eat
+schlagen/to hit
+essen/to eat
 gestern/yesterday
 morgen/tommorow
 Eltern/parents
 Oberfläche/surface
-entdecken/discover
+entdecken/to discover
 andernfalls/else
 falls/if
 weil/because
