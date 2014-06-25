@@ -8,6 +8,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Das Menüfenster ist der Startbildschirm des Programms.
+ * Hier kann man aussuchen, was man machen möchte.
+ * Man kann Vokabeln lernen, am Quiz teilnehmen oder sich die Credits anschauen.
+ */
 public class MenuFenster implements ActionListener {
 
     boolean istAngemeldet;
@@ -17,6 +22,11 @@ public class MenuFenster implements ActionListener {
     BildButton quiz;
     BildButton credits;
 
+    /**
+     * Im Konstruktor wird das Fenster mit den Button erstellt.
+     * @param istAngemeldet gibt an, ob ein User gerade eingeloggt ist.
+     * @param speicherVokabelnLernen ist der Zwischenspeicher, den der Spieler mitnimmt
+     */
     public MenuFenster(boolean istAngemeldet, SpeicherVokabelnLernen speicherVokabelnLernen) {
         this.istAngemeldet = istAngemeldet;
         this.speicherVokabelnLernen = speicherVokabelnLernen;
@@ -61,6 +71,11 @@ public class MenuFenster implements ActionListener {
         menuFenster.setVisible(true);
     }
 
+    /**
+     * In dieser Methode überprüfen wir, welcher Button gedrückt wurde. Beim Drücken auf einen Button
+     * kommt ein Klick Sound und das Menüfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

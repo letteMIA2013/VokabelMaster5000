@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Diese Klasse ist für die erstellung des Statiskfensters zuständig
+ * Diese Klasse ist für die Erstellung des Statistikfensters zuständig
+ * Sie zeigt das Endergebnis des Lernens
  */
 public class StatistikFenster {
 

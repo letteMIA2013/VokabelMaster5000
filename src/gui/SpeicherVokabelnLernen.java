@@ -3,13 +3,8 @@ package gui;
 import java.util.ArrayList;
 
 /**
- * Created by Ka Yan Lam
- * on 14 Jun 2014
- * VokabelMaster5000
- */
-
-/**
- * In dieser Klasse werden die Daten in ArrayLists gespeichert
+ * In dieser Klasse werden Daten abgespeichert.
+ * Sie dient als Zwischenspeicher für das Vokabeltraining.
  */
 public class SpeicherVokabelnLernen {
 
