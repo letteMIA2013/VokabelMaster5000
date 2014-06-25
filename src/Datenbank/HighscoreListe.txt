@@ -1,2 +1,4 @@
 ioio/0
 opop/1
+lolo/0
+uiui/2

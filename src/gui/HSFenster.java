@@ -32,7 +32,7 @@ public class HSFenster extends JFrame {
         }
         setLocationRelativeTo(null);
         setResizable(false);
-        add(new JLabel("Platz", SwingConstants.CENTER));
+        add(new JLabel("<b>Platz</b>", SwingConstants.CENTER));
         add(new JLabel("Name", SwingConstants.CENTER));
         add(new JLabel("Punkte", SwingConstants.CENTER));
 

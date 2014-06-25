@@ -10,15 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Frances Schmidt
- * on 11 Jun 2014
- * VokabelMaster5000
- */
-
-/**
  * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
  * In dieser Klasse wird das KatalogFenster erstellt, wo man dann über Buttons aussuchen kann,
  * was man lernen möchte oder ob man zum Menu zurück möchte.
+ * Der eingeloggte Spieler kann sich auch wieder ausloggen.
  */
 public class KatalogwahlFenster implements ActionListener {
 
@@ -37,7 +32,6 @@ public class KatalogwahlFenster implements ActionListener {
      * Die 3 Buttons besitzen alle ein ActionListener.
      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
      *          damit dort alles zwischengespeichert wird
-     *  
      */
     public KatalogwahlFenster(SpeicherVokabelnLernen s) {
         speicherVokabelnLernen = s;
@@ -86,9 +80,8 @@ public class KatalogwahlFenster implements ActionListener {
     }
 
     /**
-     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
+     * In dieser Methode überprüfen wir, welcher Button gedrückt wurde. Beim Drücken auf einen Button
      * kommt ein Klick Sound und das Katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
-     *
      * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
      */
     @Override
