@@ -383,7 +383,8 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     }
 
     /**
-     *
+     * Startet den Timer.
+     * Bei Ablauf der Zeit erscheint die nächste Frage.
      */
     public void resettedTimer() {
         count = 21;
@@ -419,6 +420,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         timer.start();
     }
 
+    /**
+     * Entfernt den KeyListener und fügt den Buttons einen ActionListener hinzu.
+     * Der Timer wird zurückgesetzt.
+     */
     public void buzzered() {
         multiplayerFenster.removeKeyListener(this);
 
@@ -435,6 +440,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttons.get(3).addActionListener(this);
     }
 
+    /**
+     * Entfernt die ActionListener von den Buttons.
+     */
     public void deaktiviereButton() {
         buttons.get(0).removeActionListener(this);
         buttons.get(1).removeActionListener(this);
@@ -442,6 +450,12 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttons.get(3).removeActionListener(this);
     }
 
+    /**
+     * Diese Methode überprüft, ob die Frage und die Antwort in ihrer jeweiligen ArrayListe dieselbe
+     * Position einnehmen.
+     * Ist die gewählte Antwort falsch, dann fäbt sich der Hintergrund rot. Die richtige Antwort wird grün untermalt.
+     * Bei einer richtig gewählten Antwort bekommt der jeweilige Spieler einen Punkt.
+     */
     public void pruefeAntwort() {
         timer.stop();
         kleinePauseTimer();
@@ -494,6 +508,12 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttonVier = false;
     }
 
+    /**
+     * Der Text wird in der Antworten ArrayListe gesucht und die Position
+     * der Antwort mit einer Variable festgehalten.
+     * Die Antwort wird auf Richtigkeit geprüft.
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -551,6 +571,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
     }
 
+    /**
+     * Hier werden die Buzzer für die jeweiligen Spieler festgelegt.
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
