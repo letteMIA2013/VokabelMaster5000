@@ -364,7 +364,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
                 //Wenn Zeit abgelaufen, dann nächste Frage
                 if (count == 0) {
-                    System.out.println("Jetzt sollte die nächste Frage erscheinen");
+                    System.out.println("Jetzt sollte die nächste Frage erscheinen hehe");
                     timer.stop();
                     naechsteFrage();
                 }

@@ -32,8 +32,7 @@ public class CreditsFenster implements ActionListener {
 
     /**
      * @param speicherVokabelnLernen diesen braucht man damit in der Klasse SpeicherVokabelnLernen
-     *                               die Daten abgelegt werdem
-     *
+     *                               die Daten abgelegt werden
      */
     public CreditsFenster(SpeicherVokabelnLernen speicherVokabelnLernen) {
         this.speicherVokabelnLernen = speicherVokabelnLernen;

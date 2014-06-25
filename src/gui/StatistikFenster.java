@@ -19,7 +19,8 @@ public class StatistikFenster {
 
     /**
      * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
-     * @param s
+     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     *          aus denen wir uns die zwischengespeicherten Daten holen
      */
     public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
         speicherVokabelnLernen = s;

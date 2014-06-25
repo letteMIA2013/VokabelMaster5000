@@ -1,7 +1,6 @@
 package Datenbank;
 
 import gui.MenuFenster;
-import gui.Musik;
 
 /**
  * Created by Ka Yan Lam
@@ -14,7 +13,7 @@ public class Start {
     public static void main(String[] a) {
 
         new MenuFenster(false, null);
-        new Musik("src/sound/intro.wav").start();
+        //new Musik("src/sound/intro.wav").start();
     }
 
 }

@@ -1,6 +1,5 @@
 package Datenbank;
 
-import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -64,19 +63,19 @@ public class SchreibeHighscore {
 
     public static FEHLER_TYP benutzerAnlegen(String id) {
         PrintWriter pw = null;
-
         ArrayList<String[]> alleVorhandenenDaten = LeseHighscore.leseUserdaten();
 
-        try
-        {
+        try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter("src/Datenbank/HighscoreListe.txt")));
-            for (String[] pair : alleVorhandenenDaten) {
-
-
-                pw.println( pair[0] + "/" + pair[1]);
-
+            if (alleVorhandenenDaten.size() >= 0) {
+                System.out.println("hiiii" + alleVorhandenenDaten.size());
+                for (String[] pair : alleVorhandenenDaten) {
+                    pw.println(pair[0] + "/" + pair[1]);
+                }
+                pw.println(id + "/" + 0);
+            } else {
+                pw.println(id + "/" + 0);
             }
-            pw.println(id + "/" + 0);
         }
 
         catch (IOException e)
