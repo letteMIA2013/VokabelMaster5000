@@ -15,21 +15,38 @@ import java.awt.event.ActionListener;
  * VokabelMaster5000
  */
 
+/**
+ * In dieser Klasse wird das Fenster Credits erstellt wo man dann erkennen soll, wer was gemacht hat.
+ */
 public class CreditsFenster implements ActionListener {
 
     SpeicherVokabelnLernen speicherVokabelnLernen;
     JFrame creditsFenster;
     BildButton zurueck;
 
+    /**
+     * Im Konstruktor wird die Methode fensterAnzeige() benutzt, damit das Credit Fenster beim Aufrufen dieser Klasse
+     * erstellt wird. Diese Klasse wird in der Klasse {@link gui.MenuFenster} benutzt.
+     */
     public CreditsFenster() {
         fensterAnzeige();
     }
 
+    /**
+     * @param speicherVokabelnLernen diesen braucht man damit in der Klasse SpeicherVokabelnLernen
+     *                               die Daten abgelegt werdem
+     *
+     */
     public CreditsFenster(SpeicherVokabelnLernen speicherVokabelnLernen) {
         this.speicherVokabelnLernen = speicherVokabelnLernen;
         fensterAnzeige();
     }
 
+    /**
+     * hier wird das Fenster gebaut, wo man die Größe festlegt und es sichtbar macht.
+     * Dem Hintergrund wird auch ein Bild hinzugefügt.
+     * Im Menupanel haben wir die Button hinzugefügt
+     */
     public void fensterAnzeige() {
 
         //Fenster für das Menue
@@ -68,7 +85,7 @@ public class CreditsFenster implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //Musik
-        new Musik("src/Img/klick.wav").start();
+        new Musik("src/sound/klick.wav").start();
 
         creditsFenster.setVisible(false);
         creditsFenster.dispose();

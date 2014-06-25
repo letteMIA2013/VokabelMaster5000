@@ -10,10 +10,19 @@ import java.awt.geom.RoundRectangle2D;
  * VokabelMaster5000
  */
 
+   /**
+    * Diese Klasse ist für die Rundung des Passwort Feldes zuständig
+    */
 class RoundedPassField extends JPasswordField {
-
+       /**
+        * Shape wird dazu verwendet Ecken kurviger zu machen (Die Geometrische Form)
+        */
     private Shape shape;
 
+       /**
+        *
+        * @param size
+        */
     public RoundedPassField(int size) {
         super(size);
         setOpaque(false);
@@ -31,6 +40,12 @@ class RoundedPassField extends JPasswordField {
         g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
     }
 
+       /**
+        * Die Klasse setzt die Stärke der Rundung
+        * @param x ist für die Breite der Rundung verantwortlich
+        * @param y ist für die Höhe der Rundung verantwortlich
+        * @return gibt die Stärke der Rundung aus.
+        */
     public boolean contains(int x, int y) {
         if (shape == null || !shape.getBounds().equals(getBounds())) {
             shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);

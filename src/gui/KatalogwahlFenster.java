@@ -16,6 +16,11 @@ import java.awt.event.ActionListener;
  * VokabelMaster5000
  */
 
+/**
+ * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
+ * In dieser Klasse wird das KatalogFenster erstellt, wo man dann über Buttons aussuchen kann,
+ * was man lernen möchte oder ob man zum Menu zurück möchte.
+ */
 public class KatalogwahlFenster implements ActionListener {
 
     SpeicherVokabelnLernen speicherVokabelnLernen;
@@ -23,7 +28,18 @@ public class KatalogwahlFenster implements ActionListener {
     BildButton deutschEnglisch;
     BildButton englischDeutsch;
     BildButton zurueck;
+    BildButton ausloggen;
 
+    /**
+     *
+     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     *           damit dort alles zwischengespeichert wird
+     *  Im Konstruktor wird das Fenster gebaut, wo die Größe, die Sichtbarkeit und dem Hintergrund
+     *  ein Bild hinzugefügt wird.
+     *  Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
+     *  Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     *  Die 3 Buttons besitzen alle ein ActionListener.
+     */
     public KatalogwahlFenster(SpeicherVokabelnLernen s) {
         speicherVokabelnLernen = s;
 
@@ -42,11 +58,13 @@ public class KatalogwahlFenster implements ActionListener {
         deutschEnglisch = new BildButton(new BildBauer().createImageIcon("/Img/deEngButton.png"));
         englischDeutsch = new BildButton(new BildBauer().createImageIcon("/Img/engDeButton.png"));
         zurueck = new BildButton(new BildBauer().createImageIcon("/Img/zurueckGrossButton.png"));
+        ausloggen = new BildButton(new BildBauer().createImageIcon("/Img/ausloggenButton.png"));
 
         //ActionListener
         deutschEnglisch.addActionListener(this);
         englischDeutsch.addActionListener(this);
         zurueck.addActionListener(this);
+        ausloggen.addActionListener(this);
 
         //System.out.println("" + zwischendstand + fragenSpeicher.size() + antwortenSpeicher.size());
 
@@ -54,6 +72,7 @@ public class KatalogwahlFenster implements ActionListener {
         katalogPanel.add(deutschEnglisch, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, new Insets(120, 0, 0, 0), 0, 0));
         katalogPanel.add(englischDeutsch, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
         katalogPanel.add(zurueck, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        katalogPanel.add(ausloggen, new GridBagConstraints(0, 3, 0, 1, 1, 1, GridBagConstraints.PAGE_END, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
         katalogBg.add(katalogPanel);
 
@@ -67,6 +86,13 @@ public class KatalogwahlFenster implements ActionListener {
         katalogFenster.setVisible(true);
     }
 
+    /**
+     *
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     *
+     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
+     * kommt ein Klick Sound und das katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -74,7 +100,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == deutschEnglisch) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             new DeEngFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -84,7 +110,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == englischDeutsch) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             new EngDeFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -94,11 +120,21 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == zurueck) {
 
             //Musik
-            new Musik("src/Img/klick.wav").start();
+            new Musik("src/sound/klick.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
             new MenuFenster(true, speicherVokabelnLernen);
+        }
+
+        if (e.getSource() == this.ausloggen) {
+
+            //Musik
+            new Musik("src/sound/klick.wav").start();
+
+            katalogFenster.setVisible(false);
+            katalogFenster.dispose();
+            new MenuFenster(false, null);
         }
     }
 
