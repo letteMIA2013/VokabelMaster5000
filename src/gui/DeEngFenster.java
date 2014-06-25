@@ -45,15 +45,15 @@ public class DeEngFenster implements ActionListener, KeyListener {
     /**
      * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
      * ein Bild hinzugefügt {@link gui.BilderPanel}.
-     * Es werden 3 Buttons erstellt, von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
+     * Es werden drei Buttons erstellt, von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
      * Bild hinzufügen die wir dem Panel hinzugefügt haben.
-     * Die 4 Buttons besitzen alle ein ActionListener.
-     * Die Daten aus dem Speicher werden den Variablen übergeben, damit man dort weitermachen kann,
+     * Die vier Buttons besitzen alle ein ActionListener.
+     * Die Daten aus dem Speicher werden den Variablen übergeben, damit man von dort weiterlernen kann,
      * wo man abgebrochen hat.
      * Der Timer wird im Konstruktor auch mit gestartet und läuft solange, bis der Spieler entweder auf Auswertung oder auf Zurück klickt.
      * Der Timer wird erst dann resettet, wenn der Spieler alle Vokabeln durchgegangen ist, ansonsten pausiert
      * er beim Klicken auf Asuwertung oder Zurück.
-     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     * @param s ist ein Objekt von der Klasse {@link gui.SpeicherVokabelnLernen}
      *          damit dort alles zwischengespeichert wird und das Zwischengespeicherte wieder aufgefanen werden kann.
      */
     public DeEngFenster(SpeicherVokabelnLernen s) {

@@ -14,11 +14,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * Diese Klasse implementiert einen ActionListener für die Antwortmöglichkeiten und den Schließen-Button
+ * und einen KeyListener für die drei Tasten, die jeweils als Buzzer dienen.
+ * Hier werden Spieler angelegt und in die Datenbank der Highscore eingetragen mit dem Startwert 0 Punkte.
+ * Man kann zwischen zwei und drei Spielern wählen.
+ * Der Fragekatalog für das Spiel wird aus der Datenbank ausgelesen {@link Datenbank.LeseDeEngVok} und in zwei
+ * ArrayListen gepackt. Eine ArrayList beinhaltet nur die Fragen und die andere die Antworten dazu.
+ * Für die Überprüfung der richtigen Antwort verwendet man die Position in der ArrayListe.
+ * Die Auswahl der Antworten ist nur dann möglich, wenn einer der Spieler vorher gebuzzert hat.
+ * Mit jeder richtig beantworteten Frage bekommt der jeweilige Spieler einen Punkt.
+ * Ein Timer startet bei jeder neuen Frage und bei der Auswahl der Antwort bei 20s und läuft dann rückwärts
+ * bis die Zeit abgelaufen ist. Danach erscheint die nächste Frage.
+ * Nach der letzten Vokabel öffnet sich das Highscore Fenster.
  */
-
 public class MultiplayerFenster implements KeyListener, ActionListener {
 
     int count;
@@ -62,6 +70,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     ArrayList<String> liste;
     Font font;
 
+    /**
+     *
+     */
     public MultiplayerFenster() {
         fragenKatalog();
 

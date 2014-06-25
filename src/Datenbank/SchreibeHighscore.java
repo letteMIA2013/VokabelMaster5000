@@ -6,59 +6,34 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * Created by Ka Yan Lam
- * on 21 Jun 2014
- * VokabelMaster5000
- */
 public class SchreibeHighscore {
-
-    //Enums zum anzeigen des Fehlertyps
-    public enum FEHLER_TYP{
-        KEIN_FEHLER,
-        UNBEKANNTER_NUTZER
-    }
 
     public static FEHLER_TYP highScoreAendern(String id, int neuerWert) {
         PrintWriter pw = null;
-
         ArrayList<String[]> alleVorhandenenDaten = LeseHighscore.leseUserdaten();
-
         boolean datenAktualisiert = false;
 
-        try
-        {
+        try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter("src/Datenbank/HighscoreListe.txt")));
 
             for (String[] pair : alleVorhandenenDaten) {
-
-                if (pair[0].equals(id)){
-                    pw.println( pair[0] + "/" + neuerWert);
+                if (pair[0].equals(id)) {
+                    pw.println(pair[0] + "/" + neuerWert);
                     datenAktualisiert = true;
+                } else {
+                    pw.println(pair[0] + "/" + pair[1]);
                 }
-                else{
-                    pw.println( pair[0] + "/" + pair[1]);
-                }
-
             }
-
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        finally
-        {
-
-            if(pw != null)
-            {
+        } finally {
+            if (pw != null) {
                 pw.flush();
                 pw.close();
             }
         }
-        return datenAktualisiert? FEHLER_TYP.KEIN_FEHLER: FEHLER_TYP.UNBEKANNTER_NUTZER;
+
+        return datenAktualisiert ? FEHLER_TYP.KEIN_FEHLER : FEHLER_TYP.UNBEKANNTER_NUTZER;
     }
 
     public static FEHLER_TYP benutzerAnlegen(String id) {
@@ -67,38 +42,40 @@ public class SchreibeHighscore {
 
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter("src/Datenbank/HighscoreListe.txt")));
+
             if (alleVorhandenenDaten.size() >= 0) {
                 System.out.println("hiiii" + alleVorhandenenDaten.size());
                 for (String[] pair : alleVorhandenenDaten) {
                     pw.println(pair[0] + "/" + pair[1]);
                 }
+
                 pw.println(id + "/" + 0);
             } else {
                 pw.println(id + "/" + 0);
             }
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
+        } finally {
 
-        finally
-        {
-
-            if(pw != null)
-            {
+            if (pw != null) {
                 pw.flush();
                 pw.close();
             }
         }
+
         return FEHLER_TYP.KEIN_FEHLER;
     }
 
+    //Enums zum anzeigen des Fehlertyps
+    public enum FEHLER_TYP {
+        KEIN_FEHLER,
+        UNBEKANNTER_NUTZER
+    }
+
     /*public static void main(String[] args) {
-        FEHLER_TYP ky = SchreibeHighscore.highScoreAendern("Ka Yan00", 30);
+        FEHLER_TYP ky = SchreibeHighscore.highScoreAendern("Ka Yan", 30);
         System.out.println(ky);
-        FEHLER_TYP neu = SchreibeHighscore.benutzerAnlegen("Ka Yan00");
+        FEHLER_TYP neu = SchreibeHighscore.benutzerAnlegen("Ka Yan");
         System.out.println(neu);
 
         ArrayList<String[]> strings = LeseHighscore.leseUserdaten();

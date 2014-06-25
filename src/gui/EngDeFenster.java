@@ -53,8 +53,8 @@ public class EngDeFenster implements ActionListener, KeyListener {
      * Der Timer wird im Konstruktor auch mit gestartet und läuft solange, bis der Spieler entweder auf Auswertung oder auf Zurück klickt.
      * Der Timer wird erst dann resettet, wenn der Spieler alle Vokabeln durchgegangen ist, ansonsten pausiert
      * er beim Klicken auf Asuwertung oder Zurück.
-     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
-     *          damit dort alles zwischengespeichert wird
+     * @param s ist ein Objekt von der Klasse {@link gui.SpeicherVokabelnLernen}
+     *          damit dort alles zwischengespeichert wird und das Zwischengespeicherte wieder aufgefanen werden kann.
      */
     public EngDeFenster(SpeicherVokabelnLernen s) {
 
