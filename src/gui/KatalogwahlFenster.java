@@ -30,14 +30,15 @@ public class KatalogwahlFenster implements ActionListener {
     BildButton ausloggen;
 
     /**
+     *Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
+     * ein Bild hinzugefügt wird.
+     * Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton} und von der Klasse {@link gui.BildBauer}, daraufhin konnte man jedem Button ein
+     * Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     * Die 3 Buttons besitzen alle ein ActionListener.
      *
      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
-     *           damit dort alles zwischengespeichert wird
-     *  Im Konstruktor wird das Fenster gebaut, wo die Größe, die Sichtbarkeit und dem Hintergrund
-     *  ein Bild hinzugefügt wird.
-     *  Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
-     *  Bild hinzufügen die wir dem Panel hinzugefügt haben.
-     *  Die 3 Buttons besitzen alle ein ActionListener.
+     *          damit dort alles zwischengespeichert wird
+     *  
      */
     public KatalogwahlFenster(SpeicherVokabelnLernen s) {
         speicherVokabelnLernen = s;
@@ -86,11 +87,10 @@ public class KatalogwahlFenster implements ActionListener {
     }
 
     /**
+     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
+     * kommt ein Klick Sound und das Katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
      *
      * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
-     *
-     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
-     * kommt ein Klick Sound und das katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
