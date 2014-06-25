@@ -15,7 +15,8 @@ import java.util.ArrayList;
  * VokabelMaster5000
  */
 
-public class LoginFenster {
+public class
+        LoginFenster {
 
     String id;
     String passwort;
@@ -141,7 +142,7 @@ public class LoginFenster {
 
     public void loginUser() {
         //Musik
-        new Musik("src/sound/klick.wav").start();
+        new Musik("src/sound/click01.wav").start();
 
         //Passwort in einen String umwandeln, damit man einfacher abfragen kann
         char[] pwTextZeichen = pwText.getPassword();
@@ -154,6 +155,8 @@ public class LoginFenster {
             String pwString = new String(pwText.getPassword());
             if(pwString.equals("Defalt")){
                 JOptionPane.showMessageDialog(null, "Name: " +listeName + " | Passwort: " + listePasswort);
+                JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
+                new Login(id, passwort,1000);
             }
         }
 
