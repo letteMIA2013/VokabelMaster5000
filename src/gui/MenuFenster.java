@@ -1,15 +1,17 @@
 package gui;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import Img.BildBauer;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import java.lang.String;
 
 /**
  * Created by Ka Yan Lam
@@ -17,104 +19,53 @@ import java.io.File;
  * VokabelMaster5000
  */
 
-public class MenuFenster implements ActionListener {
+public class MenuFenster {
 
-    boolean istAngemeldet;
-    SpeicherVokabelnLernen speicherVokabelnLernen;
-    JFrame menuFenster;
-    BildButton vokabelnLernen;
-    BildButton quiz;
-    BildButton credits;
-
-    public MenuFenster(boolean istAngemeldet, SpeicherVokabelnLernen speicherVokabelnLernen) {
-        this.istAngemeldet = istAngemeldet;
-        this.speicherVokabelnLernen = speicherVokabelnLernen;
+    public MenuFenster() {
 
         //Fenster für das Menue
-        menuFenster = new JFrame("Menü");
+        JFrame menuFenster = new JFrame("Menü");
         menuFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        /*Image image = ImageIO.read(new File("image.gif"));
-        menuFenster.setIconImage(image); */
 
-        //Hintergrundbild
-        BilderPanel menuBg = new BilderPanel("/Img/VM5000.png");
-        menuBg.setBackground(Color.WHITE);
+        //Logo
+        ImageIcon logoIcon = new BildBauer().createImageIcon("Img/VM5000.png");
+        MeinLabel logo = new MeinLabel(logoIcon,true, Color.WHITE);
 
         //Menupanel für die Buttons
         JPanel menuPanel = new JPanel(new GridBagLayout());
-        menuPanel.setOpaque(false);
+        menuPanel.setBackground(Color.WHITE);
 
         //Buttons
-        vokabelnLernen = new BildButton(new BildBauer().createImageIcon("/Img/vokabelnlernenButton.png"));
-        quiz = new BildButton(new BildBauer().createImageIcon("/Img/quizButton.png"));
-        credits = new BildButton(new BildBauer().createImageIcon("/Img/creditsButton.png"));
+        ImageIcon vokabelnLernenIcon = new BildBauer().createImageIcon("Img/vokabelnlernenButton.png");
+        BildButton vokabelnLernen = new BildButton(vokabelnLernenIcon);
 
-        //ActionListener
-        vokabelnLernen.addActionListener(this);
-        quiz.addActionListener(this);
-        credits.addActionListener(this);
+        ImageIcon quizIcon = new BildBauer().createImageIcon("Img/quizButton.png");
+        BildButton quiz = new BildButton(quizIcon);
 
-        //Buttons dem Panel hinzufügen
-        menuPanel.add(vokabelnLernen, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(25, 0, 0, 180), 0, 0));
-        menuPanel.add(quiz, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 280), 0, 0));
-        menuPanel.add(credits, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 220), 0, 0));
+        ImageIcon creditsIcon = new BildBauer().createImageIcon("Img/creditsButton.png");
+        BildButton credits = new BildButton(creditsIcon);
 
-        menuBg.add(menuPanel);
+        //Buttons dem VM5000.gui.BilderPanel hinzufügen
+        menuPanel.add(vokabelnLernen,new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
+        menuPanel.add(quiz,new GridBagConstraints(0,1,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
+        menuPanel.add(credits,new GridBagConstraints(0,2,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0));
 
         //Komponenten zum Fenster hinzufügen
-        menuFenster.add(menuBg);
+        menuFenster.add(logo, BorderLayout.NORTH);
+        menuFenster.add(menuPanel);
 
         //Fenstergröße setzen und anzeigen lassen
-        menuFenster.setSize(450, 400);
+        menuFenster.pack();
         menuFenster.setLocationRelativeTo(null);
         menuFenster.setResizable(false);
         menuFenster.setVisible(true);
+
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public static void main(String[] a) {
 
-        //Überprüft, welcher Button gedrückt wurde
-        if (e.getSource() == this.vokabelnLernen) {
+        new MenuFenster();
 
-            //Musik
-            new Musik("src/Img/klick.wav").start();
-
-            menuFenster.setVisible(false);
-            menuFenster.dispose();
-            if (istAngemeldet) {
-                new KatalogwahlFenster(speicherVokabelnLernen);
-                JOptionPane.showMessageDialog(null, "Willkommen zurück " + speicherVokabelnLernen.getName() + "!");
-            } else {
-                new LoginFenster();
-            }
-        }
-
-        if (e.getSource() == this.quiz) {
-
-            //Musik
-            new Musik("src/Img/klick.wav").start();
-
-            menuFenster.setVisible(false);
-            menuFenster.dispose();
-            new MultiplayerFenster();
-        }
-
-        if (e.getSource() == this.credits) {
-
-            //Musik
-            new Musik("src/Img/klick.wav").start();
-
-            menuFenster.setVisible(false);
-            menuFenster.dispose();
-            if (istAngemeldet) {
-                new CreditsFenster(speicherVokabelnLernen);
-                JOptionPane.showMessageDialog(null, "Willkommen zurück " + speicherVokabelnLernen.getName() + "!");
-            } else {
-                new CreditsFenster();
-            }
-
-        }
     }
 
 }

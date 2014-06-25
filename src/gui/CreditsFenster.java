@@ -1,5 +1,7 @@
 package gui;
 
+import Img.BildBauer;
+
 import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

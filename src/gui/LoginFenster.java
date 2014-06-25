@@ -1,10 +1,12 @@
 package gui;
 
-import Datenbank.LeseBenutzerdaten;
-import Login.Login;
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.String;
