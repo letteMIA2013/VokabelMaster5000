@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Diese Klasse ist für die erstellung des Statiskfensters zuständig
+ * Diese Klasse ist für die Erstellung des Statistikfensters zuständig
+ * Sie zeigt das Endergebnis des Lernens
  */
 public class StatistikFenster {
 
@@ -19,7 +20,8 @@ public class StatistikFenster {
 
     /**
      * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
-     * @param s ist die Speicherablage, aus denen wir uns die Daten holen
+     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     *          aus denen wir uns die zwischengespeicherten Daten holen
      */
     public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
         speicherVokabelnLernen = s;
@@ -82,6 +84,7 @@ public class StatistikFenster {
         statistikFenster.setLocationRelativeTo(null);
         statistikFenster.setResizable(false);
         statistikFenster.setVisible(true);
+
     }
 
 }

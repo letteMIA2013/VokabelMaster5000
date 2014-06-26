@@ -5,15 +5,13 @@ import java.lang.String;
 import java.lang.System;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * In dieser Klasse wird ein ImageIcon gebaut, welches wir dann in anderen Klassen als Methode übergeben können.
  */
-
 public class BildBauer {
+
     /**
      * @param pfad der Parameter gibt an das man bei dieser Methode einen String übergeben muss
-     * @return Es soll eine URL zurück gegeben werden diese Methode haben wir z.B.
+     * @return Es soll eine URL zurückgegeben werden. Diese Methode haben wir z.B.
      * hier hinzugefügt {@link gui.KatalogwahlFenster}
      */
     public ImageIcon createImageIcon(String pfad) {

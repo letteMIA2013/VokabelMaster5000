@@ -11,34 +11,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Frances Schmidt
- * on 11 Jun 2014
- * VokabelMaster5000
- */
-
-/**
  * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
  * In dieser Klasse wird das KatalogFenster erstellt, wo man dann über Buttons aussuchen kann,
  * was man lernen möchte oder ob man zum Menu zurück möchte.
+ * Der eingeloggte Spieler kann sich auch wieder ausloggen.
  */
 public class KatalogwahlFenster implements ActionListener {
 
-    SpeicherVokabelnLernen speicherVokabelnLernen;
-    JFrame katalogFenster;
-    BildButton deutschEnglisch;
-    BildButton englischDeutsch;
-    BildButton zurueck;
-    BildButton ausloggen;
+    private SpeicherVokabelnLernen speicherVokabelnLernen;
+    private JFrame katalogFenster;
+    private BildButton deutschEnglisch;
+    private BildButton englischDeutsch;
+    private BildButton zurueck;
+    private BildButton ausloggen;
 
     /**
-     *
+     * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
+     * ein Bild hinzugefügt wird.
+     * Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton} und von der Klasse {@link gui.BildBauer}, daraufhin konnte man jedem Button ein
+     * Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     * Die 3 Buttons besitzen alle ein ActionListener.
      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
-     *           damit dort alles zwischengespeichert wird
-     *  Im Konstruktor wird das Fenster gebaut, wo die Größe, die Sichtbarkeit und dem Hintergrund
-     *  ein Bild hinzugefügt wird.
-     *  Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
-     *  Bild hinzufügen die wir dem Panel hinzugefügt haben.
-     *  Die 3 Buttons besitzen alle ein ActionListener.
+     *          damit dort alles zwischengespeichert wird
      */
     public KatalogwahlFenster(SpeicherVokabelnLernen s) {
         speicherVokabelnLernen = s;
@@ -87,11 +81,9 @@ public class KatalogwahlFenster implements ActionListener {
     }
 
     /**
-     *
+     * In dieser Methode überprüfen wir, welcher Button gedrückt wurde. Beim Drücken auf einen Button
+     * kommt ein Klick Sound und das Katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
      * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
-     *
-     * In dieser Methode überprüfen wir welcher Button gedrückt wurde und beim Drücken auf einem Button
-     * kommt ein Klick Sound und das katalogfenster wird geschlossen und dann das entsprechend neue Fenster geöffnet.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -100,7 +92,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == deutschEnglisch) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click01.wav").start();
 
             new DeEngFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -110,7 +102,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == englischDeutsch) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click02.wav").start();
 
             new EngDeFenster(speicherVokabelnLernen);
             katalogFenster.setVisible(false);
@@ -120,7 +112,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == zurueck) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click03.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();
@@ -130,7 +122,7 @@ public class KatalogwahlFenster implements ActionListener {
         if (e.getSource() == this.ausloggen) {
 
             //Musik
-            new Musik("src/sound/klick.wav").start();
+            new Musik("src/sound/click03.wav").start();
 
             katalogFenster.setVisible(false);
             katalogFenster.dispose();

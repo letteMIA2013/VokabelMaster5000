@@ -14,53 +14,75 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * In dieser Klasse wird das Deutsch-Englisch Fenster erstellt, ActionListener und KeyListener werden implementiert,
+ * damit man besser damit arbeiten kann. <br />
+ * Hier wird der Timer für das Lernen der Vokabeln geschrieben und die Position der Fragen und der Antworten festgelegt.
+ * Bei der ActionPerformed Methode wird geprüft, welcher Button gedrückt wurde, ob der Spieler eine Lösung eingegeben
+ * hat und ob diese richtig oder falsch ist.
  */
-
 public class DeEngFenster implements ActionListener, KeyListener {
 
-    int zahlZwischenstand;
-    int zufallsVokabel;
-    int richtigeAntworten;
-    int count;
-    boolean istAuswertung;
-    SpeicherVokabelnLernen speicherVokabelnLernen;
-    Timer timer;
-    JFrame deEngFenster;
-    JLabel vokabel;
-    RoundedTextField eingabe;
-    RoundedTextField ausgabe;
-    BildButton zurueck;
-    BildButton ok;
-    BildButton weiter;
-    BildButton auswertung;
-    MeinLabel zwischenstand;
-    ArrayList<String> listeFrage;
-    ArrayList<String> listeAntwort;
-    Font font;
+    private int zahlZwischenstand;
+    private int zufallsVokabel;
+    private int richtigeAntworten;
+    private int count;
+    private boolean istAuswertung;
+    private SpeicherVokabelnLernen speicherVokabelnLernen;
+    private Timer timer;
+    private JFrame deEngFenster;
+    private JLabel vokabel;
+    private Color FARBE_ROT = new Color(255, 80, 74);
+    private Color FARBE_GRUEN = new Color(180, 238, 180);
+    private RoundedTextField eingabe;
+    private RoundedTextField ausgabe;
+    private BildButton zurueck;
+    private BildButton ok;
+    private BildButton weiter;
+    private BildButton auswertung;
+    private MeinLabel zwischenstand;
+    private ArrayList<String> listeFrage;
+    private ArrayList<String> listeAntwort;
+    private Font font;
 
+    /**
+     * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
+     * ein Bild hinzugefügt {@link gui.BilderPanel}.
+     * Es werden drei Buttons erstellt, von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
+     * Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     * Die vier Buttons besitzen alle ein ActionListener.
+     * Die Daten aus dem Speicher werden den Variablen übergeben, damit man von dort weiterlernen kann,
+     * wo man abgebrochen hat.
+     * Der Timer wird im Konstruktor auch mit gestartet und läuft solange, bis der Spieler entweder auf Auswertung oder auf Zurück klickt.
+     * Der Timer wird erst dann resettet, wenn der Spieler alle Vokabeln durchgegangen ist, ansonsten pausiert
+     * er beim Klicken auf Asuwertung oder Zurück.
+     * @param s ist ein Objekt von der Klasse {@link gui.SpeicherVokabelnLernen}
+     *          damit dort alles zwischengespeichert wird und das Zwischengespeicherte wieder aufgefanen werden kann.
+     */
     public DeEngFenster(SpeicherVokabelnLernen s) {
 
         //Parameter als globale Klasseneigenschaft abspeichern
         speicherVokabelnLernen = s;
 
-        listeFrage = new ArrayList<String>();
-        listeAntwort = new ArrayList<String>();
-
-        //Die Daten aus dem Speicher den Variablen übergeben, damit man dort weitermachen kann, wo man abgebrochen hat
+        //Die Daten aus dem Speicher den Variablen übergeben, damit man von dort weiterlernen kann, wo man abgebrochen hat
         richtigeAntworten = speicherVokabelnLernen.getRichtigeAntwortenDeEng();
         zahlZwischenstand = speicherVokabelnLernen.getZwischenStandDeEng();
-        for (String stringFrage : speicherVokabelnLernen.getAlleFragenListeDeEng()) {
-            listeFrage.add(stringFrage);
+
+        //
+        if (zahlZwischenstand == 1) {
+            listeFrage = new ArrayList<String>();
+            listeAntwort = new ArrayList<String>();
+            for (String stringFrage : speicherVokabelnLernen.getAlleFragenListeDeEng()) {
+                listeFrage.add(stringFrage);
+            }
+            for (String stringAntwort : speicherVokabelnLernen.getAlleAntwortenListeDeEng()) {
+                listeAntwort.add(stringAntwort);
+            }
+        } else {
+            listeFrage = speicherVokabelnLernen.getFragenListeDeEng();
+            listeAntwort = speicherVokabelnLernen.getAntwortenListeDeEng();
         }
 
-        for (String stringAntwort : speicherVokabelnLernen.getAlleAntwortenListeDeEng()) {
-            listeAntwort.add(stringAntwort);
-        }
-
-        //Fenster für die Katalogwahl
+        //Fenster für das Lernen der Englisch Vokabeln
         deEngFenster = new JFrame("Deutsch/Englisch");
         deEngFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +187,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
     }
 
     /**
+     * In dieser Methode wird die Position der Frage dargestellt.
      * @return eine Zahl, die die Position der Frage in der Fragen-ArrayList darstellt.
      */
     public int getFragePos() {
@@ -181,6 +204,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
     }
 
     /**
+     * In dieser Methode wird die Position der Antwort dargestellt.
      * @return eine Zahl, die die Position der Antwort in der Antworten-ArrayList darstellt.
      */
     public int getAntwortPos() {
@@ -249,7 +273,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
 
             //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
             if (eingabe.getText().length() == 0) {
-                ausgabe.setBackground(new Color(255, 80, 74));
+                ausgabe.setBackground(FARBE_ROT);
                 ausgabe.setText("" + listeAntwort.get(getFragePos()));
 
                 //schmeißt die schon abgefragten Vokabeln und Lösungen raus
@@ -262,7 +286,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
 
                 //richtig
                 if (getFragePos() == getAntwortPos()) {
-                    ausgabe.setBackground(new Color(180, 238, 180));
+                    ausgabe.setBackground(FARBE_GRUEN);
                     ausgabe.setText("Richtig!");
                     richtigeAntworten++;
 
@@ -270,7 +294,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
                     listeFrage.remove(zufallsVokabel);
                     listeAntwort.remove(zufallsVokabel);
                 } else {
-                    ausgabe.setBackground(new Color(255, 80, 74));
+                    ausgabe.setBackground(FARBE_ROT);
                     ausgabe.setText("" + listeAntwort.get(getFragePos()));
 
                     //schmeißt die schon abgefragten Vokabeln und Lösungen raus
@@ -345,7 +369,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
 
                     //Falls der Spieler keine Lösung eingegeben hat, zählt es als falsch
                     if (eingabe.getText().length() == 0) {
-                        ausgabe.setBackground(new Color(255, 80, 74));
+                        ausgabe.setBackground(FARBE_ROT);
                         ausgabe.setText("" + listeAntwort.get(getFragePos()));
 
                         //schmeißt die schon abgefragten Vokabeln und Lösungen raus
@@ -356,7 +380,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
                         //Vergleich der Positionen in der jeweiligen ArrayListe: Vokabelabfrage, Eingabe
                         //2 Getter-Methoden weiter unten
                         if (getFragePos() == getAntwortPos()) {
-                            ausgabe.setBackground(new Color(180, 238, 180));
+                            ausgabe.setBackground(FARBE_GRUEN);
                             ausgabe.setText("Richtig!");
                             richtigeAntworten++;
 
@@ -364,7 +388,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
                             listeFrage.remove(zufallsVokabel);
                             listeAntwort.remove(zufallsVokabel);
                         } else {
-                            ausgabe.setBackground(new Color(255, 80, 74));
+                            ausgabe.setBackground(FARBE_ROT);
                             ausgabe.setText("" + listeAntwort.get(getFragePos()));
 
                             //schmeißt die schon abgefragten Vokabeln und Lösungen raus

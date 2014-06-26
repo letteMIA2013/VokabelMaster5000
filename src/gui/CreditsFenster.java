@@ -10,12 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Ka Yan Lam
- * on 15 Jun 2014
- * VokabelMaster5000
- */
-
-/**
  * In dieser Klasse wird das Fenster Credits erstellt wo man dann erkennen soll, wer was gemacht hat.
  */
 public class CreditsFenster implements ActionListener {
@@ -34,8 +28,7 @@ public class CreditsFenster implements ActionListener {
 
     /**
      * @param speicherVokabelnLernen diesen braucht man damit in der Klasse SpeicherVokabelnLernen
-     *                               die Daten abgelegt werdem
-     *
+     *                               die Daten abgelegt werden
      */
     public CreditsFenster(SpeicherVokabelnLernen speicherVokabelnLernen) {
         this.speicherVokabelnLernen = speicherVokabelnLernen;

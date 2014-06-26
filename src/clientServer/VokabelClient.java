@@ -1,4 +1,4 @@
-package clientserver;/*
+package clientServer;/*
  *  Copyright 2013 ADVA Optical Networking SE. All rights reserved.
  *
  *  Owner: croussel

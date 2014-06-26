@@ -3,13 +3,8 @@ package gui;
 import java.util.ArrayList;
 
 /**
- * Created by Ka Yan Lam
- * on 14 Jun 2014
- * VokabelMaster5000
- */
-
-/**
- * In dieser Klasse werden die Daten in ArrayLists gespeichert
+ * In dieser Klasse werden Daten abgespeichert.
+ * Sie dient als Zwischenspeicher für das Vokabeltraining.
  */
 public class SpeicherVokabelnLernen {
 
@@ -29,39 +24,6 @@ public class SpeicherVokabelnLernen {
     ArrayList<String> antwortenListeEngDe;
     ArrayList<String> alleFragenListeDeEng;
     ArrayList<String> alleFragenListeEngDe;
-
-    public ArrayList<String> getAlleFragenListeDeEng() {
-        return alleFragenListeDeEng;
-    }
-
-    public void setAlleFragenListeDeEng(ArrayList<String> alleFragenListeDeEng) {
-        this.alleFragenListeDeEng = alleFragenListeDeEng;
-    }
-
-    public ArrayList<String> getAlleFragenListeEngDe() {
-        return alleFragenListeEngDe;
-    }
-
-    public void setAlleFragenListeEngDe(ArrayList<String> alleFragenListeEngDe) {
-        this.alleFragenListeEngDe = alleFragenListeEngDe;
-    }
-
-    public ArrayList<String> getAlleAntwortenListeDeEng() {
-        return alleAntwortenListeDeEng;
-    }
-
-    public void setAlleAntwortenListeDeEng(ArrayList<String> alleAntwortenListeDeEng) {
-        this.alleAntwortenListeDeEng = alleAntwortenListeDeEng;
-    }
-
-    public ArrayList<String> getAlleAntwortenListeEngDe() {
-        return alleAntwortenListeEngDe;
-    }
-
-    public void setAlleAntwortenListeEngDe(ArrayList<String> alleAntwortenListeEngDe) {
-        this.alleAntwortenListeEngDe = alleAntwortenListeEngDe;
-    }
-
     ArrayList<String> alleAntwortenListeDeEng;
     ArrayList<String> alleAntwortenListeEngDe;
 
@@ -133,19 +95,68 @@ public class SpeicherVokabelnLernen {
         this.passwort = passwort;
     }
 
+    public ArrayList<String> getFragenListeDeEng() {
+        return fragenListeDeEng;
+    }
+
     public void setFragenListeDeEng(ArrayList<String> fragenListeDeEng) {
         this.fragenListeDeEng = fragenListeDeEng;
+    }
+
+    public ArrayList<String> getFragenListeEngDe() {
+        return fragenListeEngDe;
     }
 
     public void setFragenListeEngDe(ArrayList<String> fragenListeEngDe) {
         this.fragenListeEngDe = fragenListeEngDe;
     }
 
+    public ArrayList<String> getAntwortenListeDeEng() {
+        return antwortenListeDeEng;
+    }
+
     public void setAntwortenListeDeEng(ArrayList<String> antwortenListeDeEng) {
         this.antwortenListeDeEng = antwortenListeDeEng;
+    }
+
+    public ArrayList<String> getAntwortenListeEngDe() {
+        return antwortenListeEngDe;
     }
 
     public void setAntwortenListeEngDe(ArrayList<String> antwortenListeEngDe) {
         this.antwortenListeEngDe = antwortenListeEngDe;
     }
+
+    public ArrayList<String> getAlleFragenListeDeEng() {
+        return alleFragenListeDeEng;
+    }
+
+    public void setAlleFragenListeDeEng(ArrayList<String> alleFragenListeDeEng) {
+        this.alleFragenListeDeEng = alleFragenListeDeEng;
+    }
+
+    public ArrayList<String> getAlleFragenListeEngDe() {
+        return alleFragenListeEngDe;
+    }
+
+    public void setAlleFragenListeEngDe(ArrayList<String> alleFragenListeEngDe) {
+        this.alleFragenListeEngDe = alleFragenListeEngDe;
+    }
+
+    public ArrayList<String> getAlleAntwortenListeDeEng() {
+        return alleAntwortenListeDeEng;
+    }
+
+    public void setAlleAntwortenListeDeEng(ArrayList<String> alleAntwortenListeDeEng) {
+        this.alleAntwortenListeDeEng = alleAntwortenListeDeEng;
+    }
+
+    public ArrayList<String> getAlleAntwortenListeEngDe() {
+        return alleAntwortenListeEngDe;
+    }
+
+    public void setAlleAntwortenListeEngDe(ArrayList<String> alleAntwortenListeEngDe) {
+        this.alleAntwortenListeEngDe = alleAntwortenListeEngDe;
+    }
+
 }
