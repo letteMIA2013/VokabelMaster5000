@@ -50,7 +50,7 @@ public class RegistrierungFenster {
         ImageIcon signUpIcon = new BildBauer().createImageIcon("/Img/signUpButton.png");
         BildButton signUp = new BildButton(signUpIcon, 400);
 
-
+//Zum Anzeigen der Passwortstaerke made by Defalt
        final JLabel passwortstaerke = new JLabel(" ");
         passwortstaerke.setOpaque(true);
         pwText.addKeyListener(new KeyAdapter() {
