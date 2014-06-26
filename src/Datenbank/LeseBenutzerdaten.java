@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-  /**
+
+    /**
      * Created by Darleen & Marcel on 04.06.14.<br></br>
      *
-     *
-     *  <br></br>Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
+     * <br></br>Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
      * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben.
      * return ArrayList<String[]>
      */

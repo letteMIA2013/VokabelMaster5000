@@ -1,5 +1,7 @@
 package gui;
 
+import Img.BildBauer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -74,7 +76,6 @@ public class KatalogwahlFenster implements ActionListener {
         katalogFenster.add(katalogBg);
 
         //Fenstergröße setzen und anzeigen lassen
-
         katalogFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         katalogFenster.setSize(415, 400);
         katalogFenster.setLocationRelativeTo(null);

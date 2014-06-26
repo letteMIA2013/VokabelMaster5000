@@ -1,5 +1,6 @@
 package gui;
 
+import Img.BildBauer;
 import Register.Registrieren;
 
 import javax.swing.*;
@@ -10,8 +11,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * Diese Klasse ist für die Erstellung des Registrierungs Fensters zuständig.
+ * Diese Klasse ist für die Erstellung des Registrierungsfensters zuständig.
  * Neue Nutzer können sich hier einen eigenen Account zulegen.
+ * Der neue Nutzer wird nur dann in der Datenbank registriert, wenn der Benutzername noch nicht vorhanden ist.
  */
 public class RegistrierungFenster {
 
@@ -22,7 +24,8 @@ public class RegistrierungFenster {
 
     /**
      * In dieser Methode wird das Fenster erstellt, der Hintergrund wird gesetzt und eine Weiterleitung
-     * zum Loginfenster durch einen ActionListener
+     * zum {@link gui.LoginFenster} durch einen ActionListener durchgeführt.
+     * Das Passwort wird auf Stärke/Sicherheit geprüft.
      */
     public RegistrierungFenster() {
 
