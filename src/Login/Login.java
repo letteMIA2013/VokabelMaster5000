@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * VokabelMaster5000
  */
 
+/**
+ * Die Klasse überprüft ob die im Loginfenster eingegeben namen vorhanden sind wenn ja werden die Daten aus der Datenbak ausgelesen
+ */
 public class Login {
 
     String id;

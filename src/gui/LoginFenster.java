@@ -9,30 +9,22 @@ import java.awt.event.*;
 import java.lang.String;
 import java.util.ArrayList;
 
-/**
- * Created by Frances Schmidt
- * on 11 Jun 2014
- * VokabelMaster5000
- */
+public class LoginFenster {
 
-public class
-        LoginFenster {
-
-    String id;
-    String passwort;
-    JFrame loginFenster;
-    RoundedTextField idText;
-    RoundedPassField pwText;
-    ArrayList<String[]> stringListe;
-    ArrayList<String> listeName;
-    ArrayList<String> listePasswort;
-    ArrayList<String> listePunkte;
+    private String id;
+    private String passwort;
+    private JFrame loginFenster;
+    private RoundedTextField idText;
+    private RoundedPassField pwText;
+    private ArrayList<String> listeName;
+    private ArrayList<String> listePasswort;
+    private ArrayList<String> listePunkte;
 
     public LoginFenster() {
 
         //Benutzerdaten holen
         LeseBenutzerdaten daten = new LeseBenutzerdaten();
-        stringListe = daten.leseUserdaten();
+        ArrayList<String[]> stringListe = daten.leseUserdaten();
         listeName = new ArrayList<String>();
         listePasswort = new ArrayList<String>();
         listePunkte = new ArrayList<String>();

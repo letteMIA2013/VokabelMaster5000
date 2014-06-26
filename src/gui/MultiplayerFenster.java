@@ -14,11 +14,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * Diese Klasse implementiert einen ActionListener für die Antwortmöglichkeiten und den Schließen-Button
+ * und einen KeyListener für die drei Tasten, die jeweils als Buzzer dienen.
+ * Hier werden Spieler angelegt und in die Datenbank der Highscore eingetragen {@link Datenbank.SchreibeHighscore}
+ * mit dem Startwert 0 Punkte. Man kann zwischen zwei und drei Spielern wählen.
+ * Der Fragekatalog für das Spiel wird aus der Datenbank ausgelesen {@link Datenbank.LeseDeEngVok} und in zwei
+ * {@link java.util.ArrayList} gepackt. Eine ArrayList beinhaltet nur die Fragen und die andere die Antworten dazu.
+ * Für die Überprüfung der richtigen Antwort verwendet man die Position in der ArrayListe.
+ * Die Auswahl der Antworten ist nur dann möglich, wenn einer der Spieler vorher gebuzzert hat.
+ * Mit jeder richtig beantworteten Frage bekommt der jeweilige Spieler einen Punkt.
+ * Ein {@link javax.swing.Timer} startet bei jeder neuen Frage und bei der Auswahl der Antwort bei 20s und läuft dann rückwärts
+ * bis die Zeit abgelaufen ist. Danach erscheint die nächste Frage.
+ * Nach der letzten Vokabel öffnet sich das Highscore Fenster.
  */
-
 public class MultiplayerFenster implements KeyListener, ActionListener {
 
     int count;
@@ -62,6 +70,11 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
     ArrayList<String> liste;
     Font font;
 
+    /**
+     * Im Konstruktor wird das Fenster gebaut.
+     * Bei zwei Spielern gibt es nur zwei Buzzer und bei drei Spielern drei Buzzer.
+     * Dem Fenster/JFrame bekommt den KeyListener.
+     */
     public MultiplayerFenster() {
         fragenKatalog();
 
@@ -201,6 +214,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.setVisible(true);
     }
 
+    /**
+     * In dieser Methode wird die Position der Frage dargestellt.
+     * @return eine Zahl, die die Position der Frage in der Fragen-ArrayList darstellt.
+     */
     public int getFragePos() {
         int fragePos = 0;
 
@@ -214,8 +231,22 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         return fragePos;
     }
 
+    /**
+     * In dieser Methode wird die Position der ausgewählten Antwort dargestellt.
+     * @return eine Zahl, die die Position der ausgewählten Antwort in der Antwort-ArrayList darstellt.
+     */
+    public int getGedruecktPos() {
+        return gedruecktPos;
+    }
+
+    /**
+     * Addiert den Zwischenstand um einen auf und setzt den Timer zurück.
+     * Setzt mit der Klasse {@link java.util.Random} die Position des Buttons mit der richtigen Antwort fest.
+     * Die restlichen Buttons werden mit falschen Antworten aus der Antworten-ArrayListe gefüllt.
+     * Nach der letzten Frage erscheint die Highscore.
+     */
     public void naechsteFrage() {
-        if (zahlZwischenstand < 5) {
+        if (zahlZwischenstand < 2) {
             zahlZwischenstand++;
             zwischenstand.setText(zahlZwischenstand + " / 5");
             multiplayerFenster.setFocusable(true);
@@ -286,6 +317,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * In dieser Methode werden die Daten aus der Highscore Datenbank ausgelesen und in eine
+     * neue ArrayListe gepackt.
+     */
     public void highscore() {
 
         //Highscore aus der Datenbank
@@ -300,6 +335,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * In der Methode werden die Fragen und Antworten aus der Datenbank {@link Datenbank.LeseDeEngVok} ausgelesen
+     * und in die entsprechende ArrayList für Fragen und Antworten gepackt.
+     */
     public void fragenKatalog() {
 
         //Vokabeln aus der Datenbank
@@ -313,13 +352,16 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
             listeFrage.add(pair[0]);
             listeAntwort.add(pair[1]);
         }
-
         for (String[] pair : stringListe) {
             listeFrage.add(pair[1]);
             listeAntwort.add(pair[0]);
         }
     }
 
+    /**
+     * Diese Methode beinhaltet einen Timer.
+     * Der Timer läuft drei Sekunden und ruft dann die nächste Frage auf.
+     */
     public void kleinePauseTimer() {
         countPause = 3;
         pause = new Timer(1000, new ActionListener() {
@@ -340,6 +382,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         pause.start();
     }
 
+    /**
+     * Startet den Timer.
+     * Bei Ablauf der Zeit erscheint die nächste Frage.
+     */
     public void resettedTimer() {
         count = 21;
         timer = new Timer(1000, new ActionListener() {
@@ -364,7 +410,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
                 //Wenn Zeit abgelaufen, dann nächste Frage
                 if (count == 0) {
-                    System.out.println("Jetzt sollte die nächste Frage erscheinen");
+                    System.out.println("Jetzt sollte die nächste Frage erscheinen hehe");
                     timer.stop();
                     naechsteFrage();
                 }
@@ -374,6 +420,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         timer.start();
     }
 
+    /**
+     * Entfernt den KeyListener und fügt den Buttons einen ActionListener hinzu.
+     * Der Timer wird zurückgesetzt.
+     */
     public void buzzered() {
         multiplayerFenster.removeKeyListener(this);
 
@@ -390,6 +440,9 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttons.get(3).addActionListener(this);
     }
 
+    /**
+     * Entfernt die ActionListener von den Buttons.
+     */
     public void deaktiviereButton() {
         buttons.get(0).removeActionListener(this);
         buttons.get(1).removeActionListener(this);
@@ -397,10 +450,12 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttons.get(3).removeActionListener(this);
     }
 
-    public int getGedruecktPos() {
-        return gedruecktPos;
-    }
-
+    /**
+     * Diese Methode überprüft, ob die Frage und die Antwort in ihrer jeweiligen ArrayListe dieselbe
+     * Position einnehmen.
+     * Ist die gewählte Antwort falsch, dann fäbt sich der Hintergrund rot. Die richtige Antwort wird grün untermalt.
+     * Bei einer richtig gewählten Antwort bekommt der jeweilige Spieler einen Punkt.
+     */
     public void pruefeAntwort() {
         timer.stop();
         kleinePauseTimer();
@@ -453,6 +508,12 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         buttonVier = false;
     }
 
+    /**
+     * Der Text wird in der Antworten ArrayListe gesucht und die Position
+     * der Antwort mit einer Variable festgehalten.
+     * Die Antwort wird auf Richtigkeit geprüft.
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -510,6 +571,10 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
 
     }
 
+    /**
+     * Hier werden die Buzzer für die jeweiligen Spieler festgelegt.
+     * @param e damit wir ein Objekt von ActionEvent haben und dieses dann in der Methode benutzen können.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
