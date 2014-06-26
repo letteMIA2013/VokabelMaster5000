@@ -4,13 +4,18 @@ import javax.swing.*;
 import java.awt.Dimension;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * Diese Klasse erweitert die Klasse {@link javax.swing.JButton}.
+ * Sie verändert das Aussehen des Buttons, indem sie den Rahmen und den Fokus rausnimmt.
+ * Außerdem werden alle Texte zentriert auf den Button gesetzt.
+ * Die Klasse bietet mehrere Varianten an Konstruktoren.
  */
-
 public class BildButton extends JButton {
 
+    /**
+     * Sie verändert das Aussehen des Buttons, indem sie den Rahmen und den Fokus rausnimmt.
+     * Außerdem werden alle Texte zentriert auf den Button gesetzt.
+     * @param icon setzt das übergebene Icon auf den Button.
+     */
     public BildButton(Icon icon) {
         setIcon(icon);
         setHorizontalTextPosition(SwingConstants.CENTER);
@@ -21,6 +26,12 @@ public class BildButton extends JButton {
         setHorizontalAlignment(CENTER);
     }
 
+    /**
+     * Sie verändert das Aussehen des Buttons, indem sie den Rahmen und den Fokus rausnimmt.
+     * Außerdem werden alle Texte zentriert auf den Button gesetzt.
+     * @param icon setzt das übergebene Icon auf den Button.
+     * @param dimensionWidth setzt die breite des Buttons, die der Button für sich in Anspruch nimmt
+     */
     public BildButton(Icon icon, int dimensionWidth) {
         setIcon(icon);
         setPreferredSize(new Dimension(dimensionWidth, this.getPreferredSize().height));
