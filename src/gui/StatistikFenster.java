@@ -2,73 +2,90 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
- * Diese Klasse ist für die erstellung des Statiskfensters zuständig
+ * Diese Klasse ist für die Erstellung des Statistikfensters zuständig
+ * Sie zeigt das Endergebnis des Lernens
  */
 public class StatistikFenster {
 
+    boolean istDeEngKatalog;
+    SpeicherVokabelnLernen speicherVokabelnLernen;
+    JFrame statistikFenster;
+    MeinLabel timeUser;
+    MeinLabel richtigeFragenUser;
+    MeinLabel punkteUser;
+
     /**
      * Diese Methode baut das Fenster sowie die dazu gehörige Tabelle
-     * @param s
+     * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
+     *          aus denen wir uns die zwischengespeicherten Daten holen
      */
-    public StatistikFenster(SpeicherVokabelnLernen s) {
+    public StatistikFenster(SpeicherVokabelnLernen s, boolean istDeEng) {
+        speicherVokabelnLernen = s;
+        istDeEngKatalog = istDeEng;
 
+        statistikFenster = new JFrame("Auswertung");
 
-        JFrame statistikFenster = new JFrame("Auswertung");
-        JPanel statistikPanel = new JPanel(new GridLayout(2, 4));
+        //Hintergrundbild
+        BilderPanel statistikBg = new BilderPanel("/Img/statsBg.png");
+
+        JPanel statistikPanel = new JPanel(new GridBagLayout());
+        statistikPanel.setOpaque(false);
 
         // Tabellenkopf mit Zeilen
-        JLabel name = new MeinLabel("Name");
-        JLabel time = new MeinLabel("Zeit in s");
-        JLabel richtigeFragen = new MeinLabel("Anzahl richtiger Fragen");
-        JLabel punkte = new MeinLabel("Erreichte Punktzahl");
-        JLabel nameUser = new MeinLabel("" + s.getName());
-        JLabel timeUser = new MeinLabel("" + s.getTime());
-        JLabel richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntworten() + "/40");
-        JLabel punkteUser = new MeinLabel("" + s.getPunkte() + "/100");
-
-        statistikFenster.add(statistikPanel);
-        statistikPanel.add(name);
-        statistikPanel.add(time);
-        statistikPanel.add(richtigeFragen);
-        statistikPanel.add(punkte);
-        statistikPanel.add(nameUser);
-        statistikPanel.add(timeUser);
-        statistikPanel.add(richtigeFragenUser);
-        statistikPanel.add(punkteUser);
-
-        statistikFenster.pack();
-        statistikFenster.setVisible(true);
-        statistikFenster.setSize(415, 400);
-
-    }
-
-    /**
-     * Diese Klasse erweiter JLabel und setzt alle Texte zentriert ein
-     */
-    private class MeinLabel extends JLabel {
-        private MeinLabel(String t) {
-
-            super(t);
-            setOpaque(true);
-            setHorizontalAlignment(CENTER);
-
-            /*int r = new Random().nextInt(50);
-            int g = new Random().nextInt(50);
-            int b = new Random().nextInt(50);
-            Color color = new Color(r, g, b);
-            setBackground(color);*/
+        MeinLabel nameUser = new MeinLabel(s.getName());
+        if (istDeEngKatalog) {
+            timeUser = new MeinLabel("" + s.getTimeDeEng());
+            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenDeEng() + "/" + s.getZwischenStandDeEng());
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenDeEng())/100));
+        } else {
+            timeUser = new MeinLabel("" + s.getTimeEngDe());
+            richtigeFragenUser = new MeinLabel("" + s.getRichtigeAntwortenEngDe() + "/" + s.getZwischenStandEngDe());
+            punkteUser = new MeinLabel("" + ((86*s.getRichtigeAntwortenEngDe())/100));
         }
+
+        BildButton zumMenu = new BildButton(new BildBauer().createImageIcon("/Img/cancelButton.png"));
+        zumMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                statistikFenster.setVisible(false);
+                statistikFenster.dispose();
+                if (istDeEngKatalog) {
+                    if (speicherVokabelnLernen.getZwischenStandDeEng() == 86) {
+                        speicherVokabelnLernen.setZwischenStandDeEng(1);
+                    } else if (speicherVokabelnLernen.getZwischenStandDeEng() < 86) {
+                        speicherVokabelnLernen.setZwischenStandDeEng(speicherVokabelnLernen.getZwischenStandDeEng() + 1);
+                    }
+                } else {
+                    if (speicherVokabelnLernen.getZwischenStandEngDe() == 86) {
+                        speicherVokabelnLernen.setZwischenStandEngDe(1);
+                    } else if (speicherVokabelnLernen.getZwischenStandEngDe() < 86) {
+                        speicherVokabelnLernen.setZwischenStandEngDe(speicherVokabelnLernen.getZwischenStandEngDe() + 1);
+                    }
+                }
+
+                new KatalogwahlFenster(speicherVokabelnLernen);
+            }
+        });
+
+        statistikPanel.add(zumMenu, new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 350, 0, 0), 0, 0));
+        statistikPanel.add(nameUser, new GridBagConstraints(0, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(108, 0, 0, 200), 0, 0));
+        statistikPanel.add(punkteUser, new GridBagConstraints(1, 1, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(108, 200, 0, 0), 0, 0));
+        statistikPanel.add(richtigeFragenUser, new GridBagConstraints(0, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(85, 0, 0, 200), 0, 0));
+        statistikPanel.add(timeUser, new GridBagConstraints(1, 2, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(85, 200, 0, 0), 0, 0));
+
+        statistikBg.add(statistikPanel);
+        statistikFenster.add(statistikBg);
+
+        statistikFenster.setSize(415, 400);
+        statistikFenster.setLocationRelativeTo(null);
+        statistikFenster.setResizable(false);
+        statistikFenster.setVisible(true);
+
     }
-
-    public static void main(String[] a) {
-//
-//        new StatistikFenster();
-//
-   }
-
 
 }
 
