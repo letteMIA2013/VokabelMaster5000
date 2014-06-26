@@ -3,7 +3,7 @@ Zelt/tent
 leihen/to borrow
 Geschichte/history
 versuchen/to try
-vertrauen/to trust
+vertrauen/trust
 zustimmen/to agree
 einladen/to invite
 Satz/sentence
@@ -50,7 +50,7 @@ Eis/ice
 Bombe/bomb
 Auto/car
 Zug/train
-Fahrrad/bicycle
+Fahrrad/bycicle
 Huegel/hill
 Berg/mountain
 Vogel/bird
@@ -60,7 +60,7 @@ Lehrer/teacher
 Schüler/pupil
 Menschen/people
 anbieten/to advertise
-notwendig/to necessary
+notwendig/necessary
 einbeziehen/to involve
 Pferd/horse
 Schlange/snake

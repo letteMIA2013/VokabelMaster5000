@@ -1,13 +1,21 @@
 package gui;
 
+import Img.BildBauer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
 /**
+ * created by Marc & Marius!
+ *
  * Diese Klasse ist für die Erstellung des Statistikfensters zuständig
  * Sie zeigt das Endergebnis des Lernens
+ *
+ *
  */
 public class StatistikFenster {
 
@@ -28,6 +36,7 @@ public class StatistikFenster {
         istDeEngKatalog = istDeEng;
 
         statistikFenster = new JFrame("Auswertung");
+        statistikFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
 
         //Hintergrundbild
         BilderPanel statistikBg = new BilderPanel("/Img/statsBg.png");
@@ -80,8 +89,6 @@ public class StatistikFenster {
         statistikBg.add(statistikPanel);
         statistikFenster.add(statistikBg);
 
-
-        statistikFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         statistikFenster.setSize(415, 400);
         statistikFenster.setLocationRelativeTo(null);
         statistikFenster.setResizable(false);

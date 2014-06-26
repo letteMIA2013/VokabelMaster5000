@@ -1,6 +1,7 @@
 package gui;
 
 import Datenbank.LeseBenutzerdaten;
+import Img.BildBauer;
 import Login.Login;
 
 import javax.swing.*;
@@ -11,7 +12,9 @@ import java.lang.String;
 import java.util.ArrayList;
 
 /**
- * 
+ * In dieser Klasse wird das Loginfenster erstellt.
+ * Hier wird der eingegebene Benutzername mit dem eingegebenen Passwort auf Zugehörigkeit geprüft.
+ * Wenn sie zueinander gehören, dann wird der Name und das Passwort an die Klasse {@link Login.Login} weitergeleitet.
  */
 public class LoginFenster {
 
@@ -24,6 +27,13 @@ public class LoginFenster {
     private ArrayList<String> listePasswort;
     private ArrayList<String> listePunkte;
 
+    /**
+     * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
+     * ein Bild hinzugefügt {@link gui.BilderPanel}.
+     * Es werden drei Buttons erstellt, von der Klasse {@link gui.BildButton}, daraufhin konnte man jedem Button ein
+     * Bild hinzufügen die wir dem Panel hinzugefügt haben.
+     * Die Benutzerdaten werden aus der Klasse {@link Datenbank.LeseBenutzerdaten} in drei ArrayListen gepackt.
+     */
     public LoginFenster() {
 
         //Benutzerdaten holen
@@ -137,6 +147,12 @@ public class LoginFenster {
         loginFenster.setVisible(true);
     }
 
+    /**
+     * In dieser Methode wird überprüft, ob der Benutzername mit dem Password übereinstimmen. Wenn dies der Fall
+     * ist, ist man automatisch eingeloggt und es erscheint ein Willkommenstext mit dem Benutzernamen.
+     * Das {@link gui.KatalogwahlFenster} wird geöffnet.
+     * Eine Fehlermeldung erscheint, wenn man die falschen Daten eingegeben hat.
+     */
     public void loginUser() {
         //Musik
         new Musik("src/sound/click01.wav").start();

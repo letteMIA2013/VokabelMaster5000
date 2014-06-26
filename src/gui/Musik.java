@@ -11,11 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * Created by Ka Yan Lam
- * on 14 Jun 2014
- * VokabelMaster5000
- */
 
 public class Musik extends Thread {
 

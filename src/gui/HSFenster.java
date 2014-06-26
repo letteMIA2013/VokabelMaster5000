@@ -1,41 +1,52 @@
 package gui;
 
+import Img.BildBauer;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
+ * Created by Justus Heyen
+ * on 12 Jun 2014
+ * VokabelMaster5000
+ *
  * Diese Klasse ist für die Highscore zuständig. Sie erweitert die Klasse JFrame.
  * Sie holt sich die Daten aus der Datenbank {@link Datenbank.LeseHighscore} und setzt
  * die einzelnen Daten als Text in JLabels ein, die wiederum in ein GridLayout gepackt werden,
  * damit man die Daten tabellarisch festhalten kann.
  * Die Highscoreliste zeigt nur die 5 besten Spieler an.
- */
+ * */
+
 public class HSFenster extends JFrame {
 
-    /**
-     * Im Konstruktor wird das Aussehen des Fensters/JFrames so angepasst, dass man drei Spalten für
-     * Platz, Name und Punkte hat und entsprechende Zeilen, je nachdem wieviele Einträge die Datenbank hat.
-     * Ab dem 5. Eintrag werden die Einträge der HighscoreListe nicht mehr ausgelesen.
-     * Die Punkte werden nach der Größe sortiert. Die höchste Punktzahl landet auf den ersten Platz in der Tabelle.
-     * @param daten ist eine ArrayListe mit Strings, die die Namen und die Punkte jeden Spielers beinhaltet
-     */
+
+    private final Font font;
+
     public HSFenster(ArrayList<String> daten) {
 
         //Größe, Titel und Layout setzen
         setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         setSize(400, 400);
         setTitle("Highscore");
-        if (daten.size() < 5) {
-            setLayout(new GridLayout(daten.size() + 1, 3, 5, 5));
-        } else {
-            setLayout(new GridLayout(6, 3, 5, 5));
-        }
-        setLocationRelativeTo(null);
-        setResizable(false);
-        add(new JLabel("Platz", SwingConstants.CENTER));
-        add(new JLabel("Name", SwingConstants.CENTER));
-        add(new JLabel("Punkte", SwingConstants.CENTER));
+                setLocationRelativeTo(null);
+
+        font = new Font("Arial", Font.BOLD, 16);
+
+
+        JPanel panel = new BilderPanel("/Img/VM5000.png", 0.25f);
+        panel.setLayout(new GridLayout(6, 3, 5, 5));
+
+//        setResizable(false);
+        panel.add(new MeinLabel("Platz"));
+        panel.add(new MeinLabel("Name"));
+        panel.add(new MeinLabel("Punkte"));
+        setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
+
+
+
+
 
         //Daten aus der Datenbank in Listen packen
         Map<String, String> map = new HashMap<String, String>();
@@ -55,7 +66,7 @@ public class HSFenster extends JFrame {
             public int compare(String o1, String o2) {
                 int one = Integer.parseInt(o1);
                 int two = Integer.parseInt(o2);
-                return one < two? 1: -1;
+                return one < two ? 1 : -1;
             }
         });
 
@@ -64,12 +75,51 @@ public class HSFenster extends JFrame {
         for (String score : alleScores) {
             if (i <= 5) {
                 String name = map.get(score);
-                add(new JLabel("" + i++, SwingConstants.CENTER));
-                add(new JLabel(name, SwingConstants.CENTER));
-                add(new JLabel(score, SwingConstants.CENTER));
+               panel.add(new MeinLabel("" + i++));
+               panel.add(new MeinLabel(name));
+               panel.add(new MeinLabel(score));
             }
         }
 
+        add(panel);
+
         setVisible(true);
     }
+
+    private class MeinLabel extends JLabel{
+
+        private MeinLabel() {
+            setFont(font);
+            setForeground(Color.RED);
+        }
+        private MeinLabel(String s) {
+            super(s);
+            setFont(font);
+            setForeground(Color.RED);
+        }
+    }
+
+
+//    public static void main(String[] args) {
+//
+//        // wir erzeugen uns ein paar Pseudo Daten:
+//
+//        ArrayList<String> strings = new ArrayList<String>();
+//        strings.add("Justus/5435");
+//        strings.add("Marc/0");
+//        strings.add("Ka-Yan/12");
+//        strings.add("Marius/176");
+//        strings.add("Justus/3214");
+//        strings.add("Marc/34");
+//        strings.add("Ka-Yan/546");
+//        strings.add("Marius/345");
+//        strings.add("Ka-Yan/64");
+//        strings.add("Marius/766");
+//
+//
+//        new HSFenster(strings);
+//    }
+
+
+
 }
