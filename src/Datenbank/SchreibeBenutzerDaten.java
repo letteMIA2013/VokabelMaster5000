@@ -29,7 +29,7 @@ public class SchreibeBenutzerDaten
      * Der boolean datenAktualisiert wird dazu benutz um den Status nach ende der Aktualisierung abzufragen. Wird er nach
      * erfolgreichem hinzufügen des neuen Highscores auf true gesetzt so wird zum Schluss ein Enum zurückgegeben der den
      * Fehlerstatus angibt und einem eine Rückmeldung gibt. Die entesprechenden Enumwerte wurden in FEHLER_TYP erstellt.
-     * Mit flush werden dann die entsprechenden Daten überschrieben.
+     * Mit flush werden dann die entsprechenden Daten überschrieben..
      *
      * @param id
      * @param neuerWert

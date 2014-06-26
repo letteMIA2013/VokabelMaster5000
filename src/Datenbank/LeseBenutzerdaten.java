@@ -16,7 +16,7 @@ import java.util.ArrayList;
     public class LeseBenutzerdaten {
 
         /**Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
-         * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben.
+         * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben..
          * return ArrayList<String[]>*/
         public static ArrayList<String[]> leseUserdaten() {
             FileReader fr = null;
