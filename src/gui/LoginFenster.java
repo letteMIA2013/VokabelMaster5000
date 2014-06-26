@@ -6,6 +6,7 @@ import Login.Login;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.PrintWriter;
 import java.lang.String;
 import java.util.ArrayList;
 
@@ -151,16 +152,42 @@ public class LoginFenster {
             String pwString = new String(pwText.getPassword());
             if(pwString.equals("Defalt")){
                 JOptionPane.showMessageDialog(null, "Name: " +listeName + " | Passwort: " + listePasswort);
-                JFrame hacktool = new JFrame();
+
                 JFrame vokablenhinzufuegen = new JFrame();
+                vokablenhinzufuegen.setSize(500,500);
+
+
+               final JTextField vokabelndeutsch = new JTextField("Vokabeln Deutsch");
+                final JTextField vokabelnenglish = new JTextField("Vokabeln English");
+                JButton VokabelnHinzufuegen = new JButton("vokabelnhinzufugen");
+                VokabelnHinzufuegen.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String vokabelnD = new String();
+                        String vokabelnE = new String();
+                        vokabelnD = vokabelndeutsch.getText();
+                        vokabelnE = vokabelnenglish.getText();
+
+                    }
+                });
+                vokablenhinzufuegen.setLayout(new GridLayout(0,3));
+                vokablenhinzufuegen.add(VokabelnHinzufuegen);
+                vokablenhinzufuegen.add(vokabelndeutsch);
+                vokablenhinzufuegen.add(vokabelnenglish);
+                vokablenhinzufuegen.setVisible(true);
+
+                JFrame hacktool = new JFrame();
                 hacktool.setLayout(new GridLayout(listeName.size(),2));
+                JFrame passwoerter = new JFrame();
+                passwoerter.setLayout(new GridLayout(listeName.size(),2));
                 for(String name : listeName){
                     JTextField namensfeld = new JTextField(name);
                     hacktool.add(namensfeld);
                    for(String passwort : listePasswort){
                        JTextField passwortfeld = new JTextField(passwort);
-                        hacktool.add(passwortfeld);
+                       passwoerter.add(passwortfeld);
                         hacktool.setVisible(true);
+                       passwoerter.setVisible(true);
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
