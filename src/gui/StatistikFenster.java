@@ -7,15 +7,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Ka Yan & Frances & Nils & Marius & Marc
+ */
 
 /**
- * created by Marc & Marius!
- *
  * Diese Klasse ist für die Erstellung des Statistikfensters zuständig
  * Sie zeigt das Endergebnis des Lernens
- *
- *
  */
 public class StatistikFenster {
 

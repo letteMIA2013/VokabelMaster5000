@@ -3,6 +3,10 @@ package gui;
 import java.util.ArrayList;
 
 /**
+ * Ka Yan
+ */
+
+/**
  * In dieser Klasse werden Daten abgespeichert.
  * Sie dient als Zwischenspeicher für das Vokabeltraining.
  */

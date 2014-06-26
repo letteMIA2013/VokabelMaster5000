@@ -6,10 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Darleen & Marcel
+ */
+
     /**
-     * Created by Darleen & Marcel on 04.06.14.<br></br>
-     *
-     * <br></br>Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
+     * Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
      * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben.
      * return ArrayList<String[]>
      */
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 
         /**Diese Methode ließt die Daten aus der UserLogin.txt datei aus spaltet <br></br> die Daten zu String
          * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben..
-         * return ArrayList<String[]>*/
+         * return ArrayList<String[]> Die Liste mit den ganzen vorhandenen Benutzernamen.
+         */
         public static ArrayList<String[]> leseUserdaten() {
             FileReader fr = null;
             try {

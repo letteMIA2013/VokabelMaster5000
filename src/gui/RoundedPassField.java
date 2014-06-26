@@ -6,15 +6,17 @@ import java.awt.geom.RoundRectangle2D;
 
 /**
  * Diese Klasse ist für die Rundung des Passwort Feldes zuständig
+ * Copy & Paste aus dem Internet.
  */
 class RoundedPassField extends JPasswordField {
+
     /**
      * Shape wird dazu verwendet Ecken kurviger zu machen (Die Geometrische Form)
      */
     private Shape shape;
 
     /**
-     * @param size
+     * @param size ist die Feldbreite.
      */
     public RoundedPassField(int size) {
         super(size);

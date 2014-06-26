@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Ka Yan & Frances & Nils & Maurice
+ */
+
+/**
  * Diese Klasse implementiert einen ActionListener für die Antwortmöglichkeiten und den Schließen-Button
  * und einen KeyListener für die drei Tasten, die jeweils als Buzzer dienen.
  * Hier werden Spieler angelegt und in die Datenbank der Highscore eingetragen {@link Datenbank.SchreibeHighscore}
@@ -459,7 +463,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
      * Diese Methode überprüft, ob die Frage und die Antwort in ihrer jeweiligen ArrayListe dieselbe
      * Position einnehmen.
      * Ist die gewählte Antwort falsch, dann fäbt sich der Hintergrund rot. Die richtige Antwort wird grün untermalt.
-     * Dies wird mit dem {@link gui.BildBauer} realisiert.
+     * Dies wird mit dem {@link BildBauer} realisiert.
      * Bei einer richtig gewählten Antwort bekommt der jeweilige Spieler einen Punkt.
      */
     public void pruefeAntwort() {

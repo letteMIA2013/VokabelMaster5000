@@ -2,7 +2,6 @@ package gui;
 
 import Img.BildBauer;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -11,6 +10,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * Ka Yan & Frances & Nils
+ */
 
 /**
  * Wir haben ActionListener implementiert damit man besser damit arbeiten kann.
@@ -30,7 +33,7 @@ public class KatalogwahlFenster implements ActionListener {
     /**
      * Im Konstruktor wird das Fenster gebaut, die Größe davon festgelegt, die Sichtbarkeit und dem Hintergrund
      * ein Bild hinzugefügt wird.
-     * Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton} und von der Klasse {@link gui.BildBauer}, daraufhin konnte man jedem Button ein
+     * Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton} und von der Klasse {@link BildBauer}, daraufhin konnte man jedem Button ein
      * Bild hinzufügen die wir dem Panel hinzugefügt haben.
      * Die drei Buttons besitzen alle ein ActionListener.
      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}

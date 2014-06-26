@@ -11,6 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Ka Yan & Frances & Nils
+ */
+
+/**
  * Das Menüfenster ist der Startbildschirm des Programms.
  * Hier kann man aussuchen, was man machen möchte.
  * Man kann Vokabeln lernen, am Quiz teilnehmen oder sich die Credits anschauen.

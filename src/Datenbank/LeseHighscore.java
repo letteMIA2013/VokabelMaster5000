@@ -7,14 +7,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Ka Yan Lam
- * on 15 Jun 2014
- * VokabelMaster5000
+ * Darleen & Marcel
+ */
+
+/**
+ * Diese Methode ließt die Daten aus der HighscoreListe.txt datei aus spaltet <br></br> die Daten zu String
+ * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben.
+ * return ArrayList<String[]>
  */
 public class LeseHighscore {
 
     public static FileReader fr;
 
+    /**
+     * Diese Methode ließt die Daten aus der HighscoreListe.txt datei aus spaltet <br></br> die Daten zu String
+     * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben..
+     * return ArrayList<String[]> Die Liste mit den ganzen vorhandenen Daten.
+     */
     public static ArrayList<String[]> leseUserdaten() {
 
         try {

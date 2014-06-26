@@ -7,15 +7,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Ka Yan Lam
- * on 14 Jun 2014
- * VokabelMaster5000
+ * Darleen & Marcel
+ */
+
+/**
+ * Diese Methode ließt die Daten aus der Vokabeln.txt datei aus spaltet <br></br> die Daten zu String
+ * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben.
+ * return ArrayList<String[]>
  */
 public class LeseDeEngVok {
 
     FileReader fr;
     ArrayList<String[]> b;
 
+    /**
+     * Diese Methode ließt die Daten aus der Vokabeln.txt datei aus spaltet <br></br> die Daten zu String
+     * Arrays auf uns packt sie in eine ArrayList.<br></br> Am Ende wird die ArrayListe wiedergegeben..
+     * return ArrayList<String[]> Die Liste mit den ganzen vorhandenen Vokabeln.
+     */
     public LeseDeEngVok() {
 
         try {

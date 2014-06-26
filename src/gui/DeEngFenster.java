@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Ka Yan & Frances & Nils
+ */
+
+/**
  * In dieser Klasse wird das Deutsch-Englisch Fenster erstellt, ActionListener und KeyListener werden implementiert,
  * damit man besser damit arbeiten kann. <br />
  * Hier wird der Timer für das Lernen der Vokabeln geschrieben und die Position der Fragen und der Antworten festgelegt.

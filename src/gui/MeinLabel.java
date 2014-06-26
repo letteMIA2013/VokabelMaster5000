@@ -6,6 +6,10 @@ import javax.swing.SwingConstants;
 import java.lang.String;
 
 /**
+ * Ka Yan & Frances
+ */
+
+/**
  * Diese Klasse erweitert JLabel mit verschiedenen Konstruktorenauswahl.
  */
 public class MeinLabel extends JLabel {

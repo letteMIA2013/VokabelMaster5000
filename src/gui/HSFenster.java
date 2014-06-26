@@ -4,14 +4,13 @@ import Img.BildBauer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
- * Created by Justus Heyen
- * on 12 Jun 2014
- * VokabelMaster5000
- *
+ * Justus
+ */
+
+/**
  * Diese Klasse ist für die Highscore zuständig. Sie erweitert die Klasse JFrame.
  * Sie holt sich die Daten aus der Datenbank {@link Datenbank.LeseHighscore} und setzt
  * die einzelnen Daten als Text in JLabels ein, die wiederum in ein GridLayout gepackt werden,
@@ -30,7 +29,7 @@ public class HSFenster extends JFrame {
         setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         setSize(400, 400);
         setTitle("Highscore");
-                setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
 
         font = new Font("Arial", Font.BOLD, 16);
 
@@ -87,11 +86,6 @@ public class HSFenster extends JFrame {
     }
 
     private class MeinLabel extends JLabel{
-
-        private MeinLabel() {
-            setFont(font);
-            setForeground(Color.RED);
-        }
         private MeinLabel(String s) {
             super(s);
             setFont(font);

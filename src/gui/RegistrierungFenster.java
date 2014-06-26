@@ -11,6 +11,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
+ * Ka Yan & Frances & Nils & Maurice
+ */
+
+/**
  * Diese Klasse ist für die Erstellung des Registrierungsfensters zuständig.
  * Neue Nutzer können sich hier einen eigenen Account zulegen.
  * Der neue Nutzer wird nur dann in der Datenbank registriert, wenn der Benutzername noch nicht vorhanden ist.

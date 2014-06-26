@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.Dimension;
 
 /**
+ * Ka Yan & Frances
+ */
+
+/**
  * Diese Klasse erweitert die Klasse {@link javax.swing.JButton}.
  * Sie verändert das Aussehen des Buttons, indem sie den Rahmen und den Fokus rausnimmt.
  * Außerdem werden alle Texte zentriert auf den Button gesetzt.

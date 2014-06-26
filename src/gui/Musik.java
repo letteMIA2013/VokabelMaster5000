@@ -11,7 +11,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
+/**
+ * Copy & Paste aus dem Internet.
+ */
 public class Musik extends Thread {
 
     private String filename;
@@ -22,16 +24,11 @@ public class Musik extends Thread {
 
     enum Position {
         LEFT, RIGHT, NORMAL
-    };
+    }
 
     public Musik(String wavfile) {
         filename = wavfile;
         curPosition = Position.NORMAL;
-    }
-
-    public Musik(String wavfile, Position p) {
-        filename = wavfile;
-        curPosition = p;
     }
 
     public void run() {

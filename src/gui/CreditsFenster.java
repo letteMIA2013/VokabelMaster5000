@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Ka Yan & Frances & Nils
+ */
+
+/**
  * In dieser Klasse wird das Fenster Credits erstellt wo man dann erkennen soll, wer was gemacht hat.
  */
 public class CreditsFenster implements ActionListener {

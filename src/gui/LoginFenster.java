@@ -7,14 +7,17 @@ import Login.Login;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.PrintWriter;
 import java.lang.String;
 import java.util.ArrayList;
 
 /**
+ * Ka Yan & Frances & Nils & Maurice
+ */
+
+/**
  * In dieser Klasse wird das Loginfenster erstellt.
  * Hier wird der eingegebene Benutzername mit dem eingegebenen Passwort auf Zugehörigkeit geprüft.
- * Wenn sie zueinander gehören, dann wird der Name und das Passwort an die Klasse {@link Login.Login} weitergeleitet.
+ * Wenn sie zueinander gehören, dann wird der Name und das Passwort an die Klasse {@link Login} weitergeleitet.
  */
 public class LoginFenster {
 
@@ -179,10 +182,8 @@ public class LoginFenster {
                 VokabelnHinzufuegen.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        String vokabelnD = new String();
-                        String vokabelnE = new String();
-                        vokabelnD = vokabelndeutsch.getText();
-                        vokabelnE = vokabelnenglish.getText();
+                        String vokabelnD = vokabelndeutsch.getText();
+                        String vokabelnE = vokabelnenglish.getText();
 
                     }
                 });

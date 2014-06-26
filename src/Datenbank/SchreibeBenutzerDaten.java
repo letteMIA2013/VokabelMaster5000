@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- * Created by Darleen on 04.06.14.
+ * Darleen & Marcel
+ * Diese Klasse ist zum erstellen von Userdaten und zum aktualisieren des Highscores da. Dies ist über die Methoden highScoreAendern
+ * und benutzerAnlegen möglich.
  */
 public class SchreibeBenutzerDaten
 {
@@ -17,7 +19,7 @@ public class SchreibeBenutzerDaten
         KEIN_PASSWORT,
         NUTZER_SCHON_VORHANDEN,
         KEIN_FEHLER,
-        UNBEKANNTER_NUTZER;
+        UNBEKANNTER_NUTZER
     }
     /**
      * Diese Methode wird dazu gebrauch um den Highscore der User aus der Datei UserLogin.txt zu überschreiben.
@@ -31,10 +33,10 @@ public class SchreibeBenutzerDaten
      * Fehlerstatus angibt und einem eine Rückmeldung gibt. Die entesprechenden Enumwerte wurden in FEHLER_TYP erstellt.
      * Mit flush werden dann die entsprechenden Daten überschrieben..
      *
-     * @param id
-     * @param neuerWert
-     * @return ENUM
-     * */
+     * @param id Dies ist der benutzername aus Userdaten.txt
+     * @param neuerWert die ist der neue Highscorewert
+     * @return FEHLER_TYP dieser Wert ist ein ENUM wert
+     */
     public static FEHLER_TYP highScoreAendern(String id, int neuerWert) {
         PrintWriter pw = null;
 
@@ -84,8 +86,8 @@ public class SchreibeBenutzerDaten
      * hat ist er automatisch null. Die Strings in der Arraylist werden ausgelesen und die Strings an position<br></br>
      * 0 der id zugewiesen und die die Strings an der Position 1 werden passwort zugewiesen. Flush ist der Befehl <br></br>
      * der letztendlich in die txt datei schreibt.<br></br>
-     * @param id
-     * @param passwort
+     * @param id        Neuer Username
+     * @param passwort  Neues Passwort
      * @return ENUM
      */
     public static FEHLER_TYP benutzerAnlegen(String id, String passwort) {
@@ -138,10 +140,7 @@ public class SchreibeBenutzerDaten
         return FEHLER_TYP.KEIN_FEHLER;
     }
 
-    /**
-     * nur zum testen
-     * @param args
-     */
+
     public static void main(String[] args) {
         FEHLER_TYP fehler_typ = SchreibeBenutzerDaten.benutzerAnlegen("Horst", "Hotte");
         System.out.println(fehler_typ);

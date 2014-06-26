@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 /**
- * Diese Klasse erweitert JTextField und ist für die Rundung der Textfelder zuständig
+ * Diese Klasse erweitert JTextField und ist für die Rundung der Textfelder zuständig.
+ * Copy & Paste aus dem Internet.
  */
 class RoundedTextField extends JTextField {
 
@@ -15,7 +16,7 @@ class RoundedTextField extends JTextField {
     private Shape shape;
 
     /**
-     * @param size ist die Feldlänge
+     * @param size ist die Feldbreite.
      */
     public RoundedTextField(int size) {
         super(size);

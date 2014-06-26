@@ -9,6 +9,10 @@ import java.lang.String;
 import java.lang.System;
 
 /**
+ * Ka Yan & Frances & Justus
+ */
+
+/**
  * Diese Klasse erweitert {@link javax.swing.JPanel}.
  * Sie überschreibt die paintComponent, sodass man ein Bild als Hintergrund setzen kann.
  */
