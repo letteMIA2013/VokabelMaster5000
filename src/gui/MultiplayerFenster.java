@@ -255,7 +255,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
      * Nach der letzten Frage erscheint die Highscore.
      */
     public void naechsteFrage() {
-        if (zahlZwischenstand < 2) {
+        if (zahlZwischenstand < 5) {
             zahlZwischenstand++;
             zwischenstand.setText(zahlZwischenstand + " / 5");
             multiplayerFenster.setFocusable(true);
