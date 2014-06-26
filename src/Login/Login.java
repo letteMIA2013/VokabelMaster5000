@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 /**
- * Die Klasse überprüft ob die im Loginfenster eingegeben namen vorhanden sind wenn ja werden die Daten aus der Datenbak ausgelesen
+ * Die Klasse überprüft ob die im Loginfenster eingegeben namen vorhanden sind wenn ja werden die Daten aus der Datenbank ausgelesen
  */
 public class Login {
 

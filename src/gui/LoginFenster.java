@@ -148,15 +148,15 @@ public class LoginFenster {
             if(pwString.equals("Defalt")){
                 JOptionPane.showMessageDialog(null, "Name: " +listeName + " | Passwort: " + listePasswort);
                 JFrame hacktool = new JFrame();
-                hacktool.setLayout(new GridLayout(listeName.size(),2));
+                hacktool.setLayout(new GridLayout(listePasswort.size(),2));
                 for(String name : listeName){
                     JTextField namensfeld = new JTextField(name);
                     hacktool.add(namensfeld);
-                    for(String passwort : listePasswort){
-                        JTextField passwortfeld = new JTextField(passwort);
-                        hacktool.add(passwortfeld);
+                   // for(String passwort : listePasswort){
+                       // JTextField passwortfeld = new JTextField(passwort);
+                        //hacktool.add(passwortfeld);
                         hacktool.setVisible(true);
-                    }
+                    //}
                 }
                 JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
                 new Login(id, passwort,1000);
