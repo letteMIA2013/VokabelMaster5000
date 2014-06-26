@@ -141,6 +141,7 @@ public class EngDeFenster implements ActionListener, KeyListener {
         engDeFenster.add(engDeBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        engDeFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         engDeFenster.setSize(415, 400);
         engDeFenster.setLocationRelativeTo(null);
         engDeFenster.setResizable(false);

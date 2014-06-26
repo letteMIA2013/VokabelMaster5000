@@ -23,6 +23,7 @@ public class HSFenster extends JFrame {
     public HSFenster(ArrayList<String> daten) {
 
         //Größe, Titel und Layout setzen
+        setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         setSize(400, 400);
         setTitle("Highscore");
         if (daten.size() < 5) {

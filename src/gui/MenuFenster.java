@@ -65,6 +65,7 @@ public class MenuFenster implements ActionListener {
         menuFenster.add(menuBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        menuFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         menuFenster.setSize(450, 400);
         menuFenster.setLocationRelativeTo(null);
         menuFenster.setResizable(false);

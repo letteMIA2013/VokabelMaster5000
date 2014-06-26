@@ -68,6 +68,7 @@ public class CreditsFenster implements ActionListener {
         creditsFenster.add(creditsBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        creditsFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         creditsFenster.setSize(405, 400);
         creditsFenster.setLocationRelativeTo(null);
         creditsFenster.setResizable(false);

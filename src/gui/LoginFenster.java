@@ -129,6 +129,7 @@ public class LoginFenster {
         loginFenster.add(loginBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        loginFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         loginFenster.setSize(415, 400);
         loginFenster.setLocationRelativeTo(null);
         loginFenster.setResizable(false);

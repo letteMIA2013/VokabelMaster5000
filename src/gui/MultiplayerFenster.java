@@ -208,6 +208,7 @@ public class MultiplayerFenster implements KeyListener, ActionListener {
         multiplayerFenster.add(multiplayerBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        multiplayerFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         multiplayerFenster.setSize(415, 400);
         multiplayerFenster.setLocationRelativeTo(null);
         multiplayerFenster.setResizable(false);
