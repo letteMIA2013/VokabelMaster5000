@@ -19,6 +19,7 @@ public class CreditsFenster implements ActionListener {
     BildButton zurueck;
 
     /**
+     * Dieser Konstruktor wird dann verwendet, wenn kein Spieler eingeloggt ist.
      * Im Konstruktor wird die Methode fensterAnzeige() benutzt, damit das Credit Fenster beim Aufrufen dieser Klasse
      * erstellt wird. Diese Klasse wird in der Klasse {@link gui.MenuFenster} benutzt.
      */
@@ -27,6 +28,7 @@ public class CreditsFenster implements ActionListener {
     }
 
     /**
+     * Dieser Konstruktor wird dann verwendet, wenn ein Spieler gerade eingeloggt ist.
      * @param speicherVokabelnLernen diesen braucht man damit in der Klasse SpeicherVokabelnLernen
      *                               die Daten abgelegt werden
      */
@@ -38,18 +40,18 @@ public class CreditsFenster implements ActionListener {
     /**
      * hier wird das Fenster gebaut, wo man die Größe festlegt und es sichtbar macht.
      * Dem Hintergrund wird auch ein Bild hinzugefügt.
-     * Im Menupanel haben wir die Button hinzugefügt
+     * Im Creditspanel haben wir die Buttons hinzugefügt.
      */
     public void fensterAnzeige() {
 
-        //Fenster für das Menue
+        //Fenster für die Credits
         creditsFenster = new JFrame("Credits");
         creditsFenster.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        //Hintergrundbild
+        //Hintergrundbild dem Panel setzen
         BilderPanel creditsBg = new BilderPanel("/Img/creditsBg.png");
 
-        //Menupanel für die Buttons
+        //Creditpanel für die Buttons
         JPanel creditsPanel = new JPanel(new GridBagLayout());
         creditsPanel.setOpaque(false);
 
@@ -68,6 +70,7 @@ public class CreditsFenster implements ActionListener {
         creditsFenster.add(creditsBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        creditsFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         creditsFenster.setSize(405, 400);
         creditsFenster.setLocationRelativeTo(null);
         creditsFenster.setResizable(false);

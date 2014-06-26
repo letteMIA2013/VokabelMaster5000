@@ -9,15 +9,17 @@ import java.lang.String;
 import java.lang.System;
 
 /**
- * Created by Ka Yan Lam
- * on 11 Jun 2014
- * VokabelMaster5000
+ * Diese Klasse erweitert {@link javax.swing.JPanel}.
+ * Sie überschreibt die paintComponent, sodass man ein Bild als Hintergrund setzen kann.
  */
 
 public class BilderPanel extends JPanel {
 
     private Image img;
-
+    /**
+     * Mit dem übergebenen String wird das Bild kreiert.
+     * @param imgUrl der Pfad wird als String übergeben und daraus wird ein Image erstellt.
+     */
     public BilderPanel(String imgUrl){
         this(imgUrl, 1.0f);
     }
@@ -38,7 +40,12 @@ public class BilderPanel extends JPanel {
         }
     }
 
-
+    /**
+     * In dieser Methode wird überprüft, ob der angegebene Pfad vorhanden ist.
+     * @param pfad der Parameter gibt an das man bei dieser Methode einen String übergeben muss
+     * @return Es soll eine URL zurückgegeben werden. Diese Methode haben wir z.B.
+     * hier hinzugefügt {@link gui.KatalogwahlFenster}
+     */
     public ImageIcon createImageIcon(String pfad) {
         java.net.URL imgURL = getClass().getResource(pfad);
         if (imgURL != null) {

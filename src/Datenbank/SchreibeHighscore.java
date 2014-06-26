@@ -43,10 +43,12 @@ public class SchreibeHighscore {
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter("src/Datenbank/HighscoreListe.txt")));
 
-            if (alleVorhandenenDaten.size() >= 0) {
+            if (alleVorhandenenDaten.size() >= 1) {
                 System.out.println("hiiii" + alleVorhandenenDaten.size());
                 for (String[] pair : alleVorhandenenDaten) {
                     pw.println(pair[0] + "/" + pair[1]);
+
+
                 }
 
                 pw.println(id + "/" + 0);
