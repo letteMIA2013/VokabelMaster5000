@@ -112,6 +112,7 @@ public class RegistrierungFenster {
         registrierungsFenster.add(registrierungsBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        registrierungsFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         registrierungsFenster.setSize(415, 400);
         registrierungsFenster.setLocationRelativeTo(null);
         registrierungsFenster.setResizable(false);

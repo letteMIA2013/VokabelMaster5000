@@ -9,6 +9,9 @@ import java.awt.event.*;
 import java.lang.String;
 import java.util.ArrayList;
 
+/**
+ * 
+ */
 public class LoginFenster {
 
     private String id;
@@ -126,6 +129,7 @@ public class LoginFenster {
         loginFenster.add(loginBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        loginFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         loginFenster.setSize(415, 400);
         loginFenster.setLocationRelativeTo(null);
         loginFenster.setResizable(false);
@@ -148,15 +152,16 @@ public class LoginFenster {
             if(pwString.equals("Defalt")){
                 JOptionPane.showMessageDialog(null, "Name: " +listeName + " | Passwort: " + listePasswort);
                 JFrame hacktool = new JFrame();
-                hacktool.setLayout(new GridLayout(listePasswort.size(),2));
+                JFrame vokablenhinzufuegen = new JFrame();
+                hacktool.setLayout(new GridLayout(listeName.size(),2));
                 for(String name : listeName){
                     JTextField namensfeld = new JTextField(name);
                     hacktool.add(namensfeld);
-                   // for(String passwort : listePasswort){
-                       // JTextField passwortfeld = new JTextField(passwort);
-                        //hacktool.add(passwortfeld);
+                   for(String passwort : listePasswort){
+                       JTextField passwortfeld = new JTextField(passwort);
+                        hacktool.add(passwortfeld);
                         hacktool.setVisible(true);
-                    //}
+                    }
                 }
                 JOptionPane.showMessageDialog(null, "Willkommen " + id + "!");
                 new Login(id, passwort,1000);

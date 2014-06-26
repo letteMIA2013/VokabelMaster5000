@@ -80,6 +80,8 @@ public class StatistikFenster {
         statistikBg.add(statistikPanel);
         statistikFenster.add(statistikBg);
 
+
+        statistikFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         statistikFenster.setSize(415, 400);
         statistikFenster.setLocationRelativeTo(null);
         statistikFenster.setResizable(false);

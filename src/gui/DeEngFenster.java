@@ -142,6 +142,7 @@ public class DeEngFenster implements ActionListener, KeyListener {
         deEngFenster.add(deEngBg);
 
         //Fenstergröße setzen und anzeigen lassen
+        deEngFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         deEngFenster.setSize(415, 400);
         deEngFenster.setLocationRelativeTo(null);
         deEngFenster.setResizable(false);

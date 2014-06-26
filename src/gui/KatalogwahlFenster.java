@@ -29,7 +29,7 @@ public class KatalogwahlFenster implements ActionListener {
      * ein Bild hinzugefügt wird.
      * Es werden 3 Buttons erstellt von der Klasse {@link gui.BildButton} und von der Klasse {@link gui.BildBauer}, daraufhin konnte man jedem Button ein
      * Bild hinzufügen die wir dem Panel hinzugefügt haben.
-     * Die 3 Buttons besitzen alle ein ActionListener.
+     * Die drei Buttons besitzen alle ein ActionListener.
      * @param s ist ein Objekt von der Klasse{@link gui.SpeicherVokabelnLernen}
      *          damit dort alles zwischengespeichert wird
      */
@@ -73,6 +73,8 @@ public class KatalogwahlFenster implements ActionListener {
         katalogFenster.add(katalogBg);
 
         //Fenstergröße setzen und anzeigen lassen
+
+        katalogFenster.setIconImage(new BildBauer().createImageIcon("/Img/vmWinIco.png").getImage());
         katalogFenster.setSize(415, 400);
         katalogFenster.setLocationRelativeTo(null);
         katalogFenster.setResizable(false);
