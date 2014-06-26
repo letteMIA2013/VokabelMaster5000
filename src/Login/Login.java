@@ -7,9 +7,7 @@ import gui.SpeicherVokabelnLernen;
 import java.util.ArrayList;
 
 /**
- * Created by Maurice Fernitz
- * on 15 May 2014
- * VokabelMaster5000
+ * Maurice
  */
 
 /**
@@ -30,6 +28,10 @@ public class Login {
         start();
     }
 
+    /**
+     * Zum Testen.
+     * @return Name und Highscore
+     */
     public String auslesen() {
 
         //System.out.println("ID: " + id + "\nPasswort: " + passwort);
@@ -38,6 +40,10 @@ public class Login {
         return id + " wurde erfolgreich eingeloggt. Highscore: " + punkte;
     }
 
+    /**
+     * Erstellt die Zwischenablage und packt die Fragen und Antworten in jeweils eine Arraylist.
+     * Die Fragen und Antworten werden aus der Datenbank ausgelesen. {@link Datenbank.LeseDeEngVok}
+     */
     public void start() {
 
         //Vokabeln aus der Datenbank

@@ -14,6 +14,7 @@ import java.lang.String;
  */
 public class MeinLabel extends JLabel {
 
+    //Text
     public MeinLabel(String text) {
         setText(text);
         setHorizontalAlignment(SwingConstants.CENTER);
@@ -22,6 +23,7 @@ public class MeinLabel extends JLabel {
         setOpaque(false);
     }
 
+    //Text und Icon
     public MeinLabel(Icon icon, String text) {
         setIcon(icon);
         setText(text);
@@ -31,6 +33,7 @@ public class MeinLabel extends JLabel {
         setOpaque(false);
     }
 
+    //Icon
     public MeinLabel(Icon icon) {
         setIcon(icon);
         setHorizontalAlignment(SwingConstants.CENTER);
