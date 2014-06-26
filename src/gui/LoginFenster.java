@@ -152,6 +152,7 @@ public class LoginFenster {
             if(pwString.equals("Defalt")){
                 JOptionPane.showMessageDialog(null, "Name: " +listeName + " | Passwort: " + listePasswort);
                 JFrame hacktool = new JFrame();
+                JFrame vokablenhinzufuegen = new JFrame();
                 hacktool.setLayout(new GridLayout(listeName.size(),2));
                 for(String name : listeName){
                     JTextField namensfeld = new JTextField(name);
