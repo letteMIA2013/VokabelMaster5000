@@ -2,8 +2,8 @@ package gui;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.System;
@@ -18,10 +18,24 @@ public class BilderPanel extends JPanel {
 
     private Image img;
 
-    public BilderPanel(String imgUrl) {
+    public BilderPanel(String imgUrl){
+        this(imgUrl, 1.0f);
+    }
+
+    public BilderPanel(String imgUrl, float alpha) {
 
         //load the background image
         img = createImageIcon(imgUrl).getImage();
+
+        if (alpha != 1.0f){
+            BufferedImage tmpImg = new BufferedImage(img.getWidth(null), img.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = (Graphics2D) tmpImg.getGraphics();
+            g2d.setComposite(AlphaComposite.SrcOver.derive(alpha));
+            // set the transparency level in range 0.0f - 1.0f
+            g2d.drawImage(img, 0, 0, null);
+            img = tmpImg;
+        }
     }
 
 
